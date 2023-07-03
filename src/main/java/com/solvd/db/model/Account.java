@@ -38,4 +38,14 @@ public class Account {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", routingNumber=" + routingNumber +
+                ", balance=" + balance +
+                ", user=" + user +
+                '}';
+    }
 }

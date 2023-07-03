@@ -40,4 +40,14 @@ public class Event {
     public void setEventType(EventType eventType) {
         this.eventType = eventType;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", datetime=" + datetime +
+                ", card=" + card +
+                ", eventType=" + eventType +
+                '}';
+    }
 }

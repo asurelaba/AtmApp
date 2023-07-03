@@ -3,7 +3,7 @@ package com.solvd.db.model;
 public class Card {
 
     private int cardId;
-    private int cardNumber;
+    private long cardNumber;
     private int pin;
     private String status;
     private CardType cardType;
@@ -17,7 +17,7 @@ public class Card {
         this.cardId = cardId;
     }
 
-    public int getCardNumber() {
+    public long getCardNumber() {
         return cardNumber;
     }
 
@@ -55,5 +55,17 @@ public class Card {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cardId=" + cardId +
+                ", cardNumber=" + cardNumber +
+                ", pin=" + pin +
+                ", status='" + status + '\'' +
+                ", cardType=" + cardType +
+                ", user=" + user +
+                '}';
     }
 }

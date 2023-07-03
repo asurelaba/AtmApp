@@ -20,4 +20,12 @@ public class CardType {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "CardType{" +
+                "typeId=" + typeId +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

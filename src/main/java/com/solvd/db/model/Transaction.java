@@ -38,4 +38,14 @@ public class Transaction {
     public void setEvent(Event event) {
         this.event = event;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionId=" + transactionId +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                ", event=" + event +
+                '}';
+    }
 }

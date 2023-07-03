@@ -38,4 +38,14 @@ public class User {
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", status='" + status + '\'' +
+                ", person=" + person +
+                ", userRole=" + userRole +
+                '}';
+    }
 }
