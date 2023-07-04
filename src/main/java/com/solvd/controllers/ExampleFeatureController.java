@@ -1,7 +1,7 @@
-package com.solvd.db.controllers;
+package com.solvd.controllers;
 
-import com.solvd.db.interfaces.IFeatureController;
-import com.solvd.db.views.ExampleFeatureView;
+import com.solvd.interfaces.icontrollers.IFeatureController;
+import com.solvd.views.ExampleFeatureView;
 
 public class ExampleFeatureController implements IFeatureController {
 

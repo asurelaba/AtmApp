@@ -1,19 +1,16 @@
-package com.solvd.db.views;
+package com.solvd.views.atm;
 
-import com.solvd.db.interfaces.IAtmView;
 import java.util.Scanner;
 
-public class AtmView implements IAtmView {
+public class AtmView {
 
     private static final Scanner s = new Scanner(System.in);
 
 
-    @Override
     public void display(String message) {
         System.out.println(message);
     }
 
-    @Override
     public String featureTitle() {
         return "Main Menu";
     }
@@ -37,7 +34,6 @@ public class AtmView implements IAtmView {
         display("4. shutdown");
     }
 
-    @Override
     public int getUserSelection() {
         display("Enter selection choice: ");
         return s.nextInt();

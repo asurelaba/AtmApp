@@ -1,9 +1,9 @@
-package com.solvd.db.views;
+package com.solvd.views;
 
-import com.solvd.db.interfaces.IFeatureView;
+import com.solvd.interfaces.iviews.atm.IAtmView;
 import java.util.Scanner;
 
-public class ExampleFeatureView implements IFeatureView {
+public class ExampleFeatureView implements IAtmView {
 
     private static final Scanner s = new Scanner(System.in);
 

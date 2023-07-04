@@ -1,4 +1,4 @@
-package com.solvd.db.interfaces;
+package com.solvd.interfaces.iviews;
 
 public interface IFeatureView {
 
