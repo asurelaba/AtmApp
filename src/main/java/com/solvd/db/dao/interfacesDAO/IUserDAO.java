@@ -1,12 +1,12 @@
-package com.solvd.db.interfaces;
+package com.solvd.db.dao.interfacesDAO;
 
 import com.solvd.db.model.User;
 
 import java.util.List;
 
+/* The operations to get by id, get all from the DB, insert, update,
+and delete are covered by the IBaseDao interface*/
 public interface IUserDAO extends IBaseDAO<User> {
-            /* The operations to get by id, get all from the DB, insert, update,
-    and delete are covered by the IBaseDao interface*/
 
     List<User> getUsersByStatus(String statusName);
 

@@ -1,13 +1,13 @@
-package com.solvd.db.interfaces;
+package com.solvd.db.dao.interfacesDAO;
 
 import com.solvd.db.model.Transaction;
 
 import java.sql.Date;
 import java.util.List;
 
+/* The operations to get by id, get all from the DB, insert, update,
+and delete are covered by the IBaseDao interface*/
 public interface ITransactionDAO extends IBaseDAO<Transaction> {
-    /* The operations to get by id, get all from the DB, insert, update,
-    and delete are covered by the IBaseDao interface*/
 
     List<Transaction> getTransactionsByStatus(String statusName); // StatusName: Approved/Denied
 

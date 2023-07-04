@@ -1,4 +1,4 @@
-package com.solvd.db.interfaces;
+package com.solvd.db.dao.interfacesDAO;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
-package com.solvd.db.interfaces;
+package com.solvd.db.dao.interfacesDAO;
 
 import com.solvd.db.model.Event;
 
 import java.sql.Date;
 import java.util.List;
 
+/* The operations to get by id, get all from the DB, insert, update,
+and delete are covered by the IBaseDao interface*/
 public interface IEventDAO extends IBaseDAO<Event> {
-            /* The operations to get by id, get all from the DB, insert, update,
-    and delete are covered by the IBaseDao interface*/
 
     List<Event> getEventsByRangeDate(Date from, Date to); // All from BD by Date
 

@@ -1,6 +1,6 @@
-package com.solvd.db.mybatisDAO;
+package com.solvd.db.dao.mybatisDAO;
 
-import com.solvd.db.interfaces.IEventTypeDAO;
+import com.solvd.db.dao.interfacesDAO.IEventTypeDAO;
 import com.solvd.db.model.EventType;
 import com.solvd.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;

@@ -1,6 +1,6 @@
-package com.solvd.db.mybatisDAO;
+package com.solvd.db.dao.mybatisDAO;
 
-import com.solvd.db.interfaces.ICardDAO;
+import com.solvd.db.dao.interfacesDAO.ICardDAO;
 import com.solvd.db.model.Card;
 import com.solvd.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
