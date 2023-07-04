@@ -1,6 +1,6 @@
 package com.solvd.db.dao.mybatisDAO;
 
-import com.solvd.db.dao.interfacesDAO.ICardTypeDAO;
+import com.solvd.db.dao.idao.ICardTypeDAO;
 import com.solvd.db.model.CardType;
 import com.solvd.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -56,5 +56,15 @@ public class CardTypeDAO implements ICardTypeDAO {
             cardTypes = icardTypeDAO.getAll();
         }
         return cardTypes;
+    }
+
+    @Override
+    public CardType getCardTypeByName(String typeName) {
+        CardType cardType;
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            ICardTypeDAO icardTypeDAO = sqlSession.getMapper(ICardTypeDAO.class);
+            cardType = icardTypeDAO.getCardTypeByName(typeName);
+        }
+        return cardType;
     }
 }

@@ -1,4 +1,4 @@
-package com.solvd.db.dao.interfacesDAO;
+package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.Account;
 

@@ -1,6 +1,6 @@
 package com.solvd.db.dao.mybatisDAO;
 
-import com.solvd.db.dao.interfacesDAO.IUserDAO;
+import com.solvd.db.dao.idao.IUserDAO;
 import com.solvd.db.model.User;
 import com.solvd.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;

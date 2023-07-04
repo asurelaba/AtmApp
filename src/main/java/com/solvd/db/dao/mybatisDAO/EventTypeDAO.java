@@ -1,6 +1,6 @@
 package com.solvd.db.dao.mybatisDAO;
 
-import com.solvd.db.dao.interfacesDAO.IEventTypeDAO;
+import com.solvd.db.dao.idao.IEventTypeDAO;
 import com.solvd.db.model.EventType;
 import com.solvd.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -56,5 +56,15 @@ public class EventTypeDAO implements IEventTypeDAO {
             eventTypes = ieventTypeDAO.getAll();
         }
         return eventTypes;
+    }
+
+    @Override
+    public EventType getEvenTypeByTypeName(String typeName) {
+        EventType eventType;
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            IEventTypeDAO ieventTypeDAO = sqlSession.getMapper(IEventTypeDAO.class);
+            eventType = ieventTypeDAO.getEvenTypeByTypeName(typeName);
+        }
+        return eventType;
     }
 }

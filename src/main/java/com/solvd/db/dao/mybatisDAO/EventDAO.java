@@ -1,6 +1,6 @@
 package com.solvd.db.dao.mybatisDAO;
 
-import com.solvd.db.dao.interfacesDAO.IEventDAO;
+import com.solvd.db.dao.idao.IEventDAO;
 import com.solvd.db.model.Event;
 import com.solvd.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -130,11 +130,11 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventByTransactionId(int transactionId) {
+    public List<Event> getEventsByTransactionId(int transactionId) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
-            events = ieventDAO.getEventByTransactionId(transactionId);
+            events = ieventDAO.getEventsByTransactionId(transactionId);
         }
         return events;
     }

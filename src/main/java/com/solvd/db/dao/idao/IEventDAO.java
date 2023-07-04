@@ -1,4 +1,4 @@
-package com.solvd.db.dao.interfacesDAO;
+package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.Event;
 
@@ -23,5 +23,5 @@ public interface IEventDAO extends IBaseDAO<Event> {
 
     List<Event> getEventByAccountId(int accountId);
 
-    List<Event> getEventByTransactionId(int transactionId);
+    List<Event> getEventsByTransactionId(int transactionId);
 }
