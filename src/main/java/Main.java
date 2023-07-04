@@ -1,5 +1,8 @@
+import com.solvd.db.controllers.AtmController;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        AtmController atmController = new AtmController();
+        atmController.run();
     }
 }
