@@ -13,11 +13,11 @@ public interface IEventDAO extends IBaseDAO<Event> {
 
     List<Event> getEventsByCardId(int cardId);
 
-    List<Event> getEventsByType(); // Type: Deposit, Change of pin, etc
+    List<Event> getEventsByType(String typeName); // Type: Deposit, Change of pin, etc
 
     List<Event> getEventsByUserId(int userId); // All events from a single user
 
-    List<Event> getEventsByRangeDateAndUserID(int userid, Date from, Date to); // User's events in a date Range
+    List<Event> getEventsByRangeDateAndUserID(int userId, Date from, Date to); // User's events in a date Range
 
     List<Event> getEventsByCardNumber(long cardNumber);
 

@@ -19,7 +19,5 @@ public interface ITransactionDAO extends IBaseDAO<Transaction> {
 
     List<Transaction> getTransactionsByUserId(int userid); // All user's transaction history
 
-    List<Transaction> getTransactionsByRangeDateAndUserId(int userid, Date from, Date to); // Users data by date
-
-
+    List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Date from, Date to); // Users data by date
 }
