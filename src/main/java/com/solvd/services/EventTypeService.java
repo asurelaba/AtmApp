@@ -8,7 +8,7 @@ public class EventTypeService extends EntityService<EventType, IEventTypeDAO> im
 
     @Override
     protected String getTableName() {
-        return "eventtypes";
+        return "event_types";
     }
 
     @Override

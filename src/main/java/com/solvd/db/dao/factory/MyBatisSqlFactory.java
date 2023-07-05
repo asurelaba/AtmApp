@@ -30,13 +30,13 @@ public class MyBatisSqlFactory {
         return switch (tableName.toLowerCase()) {
             case "accounts" -> new AccountDAO();
             case "cards" -> new CardDAO();
-            case "cardtypes" -> new CardTypeDAO();
+            case "card_types" -> new CardTypeDAO();
             case "events" -> new EventDAO();
-            case "eventtypes" -> new EventTypeDAO();
+            case "event_types" -> new EventTypeDAO();
             case "persons" -> new PersonDAO();
             case "transactions" -> new TransactionDAO();
             case "users" -> new UserDAO();
-            case "userroles" -> new UserRoleDAO();
+            case "user_roles" -> new UserRoleDAO();
             default -> throw new DAONotFoundException(tableName + "DAO not found");
         };
     }

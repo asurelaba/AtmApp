@@ -7,7 +7,7 @@ public class CardTypeService extends EntityService<CardType, ICardTypeDAO> imple
 
     @Override
     protected String getTableName() {
-        return "cardtypes";
+        return "card_types";
     }
 
     @Override

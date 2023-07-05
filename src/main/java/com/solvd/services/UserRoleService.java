@@ -7,7 +7,7 @@ public class UserRoleService extends EntityService<UserRole, IUserRoleDAO> imple
 
     @Override
     protected String getTableName() {
-        return "userroles";
+        return "user_roles";
     }
 
     @Override
