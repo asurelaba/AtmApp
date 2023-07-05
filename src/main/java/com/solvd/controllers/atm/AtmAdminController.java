@@ -1,17 +1,18 @@
 package com.solvd.controllers.atm;
 
 import com.solvd.controllers.ExampleFeatureController;
+import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
 import com.solvd.interfaces.icontrollers.atm.IAtmAdminController;
 import com.solvd.views.atm.AtmAdminView;
 
 public class AtmAdminController implements IAtmAdminController {
 
-    protected User admin;
+    protected Card adminCard;
     AtmAdminView view = new AtmAdminView();
 
-    public AtmAdminController(User admin) {
-        this.admin = admin;
+    public AtmAdminController(Card adminCard) {
+        this.adminCard = adminCard;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class AtmAdminController implements IAtmAdminController {
 
     public void placeHolder() {
         view.display("placeholder");
-        new ExampleFeatureController(admin).run();
+        new ExampleFeatureController(adminCard).run();
     }
 
     @Override
@@ -63,6 +64,7 @@ public class AtmAdminController implements IAtmAdminController {
 
     @Override
     public void handleLogout() {
+        User admin = adminCard.getUser();
         view.display("Goodbye, " + admin.getPerson().getFirstName());
         view.display("Logging out");
     }

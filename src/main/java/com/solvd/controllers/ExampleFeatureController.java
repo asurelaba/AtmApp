@@ -1,16 +1,16 @@
 package com.solvd.controllers;
 
-import com.solvd.db.model.User;
+import com.solvd.db.model.Card;
 import com.solvd.interfaces.icontrollers.IFeatureController;
 import com.solvd.views.ExampleFeatureView;
 
 public class ExampleFeatureController implements IFeatureController {
 
-    private final User user;
+    private final Card userCard;
     private final ExampleFeatureView view = new ExampleFeatureView();
 
-    public ExampleFeatureController(User user) {
-        this.user = user;
+    public ExampleFeatureController(Card userCard) {
+        this.userCard = userCard;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ExampleFeatureController implements IFeatureController {
     }
 
     private void handleShowUser() {
-        view.display("User: " + user);
+        view.display("User: " + userCard.getUser());
     }
 
 }

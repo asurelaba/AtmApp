@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.db.model.User;
+import com.solvd.db.model.Card;
 import com.solvd.views.atm.AtmView;
 
 
@@ -15,11 +15,10 @@ public class AtmController {
             AtmLoginController atmLoginController = new AtmLoginController();
             atmLoginController.run();
 
-            String cardType = atmLoginController.getAtmCard().getCardType().getName();
-            User atmUser = atmLoginController.getAtmUser();
-            switch (cardType) {
-                case "ClientCard" -> new AtmClientController(atmUser).run();
-                case "AdministratorCard" -> new AtmAdminController(atmUser).run();
+            Card atmCard = atmLoginController.getAtmCard();
+            switch (atmCard.getCardType().getName()) {
+                case "ClientCard" -> new AtmClientController(atmCard).run();
+                case "AdministratorCard" -> new AtmAdminController(atmCard).run();
             }
             atmReset();
         }

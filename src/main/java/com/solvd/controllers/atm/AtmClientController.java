@@ -1,17 +1,18 @@
 package com.solvd.controllers.atm;
 
+import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
 import com.solvd.interfaces.icontrollers.atm.IAtmClientController;
 import com.solvd.views.atm.AtmClientView;
 
 public class AtmClientController implements IAtmClientController {
 
-    protected User client;
+    protected Card clientCard;
 
     private final AtmClientView view = new AtmClientView();
 
-    public AtmClientController(User client) {
-        this.client = client;
+    public AtmClientController(Card clientCard) {
+        this.clientCard = clientCard;
     }
 
     @Override
@@ -64,6 +65,7 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void handleLogout() {
+        User client = clientCard.getUser();
         view.display("Goodbye, " + client.getPerson().getFirstName());
         view.display("Logging out");
     }

@@ -10,7 +10,6 @@ import com.solvd.views.atm.AtmLoginView;
 public class AtmLoginController implements IAtmLoginController {
 
     protected Card atmCard;
-    protected User atmUser = getExampleUser(); // TODO remove getExample after impl
 
     private final AtmLoginView view = new AtmLoginView();
 
@@ -23,6 +22,7 @@ public class AtmLoginController implements IAtmLoginController {
         exampleClientCard.setPin(11);
         exampleClientCard.setCardType(ct);
         exampleClientCard.setStatus("active");
+        exampleClientCard.setUser(getExampleUser());
         return exampleClientCard;
     }
 
@@ -35,6 +35,7 @@ public class AtmLoginController implements IAtmLoginController {
         exampleAdminCard.setPin(22);
         exampleAdminCard.setCardType(ct);
         exampleAdminCard.setStatus("active");
+        exampleAdminCard.setUser(getExampleUser());
         return exampleAdminCard;
     }
 
@@ -104,12 +105,6 @@ public class AtmLoginController implements IAtmLoginController {
         view.display("You card is locked.");
         view.display("Request unlock?");
         // TODO cardController.unlock
-    }
-
-
-    @Override
-    public User getAtmUser() {
-        return atmUser;
     }
 
     @Override
