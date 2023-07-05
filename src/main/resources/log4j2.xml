@@ -5,12 +5,11 @@
     <Appenders>
         <!-- Console appender configuration -->
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+            <PatternLayout
+                    pattern="%highlight{%d{HH:mm:ss.SSS} %-5level %logger{36}.%M - %msg%n}{FATAL=red,
+                    ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white}"
+                    disableAnsi="false"/>
         </Console>
-        <!-- File appender configuration -->
-        <File name="file" fileName="logs/app.log">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
-        </File>
     </Appenders>
     <Loggers>
         <!-- Root logger referring to both console and file appenders -->
