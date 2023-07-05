@@ -31,17 +31,14 @@ public class AtmAdminController implements IAtmAdminController {
                     handleLogout();
                     return;
                 }
-                case 9 -> handleAppShutdown();
-                default -> {
-                    view.display("Invalid selection");
+                case 9 -> {
+                    handleAppShutdown();
+                    return;
                 }
+                default -> view.display("Invalid selection");
             }
         }
 
-    }
-
-    private void handleAppShutdown() {
-        System.exit(0);
     }
 
     public void placeHolder() {
@@ -51,23 +48,28 @@ public class AtmAdminController implements IAtmAdminController {
 
     @Override
     public void handleCreateUser() {
-
+        // TODO
     }
 
     @Override
     public void handleUnlockCardRequests() {
-
+        // TODO
     }
 
     @Override
     public void handleLockUserCard() {
-
+        // TODO
     }
 
     @Override
     public void handleLogout() {
         view.display("Goodbye, " + admin.getPerson().getFirstName());
         view.display("Logging out");
+    }
+
+    private void handleAppShutdown() {
+        handleLogout();
+        AtmController.isRunning = false;
     }
 
 }

@@ -8,7 +8,7 @@ public class AtmClientController implements IAtmClientController {
 
     protected User client;
 
-    AtmClientView view = new AtmClientView();
+    private final AtmClientView view = new AtmClientView();
 
     public AtmClientController(User client) {
         this.client = client;

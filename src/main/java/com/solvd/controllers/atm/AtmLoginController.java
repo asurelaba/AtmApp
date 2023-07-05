@@ -12,7 +12,7 @@ public class AtmLoginController implements IAtmLoginController {
     protected Card atmCard;
     protected User atmUser = getExampleUser(); // TODO remove getExample after impl
 
-    AtmLoginView view = new AtmLoginView();
+    private final AtmLoginView view = new AtmLoginView();
 
     //TODO remove after full handleCard implementations
     private Card getExampleClientCard() {
