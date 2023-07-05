@@ -12,7 +12,7 @@
                      javaType="User" select="com.solvd.db.dao.idao.IUserDAO.getById"/>
     </resultMap>
 
-    <insert id="insert" keyProperty="accountId" useGeneratedKeys="true">
+    <insert id="insert" parameterType="Account" keyProperty="accountId" useGeneratedKeys="true">
         INSERT INTO accounts (routing_number, balance, user_id)
         VALUES (#{routingNumber}, #{balance}, #{user.userId});
     </insert>

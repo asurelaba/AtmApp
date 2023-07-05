@@ -13,7 +13,7 @@
                      javaType="EventType" select="com.solvd.db.dao.idao.IEventTypeDAO.getById"/>
     </resultMap>
 
-    <insert id="insert" keyProperty="eventId" useGeneratedKeys="true">
+    <insert id="insert" parameterType="Event" keyProperty="eventId" useGeneratedKeys="true">
         INSERT INTO events (datetime, card_id, type_id)
         VALUES (#{datetime}, #{card.card_id}, #{eventType.type_id});
     </insert>

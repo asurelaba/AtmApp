@@ -9,7 +9,7 @@
         <result property="name" column="name"/>
     </resultMap>
 
-    <insert id="insert" keyProperty="typeId" useGeneratedKeys="true">
+    <insert id="insert" parameterType="EventType" keyProperty="typeId" useGeneratedKeys="true">
         INSERT INTO event_types (name)
         VALUES (#{name});
     </insert>

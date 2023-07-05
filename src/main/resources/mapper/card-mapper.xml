@@ -15,7 +15,7 @@
                      javaType="User" select="com.solvd.db.dao.idao.IUserDAO.getById"/>
     </resultMap>
 
-    <insert id="insert" keyProperty="cardId" useGeneratedKeys="true">
+    <insert id="insert" parameterType="Card" keyProperty="cardId" useGeneratedKeys="true">
         INSERT INTO cards (card_number, pin, status, type_id, user_id)
         VALUES (#{cardNumber}, #{pin}, #{status}, #{cardType.type_id}, #{user.user_id});
     </insert>

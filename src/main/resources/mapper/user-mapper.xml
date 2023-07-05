@@ -13,7 +13,7 @@
                      javaType="UserRole" select="com.solvd.db.dao.idao.IUserRoleDAO.getById"/>
     </resultMap>
 
-    <insert id="insert" keyProperty="userId" useGeneratedKeys="true">
+    <insert id="insert" parameterType="User" keyProperty="userId" useGeneratedKeys="true">
         INSERT INTO users (status, person_id, role_id)
         VALUES (#{status}, #{person.personId}, #{userRole.roleId});
     </insert>
