@@ -3,13 +3,13 @@ package com.solvd.db.dao.mybatisDAO;
 
 import com.solvd.db.dao.idao.IUserRoleDAO;
 import com.solvd.db.model.UserRole;
-import com.solvd.db.dao.util.MyBatisSqlFactory;
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class UserRoleDao implements IUserRoleDAO {
+public class UserRoleDAO implements IUserRoleDAO {
 
     private final SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
 

@@ -2,7 +2,7 @@ package com.solvd.db.dao.mybatisDAO;
 
 import com.solvd.db.dao.idao.ICardTypeDAO;
 import com.solvd.db.model.CardType;
-import com.solvd.db.dao.util.MyBatisSqlFactory;
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
