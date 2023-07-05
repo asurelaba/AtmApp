@@ -3,6 +3,7 @@ package com.solvd.services;
 import com.solvd.db.dao.factory.DAONotFoundException;
 import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IBaseDAO;
+
 import java.util.List;
 
 public abstract class EntityService<T, D extends IBaseDAO<T>> {

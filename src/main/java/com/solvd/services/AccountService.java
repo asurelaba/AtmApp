@@ -7,7 +7,7 @@ public class AccountService extends EntityService<Account, IAccountDAO> implemen
 
     @Override
     protected String getTableName() {
-        return "account";
+        return "accounts";
     }
 
     @Override

@@ -10,7 +10,7 @@ public class EventService extends EntityService<Event, IEventDAO> implements IEv
 
     @Override
     protected String getTableName() {
-        return "event";
+        return "events";
     }
 
     @Override

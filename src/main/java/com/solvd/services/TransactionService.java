@@ -2,15 +2,16 @@ package com.solvd.services;
 
 import com.solvd.db.dao.idao.ITransactionDAO;
 import com.solvd.db.model.Transaction;
+
 import java.sql.Date;
 import java.util.List;
 
 public class TransactionService extends EntityService<Transaction, ITransactionDAO> implements
-    ITransactionDAO {
+        ITransactionDAO {
 
     @Override
     protected String getTableName() {
-        return "transaction";
+        return "transactions";
     }
 
 
