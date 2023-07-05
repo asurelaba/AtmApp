@@ -15,7 +15,6 @@
         <!-- Root logger referring to both console and file appenders -->
         <Root level="info" additivity="false">
             <AppenderRef ref="console"/>
-            <AppenderRef ref="file"/> <!-- Added this line to refer to the File appender -->
         </Root>
     </Loggers>
 </Configuration>
