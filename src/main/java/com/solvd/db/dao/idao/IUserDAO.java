@@ -12,7 +12,7 @@ public interface IUserDAO extends IBaseDAO<User> {
 
     List<User> getAllUsersByRoleName(String roleName); // RoleName: Client/Admin
 
-    List<User> getUserByName(String firstName, String LastName);
+    List<User> getUsersByName(String firstName, String lastName);
 
     User getUserByAccountId(int accountId);
 

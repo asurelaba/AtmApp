@@ -60,11 +60,11 @@ public class EventTypeDAO implements IEventTypeDAO {
     }
 
     @Override
-    public EventType getEvenTypeByTypeName(String typeName) {
+    public EventType getEventTypeByTypeName(String typeName) {
         EventType eventType;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventTypeDAO ieventTypeDAO = sqlSession.getMapper(IEventTypeDAO.class);
-            eventType = ieventTypeDAO.getEvenTypeByTypeName(typeName);
+            eventType = ieventTypeDAO.getEventTypeByTypeName(typeName);
         }
         return eventType;
     }

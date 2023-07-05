@@ -1,8 +1,8 @@
 package com.solvd.db.dao.mybatisDAO;
 
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IEventDAO;
 import com.solvd.db.model.Event;
-import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -101,11 +101,11 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventsByRangeDateAndUserID(int userId, Date from, Date to) {
+    public List<Event> getEventsByRangeDateAndUserId(int userId, Date from, Date to) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
-            events = ieventDAO.getEventsByRangeDateAndUserID(userId, from, to);
+            events = ieventDAO.getEventsByRangeDateAndUserId(userId, from, to);
         }
         return events;
     }
@@ -121,22 +121,22 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventByAccountId(int accountId) {
+    public List<Event> getEventsByAccountId(int accountId) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
-            events = ieventDAO.getEventByAccountId(accountId);
+            events = ieventDAO.getEventsByAccountId(accountId);
         }
         return events;
     }
 
     @Override
-    public List<Event> getEventsByTransactionId(int transactionId) {
-        List<Event> events;
+    public Event getEventByTransactionId(int transactionId) {
+        Event event;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
-            events = ieventDAO.getEventsByTransactionId(transactionId);
+            event = ieventDAO.getEventByTransactionId(transactionId);
         }
-        return events;
+        return event;
     }
 }

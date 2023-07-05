@@ -101,11 +101,11 @@ public class TransactionDAO implements ITransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionsByUserId(int userid) {
+    public List<Transaction> getTransactionsByUserId(int userId) {
         List<Transaction> transactions;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             ITransactionDAO itransactionDAO = sqlSession.getMapper(ITransactionDAO.class);
-            transactions = itransactionDAO.getTransactionsByUserId(userid);
+            transactions = itransactionDAO.getTransactionsByUserId(userId);
         }
         return transactions;
     }

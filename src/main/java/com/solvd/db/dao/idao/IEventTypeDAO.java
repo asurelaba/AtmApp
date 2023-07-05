@@ -6,5 +6,5 @@ import com.solvd.db.model.EventType;
 and delete are covered by the IBaseDao interface*/
 public interface IEventTypeDAO extends IBaseDAO<EventType> {
 
-    EventType getEvenTypeByTypeName(String typeName);
+    EventType getEventTypeByTypeName(String typeName);
 }

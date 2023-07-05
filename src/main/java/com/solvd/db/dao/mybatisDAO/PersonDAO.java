@@ -1,8 +1,8 @@
 package com.solvd.db.dao.mybatisDAO;
 
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IPersonDAO;
 import com.solvd.db.model.Person;
-import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -60,11 +60,11 @@ public class PersonDAO implements IPersonDAO {
     }
 
     @Override
-    public List<Person> getPersonByName(String FirstName, String Lastname) {
+    public List<Person> getPersonByName(String firstName, String lastName) {
         List<Person> persons;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IPersonDAO ipersonDAO = sqlSession.getMapper(IPersonDAO.class);
-            persons = ipersonDAO.getPersonByName(FirstName, Lastname);
+            persons = ipersonDAO.getPersonByName(firstName, lastName);
         }
         return persons;
     }

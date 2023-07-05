@@ -10,7 +10,7 @@ public interface ICardDAO extends IBaseDAO<Card> {
 
     Card getCardByCardNumber(long cardNumber);
 
-    List<Card> getCardsByUserId(int userid); // Get all users' cards
+    List<Card> getCardsByUserId(int userId); // Get all users' cards
 
     List<Card> getCardsByCardStatus(String statusName); // Status: active(Unlocked) / inactive(Locked)
 

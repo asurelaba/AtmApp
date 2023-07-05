@@ -8,5 +8,5 @@ import java.util.List;
 and delete are covered by the IBaseDao interface*/
 public interface IPersonDAO extends IBaseDAO<Person> {
 
-    List<Person> getPersonByName(String FirstName, String Lastname);
+    List<Person> getPersonByName(String firstName, String lastName);
 }

@@ -1,8 +1,8 @@
 package com.solvd.db.dao.mybatisDAO;
 
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IUserDAO;
 import com.solvd.db.model.User;
-import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -80,11 +80,11 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public List<User> getUserByName(String firstName, String LastName) {
+    public List<User> getUsersByName(String firstName, String lastName) {
         List<User> users;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IUserDAO iuserDAO = sqlSession.getMapper(IUserDAO.class);
-            users = iuserDAO.getUserByName(firstName, LastName);
+            users = iuserDAO.getUsersByName(firstName, lastName);
         }
         return users;
     }
