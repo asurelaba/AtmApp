@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.IUserDAO">
+    <resultMap id="userResultMap" type="User" autoMapping="false">
+        <id property="userId" column="user_id"/>
+        <result property="status" column="status"/>
+        <association property="person" column="person_id"
+                     javaType="Person" select="com.solvd.db.dao.idao.IPersonDAO.getById"/>
+        <association property="userRole" column="role_id"
+                     javaType="UserRole" select="com.solvd.db.dao.idao.IUserRoleDAO.getById"/>
+    </resultMap>
+
+    <insert id="insert" keyProperty="userId" useGeneratedKeys="true">
+        INSERT INTO users (status, person_id, role_id)
+        VALUES (#{status}, #{person.personId}, #{userRole.roleId});
+    </insert>
+
+    <update id="update" parameterType="User">
+        UPDATE users
+        SET status = #{status}, person_id = #{person.personId}, role_id = #{userRole.roleId}
+        WHERE user_id = #{userId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM users WHERE user_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="userResultMap">
+        SELECT * FROM users WHERE user_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="userResultMap">
+        SELECT * FROM users;
+    </select>
+
+    <select id="getUsersByStatus" parameterType="string" resultMap="userResultMap">
+        SELECT * FROM users WHERE status = #{statusName};
+    </select>
+
+    <select id="getAllUsersByRoleName" parameterType="string" resultMap="userResultMap">
+        SELECT * FROM users u
+        INNER JOIN user_roles ur ON u.role_id = ur.role_id
+        WHERE ur.name = #{roleName};
+    </select>
+
+    <select id="getUsersByName" resultMap="userResultMap">
+        SELECT * FROM users u
+        INNER JOIN persons p ON u.person_id = p.person_id
+        WHERE p.first_name = #{firstName} AND p.last_name = #{lastName};
+    </select>
+
+    <select id="getUserByAccountId" parameterType="int" resultMap="userResultMap">
+        SELECT * FROM users u
+        INNER JOIN accounts a ON u.user_id = a.user_id
+        WHERE a.account_id = #{accountId};
+    </select>
+
+    <select id="getUserByCardNumber" parameterType="long" resultMap="userResultMap">
+        SELECT * FROM users u
+        INNER JOIN cards c ON u.user_id = c.user_id
+        WHERE c.card_number = #{cardNumber};
+    </select>
+
+    <select id="getUserByEventId" parameterType="int" resultMap="userResultMap">
+        SELECT * FROM users u
+        INNER JOIN cards c ON u.user_id = c.user_id
+        INNER JOIN events e ON c.card_id = e.card_id
+        WHERE e.event_id = #{eventId};
+    </select>
+
+    <select id="getUserByTransactionId" resultMap="userResultMap">
+        SELECT * FROM users u
+        INNER JOIN cards c ON u.user_id = c.user_id
+        INNER JOIN events e ON c.card_id = e.card_id
+        INNER JOIN transactions t ON e.event_id = t.event_id
+        WHERE t.transaction_id = #{transactionId};
+    </select>
+</mapper>
