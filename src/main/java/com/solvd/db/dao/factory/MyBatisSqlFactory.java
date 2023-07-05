@@ -1,7 +1,7 @@
 package com.solvd.db.dao.factory;
 
 import com.solvd.db.dao.idao.IBaseDAO;
-import com.solvd.db.dao.mybatisDAO.*;
+import com.solvd.db.dao.mybatisdao.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
