@@ -1,19 +1,13 @@
 package com.solvd.views;
 
 import com.solvd.interfaces.iviews.atm.IAtmView;
-import java.util.Scanner;
+import com.solvd.views.atm.AbstractAtmView;
 
-public class ExampleFeatureView implements IAtmView {
-
-    private static final Scanner s = new Scanner(System.in);
+public class ExampleFeatureView extends AbstractAtmView implements IAtmView {
 
     @Override
     public String featureTitle() {
         return "Example Feature";
-    }
-
-    public void display(String message) {
-        System.out.println(message);
     }
 
     public void displayExampleFeatureViewMenu() {

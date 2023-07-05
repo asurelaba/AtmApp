@@ -1,9 +1,19 @@
 package com.solvd.views.atm;
 
-public class AtmView {
+public class AtmView extends AbstractAtmView {
 
-    public void display(String message) {
-        System.out.println(message);
+    @Override
+    public String featureTitle() {
+        return "Welcome to the AtmApp!";
+    }
+
+    public void displayWelcome() {
+        display(featureTitle());
+    }
+
+    public void displayAtmReset() {
+        display("ATM Reset In Progress. Please Wait..");
+        display(System.lineSeparator());
     }
 
 }

@@ -1,16 +1,8 @@
 package com.solvd.views.atm;
 
 import com.solvd.interfaces.iviews.atm.IAtmClientView;
-import java.util.Scanner;
 
-public class AtmClientView implements IAtmClientView {
-
-    private static final Scanner s = new Scanner(System.in);
-
-    @Override
-    public void display(String message) {
-        System.out.println(message);
-    }
+public class AtmClientView extends AbstractAtmView implements IAtmClientView {
 
     @Override
     public String featureTitle() {
@@ -27,11 +19,6 @@ public class AtmClientView implements IAtmClientView {
         display("4. Lock Card");
         display("5. Change PIN");
         display("6. Log Out");
-    }
-
-    public int getUserSelection() {
-        display("Enter selection choice: ");
-        return s.nextInt();
     }
 
 }

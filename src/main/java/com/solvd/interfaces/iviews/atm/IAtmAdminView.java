@@ -1,8 +1,6 @@
 package com.solvd.interfaces.iviews.atm;
 
-import com.solvd.interfaces.iviews.IFeatureView;
-
-public interface IAtmAdminView extends IFeatureView {
+public interface IAtmAdminView {
 
     void displayAdminView();
 

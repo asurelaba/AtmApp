@@ -9,7 +9,7 @@ public class AtmController {
     private static final AtmView view = new AtmView();
 
     public void run() {
-        view.display("Welcome to the AtmApp!");
+        view.displayWelcome();
         AtmLoginController atmLoginController = new AtmLoginController();
         atmLoginController.run();
 
@@ -23,8 +23,7 @@ public class AtmController {
     }
 
     public void atmReset() {
-        view.display("ATM Reset In Progress. Please Wait..");
-        view.display(System.lineSeparator());
+        view.displayAtmReset();
         run();
     }
 

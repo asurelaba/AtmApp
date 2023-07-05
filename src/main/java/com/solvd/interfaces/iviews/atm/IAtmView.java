@@ -1,9 +1,11 @@
 package com.solvd.interfaces.iviews.atm;
 
-import com.solvd.interfaces.iviews.IFeatureView;
-
-public interface IAtmView extends IFeatureView {
+public interface IAtmView {
 
     int getUserSelection();
+
+    String featureTitle();
+
+    void display(String message);
 
 }

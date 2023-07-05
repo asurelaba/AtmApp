@@ -1,6 +1,6 @@
 package com.solvd.interfaces.iviews.atm;
 
-public interface IAtmLoginView extends IAtmView {
+public interface IAtmLoginView {
 
     long getCardNumber();
 

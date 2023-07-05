@@ -1,20 +1,12 @@
 package com.solvd.views.atm;
 
 import com.solvd.interfaces.iviews.atm.IAtmAdminView;
-import java.util.Scanner;
 
-public class AtmAdminView implements IAtmAdminView {
-
-    private static final Scanner s = new Scanner(System.in);
+public class AtmAdminView extends AbstractAtmView implements IAtmAdminView {
 
     @Override
     public String featureTitle() {
         return "Admin Menu";
-    }
-
-    @Override
-    public void display(String message) {
-        System.out.println(message);
     }
 
     @Override
@@ -30,11 +22,6 @@ public class AtmAdminView implements IAtmAdminView {
         display("7. PlaceHolder - Example Feature");
         display("8. Logout");
         display("9. Shutdown AtmApp");
-    }
-
-    public int getUserSelection() {
-        display("Enter selection choice: ");
-        return s.nextInt();
     }
 
 }
