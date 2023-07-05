@@ -1,15 +1,16 @@
 package com.solvd.controllers;
 
+import com.solvd.db.model.User;
 import com.solvd.interfaces.icontrollers.IFeatureController;
 import com.solvd.views.ExampleFeatureView;
 
 public class ExampleFeatureController implements IFeatureController {
 
-    private final long userCardNum;
+    private final User user;
     private final ExampleFeatureView view = new ExampleFeatureView();
 
-    public ExampleFeatureController(long userCardNum) {
-        this.userCardNum = userCardNum;
+    public ExampleFeatureController(User user) {
+        this.user = user;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class ExampleFeatureController implements IFeatureController {
 
             switch (menuChoice) {
                 case 1 -> handleExampleFeature1();
-                case 2 -> handleExampleFeature2();
+                case 2 -> handleShowUser();
                 case 3 -> {
                     view.display("Returning to the main menu...");
                     return;
@@ -34,9 +35,8 @@ public class ExampleFeatureController implements IFeatureController {
         view.displayExampleFeature();
     }
 
-    private void handleExampleFeature2() {
-        view.display("selected example feature 2");
-        view.display("User Card Number: " + userCardNum);
+    private void handleShowUser() {
+        view.display("User: " + user);
     }
 
 }

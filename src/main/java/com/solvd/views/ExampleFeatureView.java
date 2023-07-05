@@ -19,8 +19,8 @@ public class ExampleFeatureView implements IAtmView {
     public void displayExampleFeatureViewMenu() {
         display(System.lineSeparator());
         display(featureTitle());
-        display("1. ExampleFeatureSel1");
-        display("2. Display user card number");
+        display("1. Example Feature 1");
+        display("2. Display user info");
         display("3. return to main menu");
     }
 
