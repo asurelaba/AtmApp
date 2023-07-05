@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class EventDAO implements IEventDAO {
+
     private final SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
 
     @Override

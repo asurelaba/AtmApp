@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.util.List;
 
 public class CardTypeDAO implements ICardTypeDAO {
+
     private final SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
 
     @Override

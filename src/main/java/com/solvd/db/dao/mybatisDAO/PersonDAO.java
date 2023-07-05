@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.util.List;
 
 public class PersonDAO implements IPersonDAO {
+
     private final SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
 
     @Override
@@ -59,22 +60,12 @@ public class PersonDAO implements IPersonDAO {
     }
 
     @Override
-    public Person getPersonByUserId(int userId) {
-        Person person;
+    public List<Person> getPersonByName(String FirstName, String Lastname) {
+        List<Person> persons;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IPersonDAO ipersonDAO = sqlSession.getMapper(IPersonDAO.class);
-            person = ipersonDAO.getPersonByUserId(userId);
+            persons = ipersonDAO.getPersonByName(FirstName, Lastname);
         }
-        return person;
-    }
-
-    @Override
-    public Person getPersonByName(String personName) {
-        Person person;
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            IPersonDAO ipersonDAO = sqlSession.getMapper(IPersonDAO.class);
-            person = ipersonDAO.getPersonByName(personName);
-        }
-        return person;
+        return persons;
     }
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.util.List;
 
 public class AccountDAO implements IAccountDAO {
+
     private final SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
 
     @Override
