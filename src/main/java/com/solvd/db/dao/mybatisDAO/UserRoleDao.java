@@ -3,7 +3,7 @@ package com.solvd.db.dao.mybatisDAO;
 
 import com.solvd.db.dao.idao.IUserRoleDAO;
 import com.solvd.db.model.UserRole;
-import com.solvd.util.MyBatisSqlFactory;
+import com.solvd.db.dao.util.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 

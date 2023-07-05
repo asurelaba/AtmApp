@@ -1,4 +1,4 @@
-package com.solvd.util;
+package com.solvd.db.dao.util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
