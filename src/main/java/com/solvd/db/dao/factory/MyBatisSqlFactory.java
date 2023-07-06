@@ -1,7 +1,7 @@
 package com.solvd.db.dao.factory;
 
 import com.solvd.db.dao.idao.IBaseDAO;
-import com.solvd.db.dao.mybatisDAO.*;
+import com.solvd.db.dao.mybatisdao.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -28,15 +28,15 @@ public class MyBatisSqlFactory {
 
     public IBaseDAO getDAO(String tableName) throws DAONotFoundException {
         return switch (tableName.toLowerCase()) {
-            case "account" -> new AccountDAO();
-            case "card" -> new CardDAO();
-            case "cardtype" -> new CardTypeDAO();
-            case "event" -> new EventDAO();
-            case "eventtype" -> new EventTypeDAO();
-            case "person" -> new PersonDAO();
-            case "transaction" -> new TransactionDAO();
-            case "user" -> new UserDAO();
-            case "userrole" -> new UserRoleDAO();
+            case "accounts" -> new AccountDAO();
+            case "cards" -> new CardDAO();
+            case "card_types" -> new CardTypeDAO();
+            case "events" -> new EventDAO();
+            case "event_types" -> new EventTypeDAO();
+            case "persons" -> new PersonDAO();
+            case "transactions" -> new TransactionDAO();
+            case "users" -> new UserDAO();
+            case "user_roles" -> new UserRoleDAO();
             default -> throw new DAONotFoundException(tableName + "DAO not found");
         };
     }
