@@ -1,6 +1,6 @@
 package com.solvd.views.atm;
 
-import com.solvd.interfaces.iviews.atm.IAtmView;
+import com.solvd.views.iviews.atm.IAtmView;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

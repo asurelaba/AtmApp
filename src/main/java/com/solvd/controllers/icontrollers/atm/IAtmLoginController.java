@@ -1,7 +1,7 @@
-package com.solvd.interfaces.icontrollers.atm;
+package com.solvd.controllers.icontrollers.atm;
 
 import com.solvd.db.model.Card;
-import com.solvd.interfaces.icontrollers.IFeatureController;
+import com.solvd.controllers.icontrollers.IFeatureController;
 
 public interface IAtmLoginController extends IFeatureController {
 

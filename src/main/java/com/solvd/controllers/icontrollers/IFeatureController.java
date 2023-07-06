@@ -1,4 +1,4 @@
-package com.solvd.interfaces.icontrollers;
+package com.solvd.controllers.icontrollers;
 
 public interface IFeatureController {
 

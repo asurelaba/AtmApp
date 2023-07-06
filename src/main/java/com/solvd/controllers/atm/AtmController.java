@@ -1,7 +1,7 @@
 package com.solvd.controllers.atm;
 
 import com.solvd.db.model.Card;
-import com.solvd.interfaces.icontrollers.atm.IAtmController;
+import com.solvd.controllers.icontrollers.atm.IAtmController;
 import com.solvd.views.atm.AtmView;
 
 

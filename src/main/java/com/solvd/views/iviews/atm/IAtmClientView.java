@@ -1,4 +1,4 @@
-package com.solvd.interfaces.iviews.atm;
+package com.solvd.views.iviews.atm;
 
 public interface IAtmClientView {
 

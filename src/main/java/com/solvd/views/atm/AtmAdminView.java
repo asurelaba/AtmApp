@@ -1,6 +1,6 @@
 package com.solvd.views.atm;
 
-import com.solvd.interfaces.iviews.atm.IAtmAdminView;
+import com.solvd.views.iviews.atm.IAtmAdminView;
 
 public class AtmAdminView extends AbstractAtmView implements IAtmAdminView {
 

@@ -4,7 +4,7 @@ import com.solvd.db.model.Card;
 import com.solvd.db.model.CardType;
 import com.solvd.db.model.Person;
 import com.solvd.db.model.User;
-import com.solvd.interfaces.icontrollers.atm.IAtmLoginController;
+import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.views.atm.AtmLoginView;
 
 public class AtmLoginController implements IAtmLoginController {

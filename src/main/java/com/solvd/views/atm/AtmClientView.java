@@ -1,6 +1,6 @@
 package com.solvd.views.atm;
 
-import com.solvd.interfaces.iviews.atm.IAtmClientView;
+import com.solvd.views.iviews.atm.IAtmClientView;
 
 public class AtmClientView extends AbstractAtmView implements IAtmClientView {
 

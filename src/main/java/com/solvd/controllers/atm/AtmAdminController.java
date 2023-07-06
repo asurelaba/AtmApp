@@ -3,7 +3,7 @@ package com.solvd.controllers.atm;
 import com.solvd.controllers.ExampleFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
-import com.solvd.interfaces.icontrollers.atm.IAtmAdminController;
+import com.solvd.controllers.icontrollers.atm.IAtmAdminController;
 import com.solvd.views.atm.AtmAdminView;
 
 public class AtmAdminController implements IAtmAdminController {

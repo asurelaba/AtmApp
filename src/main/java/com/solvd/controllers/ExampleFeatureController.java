@@ -1,7 +1,7 @@
 package com.solvd.controllers;
 
 import com.solvd.db.model.Card;
-import com.solvd.interfaces.icontrollers.IFeatureController;
+import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.views.ExampleFeatureView;
 
 public class ExampleFeatureController implements IFeatureController {
