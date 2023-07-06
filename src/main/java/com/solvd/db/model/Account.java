@@ -1,5 +1,7 @@
 package com.solvd.db.model;
 
+import java.util.Objects;
+
 public class Account {
 
     private int accountId;
@@ -47,5 +49,18 @@ public class Account {
                 ", balance=" + balance +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return accountId == account.accountId && routingNumber == account.routingNumber && Double.compare(account.balance, balance) == 0 && Objects.equals(user, account.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountId, routingNumber, balance, user);
     }
 }

@@ -1,6 +1,7 @@
 package com.solvd.db.model;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class Event {
 
@@ -49,5 +50,18 @@ public class Event {
                 ", card=" + card +
                 ", eventType=" + eventType +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return eventId == event.eventId && Objects.equals(datetime, event.datetime) && Objects.equals(card, event.card) && Objects.equals(eventType, event.eventType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(eventId, datetime, card, eventType);
     }
 }
