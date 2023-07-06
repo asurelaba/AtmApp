@@ -1,4 +1,4 @@
-package com.solvd.db.dao.mybatisDAO;
+package com.solvd.db.dao.mybatisdao;
 
 import com.solvd.db.dao.idao.ITransactionDAO;
 import com.solvd.db.model.Transaction;
