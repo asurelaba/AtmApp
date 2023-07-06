@@ -225,30 +225,3 @@ INSERT INTO `atm_app`.`transactions` (`amount`, `status`, `event_id`)
 SELECT 100, 'approved', `event_id`
 FROM `atm_app`.`events`
 WHERE `type_id` = FLOOR(RAND() * (11 - 9 + 1)) + 9;
-
--- See all users
-SELECT * FROM users
-JOIN persons ON persons.person_id=users.person_id
-JOIN user_roles ON user_roles.role_id=users.role_id
-JOIN cards ON cards.user_id=users.person_id
-JOIN card_types ON card_types.type_id=cards.type_id;
-
--- See all accounts (users one and two are admin, so expected values in account is NULL)
-SELECT * FROM accounts
-RIGHT JOIN users ON accounts.user_id=users.user_id
-JOIN persons ON persons.person_id= users.person_id;
-
--- See all Activity (events)
-SELECT * FROM events
-LEFT JOIN transactions ON transactions.event_id=events.event_id
-JOIN event_types ON event_types.type_id=events.type_id
-ORDER BY events.event_id;
-
--- See only the transactions activity (from events)
-SELECT * FROM events
-JOIN transactions ON transactions.event_id=events.event_id
-JOIN event_types ON event_types.type_id=events.type_id
-ORDER BY events.event_id;
-
--- Transactions
-SELECT count(transaction_id) FROM transactions;
