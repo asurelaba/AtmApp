@@ -1,6 +1,7 @@
 package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface IUserDAO extends IBaseDAO<User> {
 
     List<User> getAllUsersByRoleName(String roleName); // RoleName: Client/Admin
 
-    List<User> getUsersByName(String firstName, String lastName);
+    List<User> getUsersByName(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
     User getUserByAccountId(int accountId);
 

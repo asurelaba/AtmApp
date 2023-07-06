@@ -1,6 +1,7 @@
 package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.Transaction;
+import org.apache.ibatis.annotations.Param;
 
 import java.sql.Date;
 import java.util.List;
@@ -15,9 +16,10 @@ public interface ITransactionDAO extends IBaseDAO<Transaction> {
 
     List<Transaction> getTransactionsByCardNumber(long cardNumber);
 
-    List<Transaction> getTransactionsByRangeDate(Date from, Date to); // All data by data range
+    List<Transaction> getTransactionsByRangeDate(@Param("from") Date from, @Param("to") Date to); // All data by data range
 
     List<Transaction> getTransactionsByUserId(int userId); // All user's transaction history
 
-    List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Date from, Date to); // Users data by date
+    List<Transaction> getTransactionsByRangeDateAndUserId(@Param("userId") int userId, @Param("from") Date from,
+                                                          @Param("to") Date to); // Users data by date
 }

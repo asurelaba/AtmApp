@@ -1,6 +1,7 @@
 package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.Event;
+import org.apache.ibatis.annotations.Param;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 and delete are covered by the IBaseDao interface*/
 public interface IEventDAO extends IBaseDAO<Event> {
 
-    List<Event> getEventsByRangeDate(Date from, Date to); // All from BD by Date
+    List<Event> getEventsByRangeDate(@Param("from") Date from, @Param("to") Date to); // All from BD by Date
 
     List<Event> getEventsByCardId(int cardId);
 
@@ -17,7 +18,7 @@ public interface IEventDAO extends IBaseDAO<Event> {
 
     List<Event> getEventsByUserId(int userId); // All events from a single user
 
-    List<Event> getEventsByRangeDateAndUserId(int userId, Date from, Date to); // User's events in a date Range
+    List<Event> getEventsByRangeDateAndUserId(@Param("userId") int userId, @Param("from") Date from, @Param("to") Date to); // User's events in a date Range
 
     List<Event> getEventsByCardNumber(long cardNumber);
 

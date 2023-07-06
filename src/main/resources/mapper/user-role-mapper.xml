@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.IUserRoleDAO">
+    <resultMap id="userRoleResultMap" type="UserRole" autoMapping="false">
+        <id property="roleId" column="role_id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="UserRole" keyProperty="roleId" useGeneratedKeys="true">
+        INSERT INTO user_roles (name)
+        VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="UserRole">
+        UPDATE user_roles
+        SET name = #{name}
+        WHERE role_id = #{roleId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM user_roles WHERE role_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="userRoleResultMap">
+        SELECT * FROM user_roles WHERE role_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="userRoleResultMap">
+        SELECT * FROM user_roles;
+    </select>
+
+    <select id="getUserRoleByRoleName" parameterType="string" resultMap="userRoleResultMap">
+        SELECT * FROM user_roles WHERE name = #{roleName};
+    </select>
+</mapper>

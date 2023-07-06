@@ -1,6 +1,7 @@
 package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.Person;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,5 +9,5 @@ import java.util.List;
 and delete are covered by the IBaseDao interface*/
 public interface IPersonDAO extends IBaseDAO<Person> {
 
-    List<Person> getPersonByName(String firstName, String lastName);
+    List<Person> getPersonByName(@Param("firstName") String firstName, @Param("lastName") String lastName);
 }
