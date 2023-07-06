@@ -2,8 +2,12 @@ package com.solvd.views.atm;
 
 import com.solvd.interfaces.iviews.atm.IAtmView;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class AbstractAtmView implements IAtmView {
+
+    private final Logger LOG = LogManager.getLogger(this.getClass());
 
     protected static final Scanner s = new Scanner(System.in);
 
@@ -18,7 +22,7 @@ public abstract class AbstractAtmView implements IAtmView {
 
     @Override
     public void display(String message) {
-        System.out.println(message);
+        LOG.info(message);
     }
 
 }
