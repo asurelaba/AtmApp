@@ -4,3 +4,7 @@ The project is an ATM application, which can provide services to the user to acc
 
 This is the schema designed for the ATM App:
 ![AtmApp (1)](https://github.com/asurelaba/AtmApp/assets/130489863/5e6a43a3-9d3b-4ec9-b955-b2c6d13369b7)
+
+FlowChart:
+The flowchart below shows the screen flows between user options. 
+https://drive.google.com/file/d/1UwcBZcBHpVnEd0PtKvzc9qQ1Qs_WNQvm/view?usp=sharing
