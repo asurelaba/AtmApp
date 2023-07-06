@@ -1,10 +1,11 @@
 package com.solvd.controllers.atm;
 
 import com.solvd.db.model.Card;
+import com.solvd.interfaces.icontrollers.atm.IAtmController;
 import com.solvd.views.atm.AtmView;
 
 
-public class AtmController {
+public class AtmController implements IAtmController {
 
     private static final AtmView view = new AtmView();
     protected static boolean isRunning = true;
@@ -26,7 +27,8 @@ public class AtmController {
         System.exit(0);
     }
 
-    private void atmReset() {
+    @Override
+    public void atmReset() {
         view.displayAtmReset();
     }
 
