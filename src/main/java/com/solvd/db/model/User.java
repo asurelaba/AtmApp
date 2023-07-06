@@ -1,5 +1,7 @@
 package com.solvd.db.model;
 
+import java.util.Objects;
+
 public class User {
 
     private int userId;
@@ -47,5 +49,18 @@ public class User {
                 ", person=" + person +
                 ", userRole=" + userRole +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId == user.userId && Objects.equals(status, user.status) && Objects.equals(person, user.person) && Objects.equals(userRole, user.userRole);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, status, person, userRole);
     }
 }
