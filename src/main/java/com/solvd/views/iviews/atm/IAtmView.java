@@ -8,4 +8,9 @@ public interface IAtmView {
 
     void display(String message);
 
+    void displayTitle(String message);
+
+    void displayBody(String message);
+
+    void displayExit(String message);
 }
