@@ -13,10 +13,10 @@ import static org.testng.Assert.assertTrue;
 public class TransactionServiceTest {
 
     Transaction actualTransaction;
-    private TransactionService ts;
-    private String status;
     Timestamp from;
     Timestamp to;
+    private TransactionService ts;
+    private String status;
     private int eventId;
     private long cardNumber;
     private int userId;
