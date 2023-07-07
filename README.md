@@ -8,3 +8,7 @@ This is the schema designed for the ATM App:
 FlowChart:
 The flowchart below shows the screen flows between user options. 
 https://drive.google.com/file/d/1UwcBZcBHpVnEd0PtKvzc9qQ1Qs_WNQvm/view?usp=sharing
+
+Screens or Messages for the different Menu options:
+
+![ScreenFlow drawio (8)](https://github.com/asurelaba/AtmApp/assets/130489863/9aeaed4a-7741-49dc-8b34-1e6e8542a735)
