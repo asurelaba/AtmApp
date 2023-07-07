@@ -27,18 +27,15 @@ public abstract class AbstractAtmView implements IAtmView {
         LOG.info(message);
     }
 
-    @Override
-    public void displayTitle(String message) {
+    protected void displayTitle(String message) {
         display(message);
     }
 
-    @Override
-    public void displayBody(String message) {
+    protected void displayBody(String message) {
         display(message);
     }
 
-    @Override
-    public void displayExit() {
+    protected void displayExit() {
         display("Enter 0 to Exit");
     }
 }
