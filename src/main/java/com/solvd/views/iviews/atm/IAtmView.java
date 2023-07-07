@@ -12,5 +12,5 @@ public interface IAtmView {
 
     void displayBody(String message);
 
-    void displayExit(String message);
+    void displayExit();
 }

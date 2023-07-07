@@ -38,7 +38,7 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     @Override
-    public void displayExit(String message) {
-        display(message);
+    public void displayExit() {
+        display("Enter 0 to Exit");
     }
 }
