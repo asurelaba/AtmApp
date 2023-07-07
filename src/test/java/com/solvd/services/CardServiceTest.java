@@ -27,6 +27,13 @@ public class CardServiceTest {
     }
 
     @Test
+    public void testGetInvalidCardIsNull() {
+        long invalidNum = 0L;
+        Card card = cs.getCardByCardNumber(invalidNum);
+        assertNull(card);
+    }
+
+    @Test
     public void testGetCardsByUserId() {
         UserService userService = new UserService();
         User user1 = userService.getUserByCardNumber(cardNum);
