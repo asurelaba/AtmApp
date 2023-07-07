@@ -32,8 +32,8 @@ public class TransactionServiceTest {
         status = actualTransaction.getStatus();
         eventId = actualTransaction.getEvent().getEventId();
         cardNumber = actualTransaction.getEvent().getCard().getCardNumber();
-        from = Date.valueOf("2023-07-04");
-        to = Date.valueOf("2023-07-05");
+        from = Date.valueOf("2022-07-06");
+        to = Date.valueOf("2025-07-08");
         userId = actualTransaction.getEvent().getCard().getUser().getUserId();
     }
 
