@@ -1,5 +1,7 @@
 package com.solvd.db.model;
 
+import java.util.Objects;
+
 public class Card {
 
     private int cardId;
@@ -67,5 +69,18 @@ public class Card {
                 ", cardType=" + cardType +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return cardId == card.cardId && cardNumber == card.cardNumber && pin == card.pin && Objects.equals(status, card.status) && Objects.equals(cardType, card.cardType) && Objects.equals(user, card.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardId, cardNumber, pin, status, cardType, user);
     }
 }
