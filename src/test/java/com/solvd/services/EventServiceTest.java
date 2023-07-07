@@ -68,7 +68,6 @@ public class EventServiceTest {
         } catch (ParseException e) {
             assert false;
         }
-
     }
 
     @org.testng.annotations.Test
