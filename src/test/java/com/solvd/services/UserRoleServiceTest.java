@@ -1,6 +1,7 @@
 package com.solvd.services;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 import com.solvd.db.model.UserRole;
 import org.testng.annotations.BeforeMethod;
