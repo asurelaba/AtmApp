@@ -3,7 +3,7 @@ package com.solvd.services;
 import com.solvd.db.dao.idao.ITransactionDAO;
 import com.solvd.db.model.Transaction;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class TransactionService extends EntityService<Transaction, ITransactionDAO> implements
@@ -31,7 +31,7 @@ public class TransactionService extends EntityService<Transaction, ITransactionD
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDate(Date from, Date to) {
+    public List<Transaction> getTransactionsByRangeDate(Timestamp from, Timestamp to) {
         return dao.getTransactionsByRangeDate(from, to);
     }
 
@@ -41,7 +41,7 @@ public class TransactionService extends EntityService<Transaction, ITransactionD
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Date from, Date to) {
+    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Timestamp from, Timestamp to) {
         return dao.getTransactionsByRangeDateAndUserId(userId, from, to);
     }
 
