@@ -185,7 +185,7 @@ VALUES
 ('Withdrawal'),
 ('Deposit'),
 ('Transfer'),
-('Balance Inquiry')
+('Balance Inquiry'),
 -- Administrator
 ('User Creation'),
 ('Account Creation'),
