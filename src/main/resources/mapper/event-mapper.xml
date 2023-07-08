@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.IEventDAO">
+    <resultMap id="eventResultMap" type="Event" autoMapping="false">
+        <id property="eventId" column="event_id"/>
+        <result property="datetime" column="datetime"/>
+        <association property="card" column="card_id"
+                     javaType="Card" select="com.solvd.db.dao.idao.ICardDAO.getById"/>
+        <association property="eventType" column="type_id"
+                     javaType="EventType" select="com.solvd.db.dao.idao.IEventTypeDAO.getById"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="Event" keyProperty="eventId" useGeneratedKeys="true">
+        INSERT INTO events (datetime, card_id, type_id)
+        VALUES (#{datetime}, #{card.cardId}, #{eventType.typeId});
+    </insert>
+
+    <update id="update" parameterType="Event">
+        UPDATE events
+        SET datetime = #{datetime}, card_id = #{card.cardId}, type_id = #{cardType.typeId}
+        WHERE event_id = #{eventId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM events WHERE event_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="eventResultMap">
+        SELECT * FROM events WHERE event_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="eventResultMap">
+        SELECT * FROM events;
+    </select>
+
+    <select id="getEventsByRangeDate" resultMap="eventResultMap">
+        SELECT * FROM events WHERE datetime BETWEEN #{from} AND #{to};
+    </select>
+
+    <select id="getEventsByCardId" parameterType="int" resultMap="eventResultMap">
+        SELECT * FROM events WHERE card_id = #{cardId};
+    </select>
+
+    <select id="getEventsByType" parameterType="string" resultMap="eventResultMap">
+        SELECT * FROM events e
+        INNER JOIN event_types et ON e.type_id = et.type_id
+        WHERE et.name = #{typeName};
+    </select>
+
+    <select id="getEventsByUserId" parameterType="int" resultMap="eventResultMap">
+        SELECT * FROM events e
+        INNER JOIN cards c ON e.card_id = c.card_id
+        INNER JOIN users u ON c.user_id = u.user_id
+        WHERE u.user_id = #{userId};
+    </select>
+
+    <select id="getEventsByRangeDateAndUserId" resultMap="eventResultMap">
+        SELECT * FROM events e
+        INNER JOIN cards c ON e.card_id = c.card_id
+        INNER JOIN users u ON c.user_id = u.user_id
+        WHERE e.datetime BETWEEN #{from} AND #{to} AND u.user_id = #{userId};
+    </select>
+
+    <select id="getEventsByCardNumber" parameterType="long" resultMap="eventResultMap">
+        SELECT * FROM events e
+        INNER JOIN cards c ON e.card_id = c.card_id
+        WHERE c.card_number = #{cardNumber};
+    </select>
+
+    <select id="getEventsByAccountId" parameterType="int" resultMap="eventResultMap">
+        SELECT * FROM events e
+        INNER JOIN cards c ON e.card_id = c.card_id
+        INNER JOIN users u ON c.user_id = u.user_id
+        INNER JOIN accounts a ON u.user_id = a.user_id
+        WHERE a.account_id = #{accountId};
+    </select>
+
+    <select id="getEventByTransactionId" parameterType="int" resultMap="eventResultMap">
+        SELECT * FROM events e
+        INNER JOIN transactions t ON e.event_id = t.event_id
+        WHERE t.transaction_id = #{transactionId};
+    </select>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.ICardTypeDAO">
+    <resultMap id="cardTypeResultMap" type="CardType" autoMapping="false">
+        <id property="typeId" column="type_id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="CardType" keyProperty="typeId" useGeneratedKeys="true">
+        INSERT INTO card_types (name)
+        VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="CardType">
+        UPDATE card_types
+        SET name = #{name}
+        WHERE type_id = #{typeId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM card_types WHERE type_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="cardTypeResultMap">
+        SELECT * FROM card_types WHERE type_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="cardTypeResultMap">
+        SELECT * FROM card_types;
+    </select>
+
+    <select id="getCardTypeByName" parameterType="string" resultMap="cardTypeResultMap">
+        SELECT * FROM card_types WHERE name = #{typeName};
+    </select>
+</mapper>

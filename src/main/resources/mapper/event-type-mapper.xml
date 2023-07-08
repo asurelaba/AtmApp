@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.IEventTypeDAO">
+    <resultMap id="eventTypeResultMap" type="EventType" autoMapping="false">
+        <id property="typeId" column="type_id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="EventType" keyProperty="typeId" useGeneratedKeys="true">
+        INSERT INTO event_types (name)
+        VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="EventType">
+        UPDATE event_types
+        SET name = #{name}
+        WHERE type_id = #{typeId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM event_types WHERE type_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="eventTypeResultMap">
+        SELECT * FROM event_types WHERE type_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="eventTypeResultMap">
+        SELECT * FROM event_types;
+    </select>
+
+    <select id="getEventTypeByTypeName" parameterType="string" resultMap="eventTypeResultMap">
+        SELECT * FROM event_types WHERE name = #{typeName};
+    </select>
+</mapper>
