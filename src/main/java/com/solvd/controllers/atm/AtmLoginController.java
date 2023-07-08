@@ -57,16 +57,16 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleClientCardLock() {
-        boolean userRequestUnlock = view.displayCardLocked();
+        view.displayCardLocked();
+        boolean userRequestUnlock = view.displayUserRequestUnlock();
         if (userRequestUnlock) {
             Event event = new Event();
             event.setCard(atmCard);
             event.setDatetime(Timestamp.from(Instant.now()));
-            event.setEventType(new EventTypeService().getEventTypeByTypeName("Unlock Card"));
+            event.setEventType(
+                new EventTypeService().getEventTypeByTypeName("Unlock Card Request"));
             new EventService().insert(event);
-            view.display("Card Unlock Requested.");
         }
-        view.display("Thank you for using the AtmApp! Good Bye.");
         setAtmCard(null);
     }
 

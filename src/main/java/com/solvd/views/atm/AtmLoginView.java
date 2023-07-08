@@ -16,11 +16,10 @@ public class AtmLoginView extends AbstractAtmView implements IAtmLoginView {
         display("Client Example Card: 2222222222222213"); // TODO remove for prod
         display("Enter your Card Number: ");
         long cardNumber = 0;
-        boolean validInput = false;
-        while (!validInput) {
+        while (true) {
             try {
                 cardNumber = s.nextLong();
-                validInput = true;
+                break;
             } catch (InputMismatchException e) {
                 LOG.warn("Invalid input! Please enter a valid card number: ");
                 s.next(); // Discard the invalid input
@@ -35,14 +34,13 @@ public class AtmLoginView extends AbstractAtmView implements IAtmLoginView {
         display("Client Example PIN:  8303"); // TODO remove for prod
         display("Enter your Card PIN: ");
         int pinNumber = 0;
-        boolean validInput = false;
-        while (!validInput) {
+        while (true) {
             try {
                 pinNumber = s.nextInt();
                 if (String.valueOf(pinNumber).length() != 4) {
                     throw new InputMismatchException();
                 }
-                validInput = true;
+                break;
             } catch (InputMismatchException e) {
                 LOG.warn("Invalid input! PIN must be a four-digit number: ");
                 s.nextLine();
@@ -51,26 +49,27 @@ public class AtmLoginView extends AbstractAtmView implements IAtmLoginView {
         return pinNumber;
     }
 
-    public boolean displayCardLocked() {
-        display("Your card is locked.");
-        display("Request unlock (yes/no)? ");
+    public void displayCardLocked() {
+        displayBody("Your card is locked.");
+        displayBody("Request unlock (yes/no)? ");
+    }
 
-        boolean validInput = false;
-
-        while (!validInput) {
+    public boolean displayUserRequestUnlock() {
+        boolean unlockRequested = false;
+        while (true) {
             String input = s.next().toLowerCase();
             if (input.equals("yes")) {
-                // Handle "yes" case
-                validInput = true;
-                return true;
+                unlockRequested = true;
+                displayBody("Card Unlock Requested.");
+                break;
             } else if (input.equals("no")) {
-                // Handle "no" case
-                validInput = true;
+                break;
             } else {
-                display("Invalid input! Please enter either 'yes' or 'no': ");
+                displayBody("Invalid input! Please enter either 'yes' or 'no': ");
             }
         }
-        return false;
+        displayBody("Thank you for using the AtmApp! Good Bye.");
+        return unlockRequested;
     }
 
 }
