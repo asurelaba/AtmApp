@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class EventDAO implements IEventDAO {
@@ -61,7 +62,7 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventsByRangeDate(Date from, Date to) {
+    public List<Event> getEventsByRangeDate(Timestamp from, Timestamp to) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
@@ -101,7 +102,7 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventsByRangeDateAndUserId(int userId, Date from, Date to) {
+    public List<Event> getEventsByRangeDateAndUserId(int userId, Timestamp from, Timestamp to) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);

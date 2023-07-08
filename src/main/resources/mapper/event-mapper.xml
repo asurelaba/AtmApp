@@ -15,7 +15,7 @@
 
     <insert id="insert" parameterType="Event" keyProperty="eventId" useGeneratedKeys="true">
         INSERT INTO events (datetime, card_id, type_id)
-        VALUES (#{datetime}, #{card.card_id}, #{eventType.type_id});
+        VALUES (#{datetime}, #{card.cardId}, #{eventType.typeId});
     </insert>
 
     <update id="update" parameterType="Event">
