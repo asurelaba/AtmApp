@@ -12,50 +12,45 @@ import static org.testng.Assert.assertTrue;
 
 public class TransactionServiceTest {
 
-    Transaction actualTransaction;
-    Timestamp from;
-    Timestamp to;
-    private TransactionService ts;
-    private String status;
-    private int eventId;
-    private long cardNumber;
+    private Transaction actualTransaction;
     private int userId;
+    private Timestamp from;
+    private Timestamp to;
+    private TransactionService ts;
 
     @BeforeMethod
     public void setUp() {
         // Get transaction from an event that has a deposit transaction
         ts = new TransactionService();
-        actualTransaction = new TransactionService()
-                .getTransactionByEventId(new EventService()
-                        .getEventsByType("Withdrawal")
-                        .get(0)
-                        .getEventId());
-        status = actualTransaction.getStatus();
-        eventId = actualTransaction.getEvent().getEventId();
-        cardNumber = actualTransaction.getEvent().getCard().getCardNumber();
+        actualTransaction = ts.getTransactionByEventId(new EventService()
+                .getEventsByType("Withdrawal")
+                .get(0)
+                .getEventId());
+        userId = actualTransaction.getEvent().getCard().getUser().getUserId();
         from = actualTransaction.getEvent().getDatetime();
         to = Timestamp.valueOf(from.toLocalDateTime().plus(1, ChronoUnit.DAYS));
-        userId = actualTransaction.getEvent().getCard().getUser().getUserId();
-
     }
 
     /* Match the Name-status of actualTransaction with the Name-status of the first object retrieved
     from the list using the method.*/
     @Test
     public void testGetTransactionsByStatus() {
-        assertTrue(new TransactionService().getTransactionsByStatus(status)
+        String status = actualTransaction.getStatus();
+        assertTrue(ts.getTransactionsByStatus(status)
                 .stream()
                 .anyMatch(transaction -> actualTransaction.equals(transaction)));
     }
 
     @Test
     public void testGetTransactionByEventId() {
+        int eventId = actualTransaction.getEvent().getEventId();
         assertEquals(actualTransaction.getEvent(), ts.getTransactionByEventId(eventId).getEvent());
     }
 
     @Test
     public void testGetTransactionsByCardNumber() {
-        assertTrue(new TransactionService().getTransactionsByCardNumber(cardNumber)
+        long cardNumber = actualTransaction.getEvent().getCard().getCardNumber();
+        assertTrue(ts.getTransactionsByCardNumber(cardNumber)
                 .stream()
                 .anyMatch(transaction -> actualTransaction.equals(transaction)));
     }

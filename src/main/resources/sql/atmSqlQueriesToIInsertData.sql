@@ -185,6 +185,7 @@ VALUES
 ('Withdrawal'),
 ('Deposit'),
 ('Transfer'),
+('Balance Inquiry')
 -- Administrator
 ('User Creation'),
 ('Account Creation'),
@@ -204,7 +205,7 @@ FROM `atm_app`.`cards`
 WHERE `user_id` IN (1,2);
 
 INSERT INTO `atm_app`.`events` (`datetime`, `card_id`, `type_id`)
-SELECT NOW(), `card_id`, FLOOR(RAND() * (21 - 12 + 1)) + 12
+SELECT NOW(), `card_id`, FLOOR(RAND() * (21 - 13 + 1)) + 13
 FROM `atm_app`.`cards`
 WHERE `user_id` IN (1,2);
 
@@ -216,7 +217,7 @@ WHERE `user_id` BETWEEN 3 AND 110;
 
 -- Insert events for transactions
 INSERT INTO `atm_app`.`events` (`datetime`, `card_id`, `type_id`)
-SELECT NOW(), `card_id`, FLOOR(RAND() * (11 - 9 + 1)) + 9
+SELECT NOW(), `card_id`, FLOOR(RAND() * (12 - 9 + 1)) + 9
 FROM `atm_app`.`cards`
 WHERE `user_id` BETWEEN 3 AND 110;
 
@@ -224,4 +225,4 @@ WHERE `user_id` BETWEEN 3 AND 110;
 INSERT INTO `atm_app`.`transactions` (`amount`, `status`, `event_id`)
 SELECT 100, 'approved', `event_id`
 FROM `atm_app`.`events`
-WHERE `type_id` = FLOOR(RAND() * (11 - 9 + 1)) + 9;
+WHERE `type_id` IN (9, 10, 11, 12);
