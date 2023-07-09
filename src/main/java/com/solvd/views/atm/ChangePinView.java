@@ -1,6 +1,5 @@
 package com.solvd.views.atm;
 
-import com.solvd.db.model.Card;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
