@@ -25,7 +25,7 @@ public class ChangePinController implements IFeatureController {
         changePinView.displayTitle(changePinView.featureTitle());
         handleChangePin();
         changePinView.displayExit();
-        while (changePinView.getUserSelection() !=0) {
+        while (changePinView.getUserSelection() != 0) {
             continue;
         }
     }
