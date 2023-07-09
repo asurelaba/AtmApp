@@ -3,6 +3,8 @@ package com.solvd.util;
 import com.solvd.EnumEventNames;
 import com.solvd.db.model.Transaction;
 import com.solvd.services.AccountService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.print.PrinterException;
 import java.text.DecimalFormat;
@@ -12,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 public abstract class ReceiptGenerator {
 
     public static void createReceipt(Transaction transaction) {
+        final Logger LOGGER = LogManager.getLogger(ReceiptGenerator.class);
+
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss a");
             DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -43,8 +47,11 @@ public abstract class ReceiptGenerator {
 
             Printer.print(receipt.toString());
 
+            // Log the event
+            LOGGER.info("Receipt created for transaction (eventID): {}", transaction.getEvent().getEventId());
+
         } catch (PrinterException e) {
-            e.printStackTrace();
+            LOGGER.error("Error occurred while printing the receipt:", e);
         }
     }
 }
