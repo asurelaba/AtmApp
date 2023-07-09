@@ -21,7 +21,7 @@ public class AtmTransferController extends AbstractTransactionController impleme
     @Override
     public void validateRecipientAccount() {
         if (accountService.getById(recipientAccountId) != null) {
-            run();
+            getTransactionAmount();
         } else {
             view.displayNonexistentAccountChoices();
             int userSel = view.getUserChoice();

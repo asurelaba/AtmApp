@@ -11,6 +11,7 @@ public class AtmDepositController extends AbstractTransactionController {
     @Override
     public void getTransactionAmount() {
         amount = view.getTransactionAmount();
+        run();
     }
 
     @Override

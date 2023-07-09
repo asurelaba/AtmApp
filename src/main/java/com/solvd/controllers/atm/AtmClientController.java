@@ -39,12 +39,12 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void handleWithdraw() {
-        new AtmWithdrawController(clientCard).run();
+        new AtmWithdrawController(clientCard).getTransactionAmount();
     }
 
     @Override
     public void handleDeposit() {
-        new AtmDepositController(clientCard).run();
+        new AtmDepositController(clientCard).getTransactionAmount();
     }
 
     @Override

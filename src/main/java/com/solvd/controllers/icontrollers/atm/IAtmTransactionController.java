@@ -8,7 +8,7 @@ public interface IAtmTransactionController extends IFeatureController {
 
     double checkBalance();
 
-    void handleInsufficientBalance();
+    int handleInsufficientBalance();
 
     void updateBalance();
 

@@ -39,7 +39,6 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
     @Override
     public void run() {
         try {
-            getTransactionAmount();
             updateBalance();
             setEventType();
             recordEvent(eventType);
@@ -67,22 +66,22 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
 
             double balance = checkBalance();
             if (amount <= balance) {
+                run();
                 validTransfer = true;
             } else {
                 view.display("Insufficient balance.");
-                handleInsufficientBalance();
+                if (handleInsufficientBalance() == 1) {
+                    new AtmClientController(clientCard);
+                    validTransfer = true;
+                }
             }
         }
     }
 
     @Override
-    public void handleInsufficientBalance() {
+    public int handleInsufficientBalance() {
         view.displayInsufficientAmountChoices();
-        int userSel = view.getUserChoice();
-
-        if (userSel == 1) {
-            new AtmClientController(clientCard).run();
-        }
+        return view.getUserChoice();
     }
 
     @Override
