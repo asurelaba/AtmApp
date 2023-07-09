@@ -19,6 +19,7 @@ public class Main {
                 .getEventsByType(EnumEventNames.DEPOSIT.getEventName())
                 .get(0).
                 getEventId());
+        deposit.setAmount(123.44F);
         Transaction transfer = new TransactionService().getTransactionByEventId(new EventService()
                 .getEventsByType(EnumEventNames.TRANSFER.getEventName())
                 .get(0).

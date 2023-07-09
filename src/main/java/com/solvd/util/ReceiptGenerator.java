@@ -5,11 +5,16 @@ import com.solvd.EnumEventNames;
 import com.solvd.db.model.Transaction;
 import com.solvd.services.AccountService;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class ReceiptGenerator {
 
     public static void createReceipt(Transaction transaction) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss a ");
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
         String firstName = transaction.getEvent().getCard().getUser().getPerson().getFirstName();
         String lastName = transaction.getEvent().getCard().getUser().getPerson().getLastName();
@@ -21,16 +26,16 @@ public abstract class ReceiptGenerator {
 
         if (eventType.contentEquals(EnumEventNames.BALANCE_INQUIRY.getEventName())) {
             System.out.println("\n**********************************************************************************\n" +
-                    "DATE & TIME: " + LocalDateTime.now() + "\nUSER NAME: " + firstName + " " + lastName +
+                    "DATE & TIME: " + LocalDateTime.now().format(formatter) + "\nUSER NAME: " + firstName + " " + lastName +
                     "\nCARD NUMBER " + maskedCardNumber + "\nEVENT TYPE: " + eventType + "\nREMAIN BALANCE: " +
-                    balance +
+                    decimalFormat.format(balance) +
                     "\n**********************************************************************************\n");
         } else {
             double amount = transaction.getAmount();
             System.out.println("\n**********************************************************************************\n" +
-                    "DATE & TIME: " + LocalDateTime.now() + "\nUSER NAME: " + firstName + " " + lastName +
-                    "\nCARD NUMBER " + maskedCardNumber + "\nEVENT TYPE: " + eventType + "\nAMOUNT: " + amount +
-                    "\nREMAIN BALANCE: " + balance +
+                    "DATE & TIME: " + LocalDateTime.now().format(formatter) + "\nUSER NAME: " + firstName + " " + lastName +
+                    "\nCARD NUMBER " + maskedCardNumber + "\nEVENT TYPE: " + eventType + "\nAMOUNT: " +
+                    decimalFormat.format(amount) + "\nREMAIN BALANCE: " + decimalFormat.format(balance) +
                     "\n**********************************************************************************\n");
         }
     }
