@@ -13,7 +13,7 @@ public abstract class ReceiptGenerator {
 
     public static void createReceipt(Transaction transaction) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss a ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss a");
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
         String firstName = transaction.getEvent().getCard().getUser().getPerson().getFirstName();
