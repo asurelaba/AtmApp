@@ -24,17 +24,16 @@ public class ChangePinController implements IFeatureController {
     public void run() {
         changePinView.displayTitle(changePinView.featureTitle());
         handleChangePin();
-        changePinView.displayExit();
-        while (changePinView.getUserSelection() != 0) {
-            continue;
-        }
+        do {
+            changePinView.displayExit();
+        } while (changePinView.getUserSelection() != 0);
     }
 
     private void handleChangePin() {
-        int newPin = changePinView.getCardPin();
+        int newPin = changePinView.getNewCardPin();
         while (newPin == card.getPin()) {
             changePinView.displayBody("New pin is same as old Pin. Please enter a new Pin");
-            newPin = changePinView.getCardPin();
+            newPin = changePinView.getNewCardPin();
         }
         card.setPin(newPin);
         new CardService().update(card);
