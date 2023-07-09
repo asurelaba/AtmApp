@@ -10,7 +10,7 @@ public class Main {
 /*        AtmController atmController = new AtmController();
         atmController.run();*/
 
-
+        // Print receipt Test
         Transaction withdrawal = new TransactionService().getTransactionByEventId(new EventService()
                 .getEventsByType(EnumEventNames.WITHDRAWAL.getEventName())
                 .get(0).
