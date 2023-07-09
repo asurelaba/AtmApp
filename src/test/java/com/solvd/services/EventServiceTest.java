@@ -34,7 +34,7 @@ public class EventServiceTest {
     public void testGetEventsByRangeDate() {
         try {
             Timestamp from = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse("2023-06-25").getTime());
-            Timestamp toDate = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse("2023-07-08").getTime());
+            Timestamp toDate = new Timestamp(System.currentTimeMillis() + 1000);
             assertEquals(eventService.getEventsByRangeDate(from, toDate).size(), eventService.getAll().size());
         } catch (ParseException e) {
             assert false;

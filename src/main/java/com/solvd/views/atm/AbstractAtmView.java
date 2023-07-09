@@ -28,7 +28,10 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     public void displayTitle(String message) {
+        display("\033[H\033[2J");
+        display("-".repeat(50));
         display(message);
+        display("-".repeat(50));
     }
 
     public void displayBody(String message) {
@@ -36,6 +39,7 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     public void displayExit() {
+        display("-".repeat(50));
         display("Enter 0 to Exit");
     }
 }
