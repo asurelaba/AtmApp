@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class AbstractAtmView implements IAtmView {
 
-    private final Logger LOG = LogManager.getLogger(this.getClass());
+    protected final Logger LOG = LogManager.getLogger(this.getClass());
 
     protected static final Scanner s = new Scanner(System.in);
 
