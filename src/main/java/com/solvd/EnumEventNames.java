@@ -1,11 +1,10 @@
 package com.solvd;
 
-public enum EventName {
+public enum EnumEventNames {
     LOG_IN("Log In"),
     LOG_OUT("Log Out"),
     LOCK_CARD("Lock Card"),
-    TRANSACTION_QUERY("Transaction Query"), // Should delete this transaction here and in the atmSqlQueries file
-    CHECK_BALANCE("Check Balance"), // Should delete this transaction here and in the atmSqlQueries file
+    TRANSACTION_QUERY("Transaction Query"), // Use to log when a transaction is queried.
     PRINT_RECEIPT("Print Receipt"),
     CHANGE_PIN("Change Pin"),
     UNLOCK_CARD_REQUEST("Unlock Card Request"),
@@ -26,7 +25,7 @@ public enum EventName {
 
     private final String eventName;
 
-    EventName(String eventName) {
+    EnumEventNames(String eventName) {
         this.eventName = eventName;
     }
 

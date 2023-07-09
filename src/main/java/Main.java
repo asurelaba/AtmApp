@@ -1,5 +1,7 @@
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.atm.AtmController;
 import com.solvd.db.model.Transaction;
+import com.solvd.services.EventService;
 import com.solvd.services.TransactionService;
 import com.solvd.util.ReceiptGenerator;
 
@@ -9,14 +11,26 @@ public class Main {
         atmController.run();*/
 
 
-        Transaction transaction = new TransactionService().getAll().get(0);
+        Transaction withdrawal = new TransactionService().getTransactionByEventId(new EventService()
+                .getEventsByType(EnumEventNames.WITHDRAWAL.getEventName())
+                .get(0).
+                getEventId());
+        Transaction deposit = new TransactionService().getTransactionByEventId(new EventService()
+                .getEventsByType(EnumEventNames.DEPOSIT.getEventName())
+                .get(0).
+                getEventId());
+        Transaction transfer = new TransactionService().getTransactionByEventId(new EventService()
+                .getEventsByType(EnumEventNames.TRANSFER.getEventName())
+                .get(0).
+                getEventId());
+        Transaction balanceInquiry = new TransactionService().getTransactionByEventId(new EventService()
+                .getEventsByType(EnumEventNames.BALANCE_INQUIRY.getEventName())
+                .get(0).
+                getEventId());
 
-        ReceiptGenerator receiptGenerator = new ReceiptGenerator();
-
-        receiptGenerator.createReceipt(transaction);
-
-
-
-
+        ReceiptGenerator.createReceipt(withdrawal);
+        ReceiptGenerator.createReceipt(deposit);
+        ReceiptGenerator.createReceipt(transfer);
+        ReceiptGenerator.createReceipt(balanceInquiry);
     }
 }
