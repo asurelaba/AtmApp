@@ -19,6 +19,7 @@ public class AtmClientController implements IAtmClientController {
     @Override
     public void run() {
         while (true) {
+            view.displayGreeting(clientCard.getUser());
             view.displayClientMenu();
             int clientInput = view.getUserSelection();
 
