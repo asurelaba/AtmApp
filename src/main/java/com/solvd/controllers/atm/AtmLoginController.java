@@ -1,11 +1,9 @@
 package com.solvd.controllers.atm;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
-import com.solvd.db.model.Event;
 import com.solvd.services.CardService;
-import com.solvd.services.EventService;
-import com.solvd.services.EventTypeService;
 import com.solvd.views.atm.AtmLoginView;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -34,6 +32,7 @@ public class AtmLoginController implements IAtmLoginController {
                 continue;
             }
             loggedIn = true;
+            logEvent(atmCard, EnumEventNames.LOG_IN);
         }
     }
 
@@ -60,12 +59,7 @@ public class AtmLoginController implements IAtmLoginController {
         view.displayCardLocked();
         boolean userRequestUnlock = view.displayUserRequestUnlock();
         if (userRequestUnlock) {
-            Event event = new Event();
-            event.setCard(atmCard);
-            event.setDatetime(Timestamp.from(Instant.now()));
-            event.setEventType(
-                new EventTypeService().getEventTypeByTypeName("Unlock Card Request"));
-            new EventService().insert(event);
+            logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
         }
         setAtmCard(null);
     }
