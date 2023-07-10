@@ -17,7 +17,7 @@ public class ReceiptGenerator {
         final Logger LOGGER = LogManager.getLogger(ReceiptGenerator.class);
 
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm:ss a");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - hh:mm:ss a");
             DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
             String firstName = transaction.getEvent().getCard().getUser().getPerson().getFirstName();
@@ -48,7 +48,7 @@ public class ReceiptGenerator {
             Printer.print(receipt.toString());
 
             // Log the event
-            LOGGER.info("Receipt created for transaction (eventID): {}", transaction.getEvent().getEventId());
+            System.out.println("The receipt has been printed. Please collect it.");
 
         } catch (PrinterException e) {
             LOGGER.error("Error occurred while printing the receipt:", e);
