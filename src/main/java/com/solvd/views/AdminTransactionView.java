@@ -25,28 +25,6 @@ public class AdminTransactionView extends AbstractAtmView {
         display("7. return to main menu");
     }
 
-    public void displayQueryByStatus() {
-        display(System.lineSeparator());
-        display(featureTitle());
-        display("1. Transaction query by Status");
-
-    }
-
-    public void displayQueryByEventId() {
-    }
-
-    public void displayQueryByCardNumber() {
-    }
-
-    public void displayQueryByDate() {
-    }
-
-    public void displayQueryByUserId() {
-    }
-
-    public void displayQueryByUserIdAndDate() {
-    }
-
     public String getUserInputString(String queryType) {
         display("Enter" + queryType);
         return s.next();
@@ -64,18 +42,5 @@ public class AdminTransactionView extends AbstractAtmView {
         display("Enter" + queryType + "to: ");
         timestamps.add(Timestamp.valueOf(s.nextLine()));
         return timestamps;
-    }
-
-    public List<Timestamp> getUserInputDateAndUserId(String queryType) {
-        List<Timestamp> timestamps = new ArrayList<>();
-        display("Enter" + queryType + "from: ");
-        timestamps.add(Timestamp.valueOf(s.nextLine()));
-        display("Enter" + queryType + "to: ");
-        timestamps.add(Timestamp.valueOf(s.nextLine()));
-        return timestamps;
-    }
-
-    public void displayExampleFeature() {
-        display("selected feature 1");
     }
 }
