@@ -115,8 +115,8 @@ public class AdminTransactionController implements IFeatureController {
 
         // Get query input from user
         view.display("Enter" + queryType + ":");
-        Timestamp from = view.getUserInputDateAndUserId(queryType).get(0);
-        Timestamp to = view.getUserInputDateAndUserId("Date Range").get(0);
+        Timestamp from = view.getUserInputDate(queryType).get(0);
+        Timestamp to = view.getUserInputDate("Date Range").get(0);
         int userId = (int) view.getUserInputLong(queryType);
 
         //Display query
