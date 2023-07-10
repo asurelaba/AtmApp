@@ -1,13 +1,16 @@
-package com.solvd.controllers;
+package com.solvd.controllers.atm;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
+import com.solvd.db.model.Event;
+import com.solvd.db.model.Transaction;
 import com.solvd.services.AccountService;
+import com.solvd.services.TransactionService;
 import com.solvd.views.CheckBalanceView;
 
-public class CheckBalanceController extends AbstractFeatureController implements
-    IFeatureController {
+public class CheckBalanceController implements IFeatureController {
 
     private final Card clientCard;
 
@@ -26,9 +29,14 @@ public class CheckBalanceController extends AbstractFeatureController implements
         String lastFour = cardNum.substring(cardNum.length() - 4);
 
         view.displayBalance(clientBalance, lastFour);
-        logEvent(clientCard, "Check Balance");
+        Event event = logEvent(clientCard, EnumEventNames.BALANCE_INQUIRY);
 
-        exitRun(view);
+        Transaction transaction = new Transaction();
+        transaction.setStatus("approved");
+        transaction.setEvent(event);
+        new TransactionService().insert(transaction);
+
+        promptPrintReceipt(view, transaction);
     }
 
     private double getAccountBalance() {
