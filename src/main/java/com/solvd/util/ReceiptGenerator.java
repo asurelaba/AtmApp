@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class ReceiptGenerator {
+public class ReceiptGenerator {
 
     public static void createReceipt(Transaction transaction) {
         final Logger LOGGER = LogManager.getLogger(ReceiptGenerator.class);
@@ -29,7 +29,7 @@ public abstract class ReceiptGenerator {
                     .getBalance();
 
             StringBuilder receipt = new StringBuilder();
-            receipt.append("\n**********************************************************************************\n");
+            receipt.append("********************************** ATM RECEIPT ***********************************");
             receipt.append("DATE & TIME: ").append(LocalDateTime.now().format(formatter)).append("\n");
             receipt.append("USER NAME: ").append(firstName).append(" ").append(lastName).append("\n");
             receipt.append("CARD NUMBER: ").append(maskedCardNumber).append("\n");
