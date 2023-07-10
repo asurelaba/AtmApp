@@ -5,7 +5,7 @@ import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
 import com.solvd.views.atm.AtmClientView;
 
-public class AtmClientController extends AbstractFeatureController implements IAtmClientController {
+public class AtmClientController implements IAtmClientController {
 
     protected Card clientCard;
 

@@ -10,8 +10,7 @@ import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
 import com.solvd.views.CheckBalanceView;
 
-public class CheckBalanceController extends AbstractFeatureController implements
-    IFeatureController {
+public class CheckBalanceController implements IFeatureController {
 
     private final Card clientCard;
 
