@@ -1,5 +1,6 @@
 package com.solvd.controllers;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
@@ -14,11 +15,11 @@ public abstract class AbstractFeatureController implements IFeatureController {
     @Override
     public abstract void run();
 
-    protected void logEvent(Card card, String eventTypeName) {
+    protected void logEvent(Card card, EnumEventNames eventName) {
         Event event = new Event();
         event.setCard(card);
         event.setDatetime(Timestamp.from(Instant.now()));
-        event.setEventType(new EventTypeService().getEventTypeByTypeName(eventTypeName));
+        event.setEventType(new EventTypeService().getEventTypeByTypeName(eventName.getEventName()));
         new EventService().insert(event);
     }
 
