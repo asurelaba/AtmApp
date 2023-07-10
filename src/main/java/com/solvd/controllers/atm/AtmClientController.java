@@ -18,6 +18,7 @@ public class AtmClientController extends AbstractFeatureController implements IA
     @Override
     public void run() {
         while (true) {
+            view.displayGreeting(clientCard.getUser());
             view.displayClientMenu();
             int clientInput = view.getUserSelection();
 
