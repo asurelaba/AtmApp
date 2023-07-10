@@ -5,6 +5,7 @@ import com.solvd.db.model.Transaction;
 import com.solvd.services.TransactionService;
 import com.solvd.views.AdminTransactionView;
 
+import java.sql.Timestamp;
 import java.util.stream.Collectors;
 
 public class AdminTransactionController implements IFeatureController {
@@ -38,9 +39,10 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionsByStatus() {
-        view.display("Enter Status: ");
-        String status = view.getUserInput("Status");
-        view.display("Transactions by" + status + ":\n" + new TransactionService()
+        String queryType = "Status";
+        view.display("Enter" + queryType + ":");
+        String status = view.getUserInputString(queryType);
+        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
                 .getTransactionsByStatus(status)
                 .stream() // parse into lines for friendly display
                 .map(Transaction::toString)
@@ -48,18 +50,80 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionByEventId() {
+        String queryType = "Event Id";
+
+        // Get query input from user
+        view.display("Enter" + queryType + ":");
+        long input = view.getUserInputLong(queryType);
+
+        //Display query
+        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+                .getTransactionsByCardNumber(input)
+                .stream() // parse into lines for friendly display
+                .map(Transaction::toString)
+                .collect(Collectors.joining("\n")));
     }
 
     private void handleTransactionsByCardNumber() {
+        String queryType = "Card Number";
 
+        // Get query input from user
+        view.display("Enter" + queryType + ":");
+        long input = view.getUserInputLong(queryType);
+
+        //Display query
+        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+                .getTransactionsByCardNumber(input)
+                .stream() // parse into lines for friendly display
+                .map(Transaction::toString)
+                .collect(Collectors.joining("\n")));
     }
 
     private void handleTransactionsByDateRange() {
+        String queryType = "Date Range";
+
+        // Get query input from user
+        view.display("Enter" + queryType + ":");
+        Timestamp from = view.getUserInputDate(queryType).get(0);
+        Timestamp to = view.getUserInputDate("Date Range").get(0);
+
+        //Display query
+        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+                .getTransactionsByDateRange(from, to)
+                .stream() // parse into lines for friendly display
+                .map(Transaction::toString)
+                .collect(Collectors.joining("\n")));
     }
 
     private void handleTransactionsByUserId() {
+        String queryType = "User Id";
+
+        // Get query input from user
+        view.display("Enter" + queryType + ":");
+        long input = view.getUserInputLong(queryType);
+
+        //Display query
+        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+                .getTransactionsByCardNumber(input)
+                .stream() // parse into lines for friendly display
+                .map(Transaction::toString)
+                .collect(Collectors.joining("\n")));
     }
 
     private void handleTransactionsByUserIdAndDateRange() {
+        String queryType = "Date Range and User Id";
+
+        // Get query input from user
+        view.display("Enter" + queryType + ":");
+        Timestamp from = view.getUserInputDateAndUserId(queryType).get(0);
+        Timestamp to = view.getUserInputDateAndUserId("Date Range").get(0);
+        int userId = (int) view.getUserInputLong(queryType);
+
+        //Display query
+        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+                .getTransactionsByUserIdAndDateRange(userId, from, to)
+                .stream() // parse into lines for friendly display
+                .map(Transaction::toString)
+                .collect(Collectors.joining("\n")));
     }
 }
