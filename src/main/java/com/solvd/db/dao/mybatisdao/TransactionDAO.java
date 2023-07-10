@@ -1,12 +1,12 @@
 package com.solvd.db.dao.mybatisdao;
 
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.ITransactionDAO;
 import com.solvd.db.model.Transaction;
-import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class TransactionDAO implements ITransactionDAO {
@@ -91,7 +91,7 @@ public class TransactionDAO implements ITransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDate(Date from, Date to) {
+    public List<Transaction> getTransactionsByRangeDate(Timestamp from, Timestamp to) {
         List<Transaction> transactions;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             ITransactionDAO itransactionDAO = sqlSession.getMapper(ITransactionDAO.class);
@@ -111,7 +111,7 @@ public class TransactionDAO implements ITransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Date from, Date to) {
+    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Timestamp from, Timestamp to) {
         List<Transaction> transactions;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             ITransactionDAO itransactionDAO = sqlSession.getMapper(ITransactionDAO.class);
