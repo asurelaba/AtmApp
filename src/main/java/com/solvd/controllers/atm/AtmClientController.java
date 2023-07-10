@@ -1,9 +1,8 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.controllers.CheckBalanceController;
+import com.solvd.controllers.icontrollers.atm.IAtmClientController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
-import com.solvd.controllers.icontrollers.atm.IAtmClientController;
 import com.solvd.views.atm.AtmClientView;
 
 public class AtmClientController implements IAtmClientController {
