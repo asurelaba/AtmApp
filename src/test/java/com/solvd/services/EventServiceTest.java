@@ -2,6 +2,7 @@ package com.solvd.services;
 
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
+import com.solvd.db.model.EventType;
 import com.solvd.db.model.Transaction;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -50,7 +51,7 @@ public class EventServiceTest {
     @org.testng.annotations.Test
     public void testGetEventsByType() {
         List<Event> events = eventService.getEventsByType("Check Balance");
-        assertEquals(events.size(), 15);
+        assertEquals(events.stream().map(Event::getEventType).map(EventType::getName).toList().get(0),"Check Balance" );
     }
 
     @org.testng.annotations.Test
