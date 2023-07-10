@@ -3,14 +3,8 @@ package com.solvd.controllers.atm;
 import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
-import com.solvd.db.model.Event;
 import com.solvd.services.CardService;
-import com.solvd.services.EventService;
-import com.solvd.services.EventTypeService;
 import com.solvd.views.atm.ChangePinView;
-
-import java.sql.Timestamp;
-import java.time.Instant;
 
 public class ChangePinController implements IFeatureController {
 
