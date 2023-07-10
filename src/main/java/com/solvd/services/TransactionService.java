@@ -31,8 +31,8 @@ public class TransactionService extends EntityService<Transaction, ITransactionD
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDate(Timestamp from, Timestamp to) {
-        return dao.getTransactionsByRangeDate(from, to);
+    public List<Transaction> getTransactionsByDateRange(Timestamp from, Timestamp to) {
+        return dao.getTransactionsByDateRange(from, to);
     }
 
     @Override
@@ -41,8 +41,8 @@ public class TransactionService extends EntityService<Transaction, ITransactionD
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Timestamp from, Timestamp to) {
-        return dao.getTransactionsByRangeDateAndUserId(userId, from, to);
+    public List<Transaction> getTransactionsByUserIdAndDateRange(int userId, Timestamp from, Timestamp to) {
+        return dao.getTransactionsByUserIdAndDateRange(userId, from, to);
     }
 
 }

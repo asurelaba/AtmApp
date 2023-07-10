@@ -91,11 +91,11 @@ public class TransactionDAO implements ITransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDate(Timestamp from, Timestamp to) {
+    public List<Transaction> getTransactionsByDateRange(Timestamp from, Timestamp to) {
         List<Transaction> transactions;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             ITransactionDAO itransactionDAO = sqlSession.getMapper(ITransactionDAO.class);
-            transactions = itransactionDAO.getTransactionsByRangeDate(from, to);
+            transactions = itransactionDAO.getTransactionsByDateRange(from, to);
         }
         return transactions;
     }
@@ -111,11 +111,11 @@ public class TransactionDAO implements ITransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Timestamp from, Timestamp to) {
+    public List<Transaction> getTransactionsByUserIdAndDateRange(int userId, Timestamp from, Timestamp to) {
         List<Transaction> transactions;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             ITransactionDAO itransactionDAO = sqlSession.getMapper(ITransactionDAO.class);
-            transactions = itransactionDAO.getTransactionsByRangeDateAndUserId(userId, from, to);
+            transactions = itransactionDAO.getTransactionsByUserIdAndDateRange(userId, from, to);
         }
         return transactions;
     }
