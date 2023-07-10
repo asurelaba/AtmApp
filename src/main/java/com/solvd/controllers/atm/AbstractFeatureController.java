@@ -1,4 +1,4 @@
-package com.solvd.controllers;
+package com.solvd.controllers.atm;
 
 import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;

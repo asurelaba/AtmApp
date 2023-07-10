@@ -1,5 +1,6 @@
-package com.solvd.controllers;
+package com.solvd.controllers.atm;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
@@ -26,7 +27,7 @@ public class CheckBalanceController extends AbstractFeatureController implements
         String lastFour = cardNum.substring(cardNum.length() - 4);
 
         view.displayBalance(clientBalance, lastFour);
-        logEvent(clientCard, "Check Balance");
+        logEvent(clientCard, EnumEventNames.BALANCE_INQUIRY);
 
         exitRun(view);
     }
