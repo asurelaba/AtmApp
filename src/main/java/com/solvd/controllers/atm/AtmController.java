@@ -1,7 +1,8 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.db.model.Card;
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmController;
+import com.solvd.db.model.Card;
 import com.solvd.views.atm.AtmView;
 
 
@@ -21,6 +22,7 @@ public class AtmController implements IAtmController {
                 case "ClientCard" -> new AtmClientController(atmCard).run();
                 case "AdministratorCard" -> new AtmAdminController(atmCard).run();
             }
+            logEvent(atmCard, EnumEventNames.LOG_OUT);
             atmReset();
         }
         view.display("Shutting Down..");
