@@ -15,12 +15,13 @@ public interface IFeatureController {
 
     void run();
 
-    default void logEvent(Card card, EnumEventNames eventName) {
+    default Event logEvent(Card card, EnumEventNames eventName) {
         Event event = new Event();
         event.setCard(card);
         event.setDatetime(Timestamp.from(Instant.now()));
         event.setEventType(new EventTypeService().getEventTypeByTypeName(eventName.getEventName()));
         new EventService().insert(event);
+        return event;
     }
 
     default void exitRun(AbstractAtmView view) {
