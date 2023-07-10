@@ -57,7 +57,7 @@ public class TransactionServiceTest {
 
     @Test
     public void testGetTransactionsByRangeDate() {
-        assertTrue(ts.getTransactionsByRangeDate(from, to)
+        assertTrue(ts.getTransactionsByDateRange(from, to)
                 .stream()
                 .anyMatch(transaction -> actualTransaction.equals(transaction)));
     }
@@ -71,7 +71,7 @@ public class TransactionServiceTest {
 
     @Test
     public void testGetTransactionsByRangeDateAndUserId() {
-        assertTrue(ts.getTransactionsByRangeDateAndUserId(userId, from, to)
+        assertTrue(ts.getTransactionsByUserIdAndDateRange(userId, from, to)
                 .stream()
                 .anyMatch(transaction -> actualTransaction.equals(transaction)));
     }
