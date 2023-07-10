@@ -28,6 +28,7 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     public void displayTitle(String message) {
+
         display("\033[H\033[2J");
         display("-".repeat(50));
         display(message);
