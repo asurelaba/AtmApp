@@ -38,7 +38,6 @@ public class CheckBalanceController extends AbstractFeatureController implements
         new TransactionService().insert(transaction);
 
         promptPrintReceipt(view, transaction);
-        exitRun(view);
     }
 
     private double getAccountBalance() {
