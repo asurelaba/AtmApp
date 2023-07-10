@@ -37,11 +37,6 @@ public class ChangePinController implements IFeatureController {
         }
         card.setPin(newPin);
         new CardService().update(card);
-        Event event = new Event();
-        event.setDatetime(new Timestamp(System.currentTimeMillis()));
-        event.setEventType(new EventTypeService().getEventTypeByTypeName("Change Pin"));
-        event.setCard(card);
-        new EventService().insert(event);
         changePinView.displayBody("Pin changed successfully");
     }
 }

@@ -15,7 +15,7 @@ public class ChangePinView extends AbstractAtmView {
     }
 
     public int getNewCardPin() {
-        displayBody("Enter your new PIN: ");
+        displayBody("Enter your 4-digit new PIN: ");
         int pinNumber = 0;
         while (true) {
             try {
