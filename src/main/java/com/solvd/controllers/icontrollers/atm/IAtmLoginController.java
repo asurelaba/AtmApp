@@ -13,8 +13,6 @@ public interface IAtmLoginController extends IFeatureController {
 
     void handleClientCardLock();
 
-    void setAtmUserByCardNumber(long cardNum);
-
     Card getAtmCard();
 
     void setAtmCard(Card card);

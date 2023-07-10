@@ -1,5 +1,6 @@
 package com.solvd.controllers.atm;
 
+import com.solvd.controllers.CheckBalanceController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
 import com.solvd.controllers.icontrollers.atm.IAtmClientController;
@@ -18,6 +19,7 @@ public class AtmClientController implements IAtmClientController {
     @Override
     public void run() {
         while (true) {
+            view.displayGreeting(clientCard.getUser());
             view.displayClientMenu();
             int clientInput = view.getUserSelection();
 
@@ -54,7 +56,7 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void handleCheckBalance() {
-        // TODO
+        new CheckBalanceController(clientCard).run();
     }
 
     @Override
