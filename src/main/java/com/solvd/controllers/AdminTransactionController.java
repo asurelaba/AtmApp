@@ -2,7 +2,10 @@ package com.solvd.controllers;
 
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Transaction;
+import com.solvd.services.TransactionService;
 import com.solvd.views.AdminTransactionView;
+
+import java.util.stream.Collectors;
 
 public class AdminTransactionController implements IFeatureController {
     private final Transaction transaction;
@@ -34,21 +37,21 @@ public class AdminTransactionController implements IFeatureController {
         }
     }
 
-    private void handleExampleFeature1() {
-        view.displayExampleFeature();
-    }
-
-    private void handleShowUser() {
-        view.display("User: " + userCard.getUser());
-    }
-
     private void handleTransactionsByStatus() {
+        view.display("Enter Status: ");
+        String status = view.getUserInput("Status");
+        view.display("Transactions by" + status + ":\n" + new TransactionService()
+                .getTransactionsByStatus(status)
+                .stream() // parse into lines for friendly display
+                .map(Transaction::toString)
+                .collect(Collectors.joining("\n")));
     }
 
     private void handleTransactionByEventId() {
     }
 
     private void handleTransactionsByCardNumber() {
+
     }
 
     private void handleTransactionsByDateRange() {

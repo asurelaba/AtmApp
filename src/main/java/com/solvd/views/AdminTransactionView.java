@@ -33,9 +33,9 @@ public class AdminTransactionView extends AbstractAtmView {
     public void displayQueryByUserId() {}
     public void displayQueryByUserIdAndDate() {}
 
-    public int getUserSelection() {
-        display("Enter selection choice: ");
-        return s.nextInt();
+    public String getUserInput(String typeOfAction) {
+        display("Enter" + typeOfAction );
+        return s.next();
     }
 
     public void displayExampleFeature() {
