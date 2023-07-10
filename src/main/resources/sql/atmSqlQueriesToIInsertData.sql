@@ -1,22 +1,21 @@
--- Reset
-DELETE FROM transactions;
-DELETE FROM events;
-DELETE FROM event_types;
-DELETE FROM accounts;
-DELETE FROM cards;
-DELETE FROM card_types;
-DELETE FROM users;
-DELETE FROM user_roles;
-DELETE FROM persons;
-ALTER TABLE transactions AUTO_INCREMENT = 1;
-ALTER TABLE events AUTO_INCREMENT = 1;
-ALTER TABLE event_types AUTO_INCREMENT = 1;
-ALTER TABLE accounts AUTO_INCREMENT = 1;
-ALTER TABLE cards AUTO_INCREMENT = 1;
-ALTER TABLE card_types AUTO_INCREMENT = 1;
-ALTER TABLE users AUTO_INCREMENT = 1;
-ALTER TABLE user_roles AUTO_INCREMENT = 1;
-ALTER TABLE persons AUTO_INCREMENT = 1;
+DELETE FROM `atm_app`.`transactions`;
+DELETE FROM `atm_app`.`events`;
+DELETE FROM `atm_app`.`event_types`;
+DELETE FROM `atm_app`.`accounts`;
+DELETE FROM `atm_app`.`cards`;
+DELETE FROM `atm_app`.`card_types`;
+DELETE FROM `atm_app`.`users`;
+DELETE FROM `atm_app`.`user_roles`;
+DELETE FROM `atm_app`.`persons`;
+ALTER TABLE `atm_app`.`transactions` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`events` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`event_types` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`accounts` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`cards` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`card_types` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`users` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`user_roles` AUTO_INCREMENT = 1;
+ALTER TABLE `atm_app`.`persons` AUTO_INCREMENT = 1;
 
 -- Insert card types
 INSERT INTO `atm_app`.`card_types` (`name`) VALUES ('AdministratorCard'), ('ClientCard');
@@ -146,7 +145,7 @@ FROM `atm_app`.`persons`
 ORDER BY `person_id`;
 
 -- Update users (Create 2 administrators)
-UPDATE `atm_app`.`users` 
+UPDATE `atm_app`.`users`
 SET role_id=1
 WHERE user_id IN (1,2);
 
@@ -170,33 +169,37 @@ WHERE `role_id` = 2;
 
 -- Insert event types
 INSERT INTO `atm_app`.`event_types` (`name`)
-VALUES 
+VALUES
 -- Both
-('log In'), 
-('Log Out'),
-('Lock Card'), 
-('Transaction Query'),
+('log In'),                 -- 1
+('Log Out'),                -- 2
+('Lock Card'),              -- 3
+('Transaction Query'),      -- 4
 -- User events
-('Check Balance'),
-('Print Receipt'),
-('Change Pin'),
-('Unlock Card Request'), 
+('Print Receipt'),          -- 5
+('Change Pin'),             -- 6
+('Unlock Card Request'),    -- 7
 -- Users transactions
-('Withdrawal'),
-('Deposit'),
-('Transfer'),
-('Balance Inquiry'),
+('Withdrawal'),             -- 8
+('Deposit'),                -- 9
+('Transfer'),               -- 10
+('Balance Inquiry'),        -- 11
 -- Administrator
-('User Creation'),
-('Account Creation'),
-('Card Creation'),
-('Admin Creation'),
-('User Removal'),
-('Account Removal'),
-('Card Removal'),
-('Admin Removal'),
-('Unlock Card'),
-('Balance Adjustment');
+('User Creation'),          -- 12
+('Account Creation'),       -- 13
+('Card Creation'),          -- 14
+('Admin Creation'),         -- 15
+('User Removal'),           -- 16
+('Account Removal'),        -- 17
+('Card Removal'),           -- 18
+('Admin Removal'),          -- 19
+('Unlock Card'),            -- 20
+('Balance Adjustment'),     -- 21
+('Accounts Query'),          -- 22
+('Users Query'),             -- 23
+('Cards Query'),             -- 24
+('Events Query'),            -- 25
+('Transactions Query');      -- 26
 
 -- Insert events for administrators
 INSERT INTO `atm_app`.`events` (`datetime`, `card_id`, `type_id`)
@@ -205,19 +208,19 @@ FROM `atm_app`.`cards`
 WHERE `user_id` IN (1,2);
 
 INSERT INTO `atm_app`.`events` (`datetime`, `card_id`, `type_id`)
-SELECT NOW(), `card_id`, FLOOR(RAND() * (21 - 13 + 1)) + 13
+SELECT NOW(), `card_id`, FLOOR(RAND() * (26 - 12 + 1)) + 12
 FROM `atm_app`.`cards`
 WHERE `user_id` IN (1,2);
 
 -- Insert events for clients
 INSERT INTO `atm_app`.`events` (`datetime`, `card_id`, `type_id`)
-SELECT NOW(), `card_id`, FLOOR(RAND() * (8 - 1 + 1)) + 1
+SELECT NOW(), `card_id`, FLOOR(RAND() * (11 - 1 + 1)) + 1
 FROM `atm_app`.`cards`
 WHERE `user_id` BETWEEN 3 AND 110;
 
--- Insert events for transactions
+-- Insert more events only for transactions
 INSERT INTO `atm_app`.`events` (`datetime`, `card_id`, `type_id`)
-SELECT NOW(), `card_id`, FLOOR(RAND() * (12 - 9 + 1)) + 9
+SELECT NOW(), `card_id`, FLOOR(RAND() * (11 - 8 + 1)) + 8
 FROM `atm_app`.`cards`
 WHERE `user_id` BETWEEN 3 AND 110;
 
@@ -225,4 +228,4 @@ WHERE `user_id` BETWEEN 3 AND 110;
 INSERT INTO `atm_app`.`transactions` (`amount`, `status`, `event_id`)
 SELECT 100, 'approved', `event_id`
 FROM `atm_app`.`events`
-WHERE `type_id` IN (9, 10, 11, 12);
+WHERE `type_id` IN (8, 9, 10, 11);
