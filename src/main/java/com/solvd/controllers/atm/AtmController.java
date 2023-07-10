@@ -1,13 +1,12 @@
 package com.solvd.controllers.atm;
 
 import com.solvd.EnumEventNames;
-import com.solvd.controllers.AbstractFeatureController;
 import com.solvd.controllers.icontrollers.atm.IAtmController;
 import com.solvd.db.model.Card;
 import com.solvd.views.atm.AtmView;
 
 
-public class AtmController extends AbstractFeatureController implements IAtmController {
+public class AtmController implements IAtmController {
 
     private static final AtmView view = new AtmView();
     protected static boolean isRunning = true;

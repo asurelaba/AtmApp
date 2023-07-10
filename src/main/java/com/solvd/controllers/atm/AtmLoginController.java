@@ -1,13 +1,12 @@
 package com.solvd.controllers.atm;
 
 import com.solvd.EnumEventNames;
-import com.solvd.controllers.AbstractFeatureController;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
 
-public class AtmLoginController extends AbstractFeatureController implements IAtmLoginController {
+public class AtmLoginController implements IAtmLoginController {
 
     protected Card atmCard;
 
