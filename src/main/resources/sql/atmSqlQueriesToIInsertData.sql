@@ -229,3 +229,11 @@ INSERT INTO `atm_app`.`transactions` (`amount`, `status`, `event_id`)
 SELECT 100, 'approved', `event_id`
 FROM `atm_app`.`events`
 WHERE `type_id` IN (8, 9, 10, 11);
+
+-- Update admin and user for demo
+UPDATE `atm_app`.`cards`
+SET pin = 8051
+WHERE card_number = 1111111111111111;
+UPDATE `atm_app`.`cards`
+SET pin = 8303
+WHERE card_number = 2222222222222213;
