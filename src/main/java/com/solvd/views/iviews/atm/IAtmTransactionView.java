@@ -6,15 +6,10 @@ public interface IAtmTransactionView {
 
     void displayNonexistentAccountChoices();
 
-    void displayPrintReceiptChoices();
-
-    void displayExitChoices();
-
-    void displayLogoutMessage(String userName);
-
     int getUserChoice();
 
     double getTransactionAmount();
 
     int getAccountId();
+
 }

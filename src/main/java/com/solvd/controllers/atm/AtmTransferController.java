@@ -1,5 +1,6 @@
 package com.solvd.controllers.atm;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmTransferController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
@@ -27,7 +28,7 @@ public class AtmTransferController extends AbstractTransactionController impleme
             int userSel = view.getUserChoice();
 
             if (userSel == 1) {
-                new AtmClientController(clientCard).run();
+                exitRun(view);
             } else {
                 getRecipientAccountId();
             }
@@ -45,12 +46,8 @@ public class AtmTransferController extends AbstractTransactionController impleme
     }
 
     @Override
-    public void setEventType() {
-        eventType = "Transfer";
+    public EnumEventNames getEventType() {
+        return EnumEventNames.TRANSFER;
     }
 
-    @Override
-    public String getAdditionalInfo() {
-        return "RECIPIENT ACCOUNT ID: " + recipientAccountId + "\n";
-    }
 }

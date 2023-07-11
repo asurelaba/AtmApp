@@ -1,5 +1,6 @@
 package com.solvd.controllers.icontrollers.atm;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 
 public interface IAtmTransactionController extends IFeatureController {
@@ -12,19 +13,8 @@ public interface IAtmTransactionController extends IFeatureController {
 
     void updateBalance();
 
-    void recordEvent(String eventType);
-
     void recordTransaction();
 
-    void printReceiptOrNot();
+    EnumEventNames getEventType();
 
-    void displayReceipt();
-
-    void setEventType();
-
-    String getAdditionalInfo();
-
-    void exit();
-
-    void handleLogout();
 }
