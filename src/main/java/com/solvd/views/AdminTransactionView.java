@@ -3,8 +3,6 @@ package com.solvd.views;
 import com.solvd.views.atm.AbstractAtmView;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdminTransactionView extends AbstractAtmView {
 
