@@ -25,28 +25,32 @@ public class AtmClientController implements IAtmClientController {
             switch (clientInput) {
                 case 1 -> handleWithdraw();
                 case 2 -> handleDeposit();
-                case 3 -> handleCheckBalance();
-                case 4 -> handleLockCardRequest();
-                case 5 -> handleChangePin();
-                case 6 -> {
+                case 3 -> handleTransfer();
+                case 4 -> handleCheckBalance();
+                case 5 -> handleLockCardRequest();
+                case 6 -> handleChangePin();
+                case 7 -> {
                     handleLogout();
                     return;
                 }
-                default -> {
-                    view.display("Invalid selection");
-                }
+                default -> view.display("Invalid selection");
             }
         }
     }
 
     @Override
     public void handleWithdraw() {
-        // TODO
+        new AtmWithdrawController(clientCard).getTransactionAmount();
     }
 
     @Override
     public void handleDeposit() {
-        // TODO
+        new AtmDepositController(clientCard).getTransactionAmount();
+    }
+
+    @Override
+    public void handleTransfer() {
+        new AtmTransferController(clientCard).getRecipientAccountId();
     }
 
     @Override
