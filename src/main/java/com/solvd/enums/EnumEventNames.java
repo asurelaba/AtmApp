@@ -1,4 +1,4 @@
-package com.solvd;
+package com.solvd.enums;
 
 public enum EnumEventNames {
     LOG_IN("Log In"),
