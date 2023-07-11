@@ -65,7 +65,7 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void handleChangePin() {
-        // TODO
+        new ChangePinController(clientCard).run();
     }
 
     @Override
