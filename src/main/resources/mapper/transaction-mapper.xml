@@ -64,7 +64,7 @@
         WHERE u.user_id = #{userId};
     </select>
 
-    <select id="getTransactionsUserIdAndByDateRange" resultMap="transactionResultMap">
+    <select id="getTransactionsByUserIdAndDateRange" resultMap="transactionResultMap">
         SELECT * FROM transactions t
         INNER JOIN events e ON t.event_id = e.event_id
         INNER JOIN cards c ON e.card_id = c.card_id
