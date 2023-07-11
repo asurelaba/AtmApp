@@ -26,7 +26,7 @@ public class ReceiptGenerator {
             String lastName = transaction.getEvent().getCard().getUser().getPerson().getLastName();
             String maskedCardNumber = "**** **** **** " + String.valueOf(transaction.getEvent().getCard().getCardNumber())
                     .substring(String.valueOf(transaction.getEvent().getCard().getCardNumber()).length() - 4);
-            String eventType = transaction.getEvent().getEventType().getName();
+            String eventType = transaction.getEvent().getEventType().getEventTypeName();
             double balance = new AccountService().getAccountByUserId(transaction.getEvent().getCard().getUser().getUserId())
                     .getBalance();
             int account = new AccountService()
