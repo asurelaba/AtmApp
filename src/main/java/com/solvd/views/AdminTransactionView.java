@@ -23,19 +23,56 @@ public class AdminTransactionView extends AbstractAtmView {
         display("7. return to main menu");
     }
 
+    public int getUserInputInt() {
+        while (true) {
+            String input = s.next();
+            if (input.equalsIgnoreCase("q")) {
+                return 1;
+            }
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                display("Invalid input. Please enter a valid integer.");
+                display("Press 'q' to quit or enter a valid integer to try again:");
+            }
+        }
+    }
+
+    public long getUserInputLong() {
+        while (true) {
+            String input = s.next();
+            if (input.equalsIgnoreCase("q")) {
+                return 1;
+            }
+
+            try {
+                return Long.parseLong(input);
+            } catch (NumberFormatException e) {
+                display("Invalid input. Please enter a valid long integer.");
+                display("Press 'q' to quit or enter a valid long integer to try again:");
+            }
+        }
+    }
+
     public String getUserInputString() {
         return s.next();
     }
 
-    public long getUserInputLong() {
-        return s.nextLong();
-    }
-
-    public int getUserInputInt() {
-        return s.nextInt();
-    }
-
     public Timestamp getUserInputDate() {
-        return Timestamp.valueOf(s.next() + " 00:00:00");
+        while (true) {
+            String input = s.next();
+            if (input.equalsIgnoreCase("q")) {
+                return null;
+            }
+
+            try {
+                return Timestamp.valueOf(input + " 00:00:00");
+            } catch (IllegalArgumentException e) {
+                s.nextLine();
+                display("Invalid date format. Please enter a valid date in the format 'YYYY-MM-DD'.");
+                display("Press 'q' to quit or enter a valid date to try again:");
+            }
+        }
     }
 }
