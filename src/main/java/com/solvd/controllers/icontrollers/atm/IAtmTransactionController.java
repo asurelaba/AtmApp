@@ -1,6 +1,6 @@
 package com.solvd.controllers.icontrollers.atm;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 
 public interface IAtmTransactionController extends IFeatureController {
@@ -15,6 +15,6 @@ public interface IAtmTransactionController extends IFeatureController {
 
     void recordTransaction();
 
-    EnumEventNames getEventType();
+    EnumEventName getEventType();
 
 }

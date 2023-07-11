@@ -1,6 +1,6 @@
 package com.solvd.enums;
 
-public enum EnumEventNames {
+public enum EnumEventName {
     LOG_IN("Log In"),
     LOG_OUT("Log Out"),
     LOCK_CARD("Lock Card"),
@@ -26,7 +26,7 @@ public enum EnumEventNames {
 
     private final String eventName;
 
-    EnumEventNames(String eventName) {
+    EnumEventName(String eventName) {
         this.eventName = eventName;
     }
 

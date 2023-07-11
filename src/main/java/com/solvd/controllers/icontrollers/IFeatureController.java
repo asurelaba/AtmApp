@@ -1,6 +1,6 @@
 package com.solvd.controllers.icontrollers;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
 import com.solvd.db.model.Transaction;
@@ -15,7 +15,7 @@ public interface IFeatureController {
 
     void run();
 
-    default Event logEvent(Card card, EnumEventNames eventName) {
+    default Event logEvent(Card card, EnumEventName eventName) {
         Event event = new Event();
         event.setCard(card);
         event.setDatetime(Timestamp.from(Instant.now()));
