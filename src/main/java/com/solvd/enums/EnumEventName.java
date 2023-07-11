@@ -1,5 +1,8 @@
 package com.solvd.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum EnumEventName {
     LOG_IN("Log In"),
     LOG_OUT("Log Out"),
@@ -28,6 +31,14 @@ public enum EnumEventName {
 
     EnumEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public static List<String> getAllEventNames() {
+        List<String> eventNames = new ArrayList<>();
+        for (EnumEventName enumValue : EnumEventName.values()) {
+            eventNames.add(enumValue.getEventName());
+        }
+        return eventNames;
     }
 
     public String getEventName() {
