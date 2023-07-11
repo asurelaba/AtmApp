@@ -31,6 +31,10 @@ public class AdminTransactionView extends AbstractAtmView {
         return s.nextLong();
     }
 
+    public int getUserInputInt() {
+        return s.nextInt();
+    }
+
     public Timestamp getUserInputDate() {
         return Timestamp.valueOf(s.next() + " 00:00:00");
     }

@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.stream.Collectors;
 
 public class AdminTransactionController implements IFeatureController {
+
     private final Card adminCard;
     private final AdminTransactionView view = new AdminTransactionView();
 
@@ -57,7 +58,7 @@ public class AdminTransactionController implements IFeatureController {
 
         // Get query input from user
         view.display("Enter " + queryType + ":");
-        int input = (int)view.getUserInputLong();
+        int input = view.getUserInputInt();
 
         //Display query
         view.display("Transactions by " + queryType + ":\n" + new TransactionService()
@@ -101,7 +102,7 @@ public class AdminTransactionController implements IFeatureController {
 
         // Get query input from user
         view.display("Enter " + queryType + ":");
-        int input = (int)view.getUserInputLong();
+        int input = view.getUserInputInt();
 
         //Display query
         view.display("Transactions by " + queryType + ":\n" + new TransactionService()
@@ -120,7 +121,7 @@ public class AdminTransactionController implements IFeatureController {
         view.display("Enter " + queryType + " to:");
         Timestamp to = view.getUserInputDate();
         view.display("Enter " + queryType + " User Id:");
-        int userId = (int) view.getUserInputLong();
+        int userId = view.getUserInputInt();
 
         //Display query
         view.display("Transactions by " + queryType + ":\n" + new TransactionService()
