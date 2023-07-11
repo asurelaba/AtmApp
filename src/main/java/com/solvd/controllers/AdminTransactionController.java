@@ -39,30 +39,29 @@ public class AdminTransactionController implements IFeatureController {
         }
     }
 
+    // Status
     private void handleTransactionsByStatus() {
         String queryType = "Status";
         view.display("Enter " + queryType + ":");
         String status = view.getUserInputString();
-        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
                 .getTransactionsByStatus(status)
                 .stream() // parse into lines for friendly display
                 .map(Transaction::toString)
                 .collect(Collectors.joining("\n")));
     }
 
+    // Event Id
     private void handleTransactionByEventId() {
         String queryType = "Event Id";
 
         // Get query input from user
         view.display("Enter " + queryType + ":");
-        long input = view.getUserInputLong();
+        int input = (int)view.getUserInputLong();
 
         //Display query
-        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
-                .getTransactionsByCardNumber(input)
-                .stream() // parse into lines for friendly display
-                .map(Transaction::toString)
-                .collect(Collectors.joining("\n")));
+        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
+                .getTransactionByEventId(input));
     }
 
     private void handleTransactionsByCardNumber() {
@@ -73,7 +72,7 @@ public class AdminTransactionController implements IFeatureController {
         long input = view.getUserInputLong();
 
         //Display query
-        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
                 .getTransactionsByCardNumber(input)
                 .stream() // parse into lines for friendly display
                 .map(Transaction::toString)
@@ -90,7 +89,7 @@ public class AdminTransactionController implements IFeatureController {
         Timestamp to = view.getUserInputDate();
 
         //Display query
-        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
                 .getTransactionsByDateRange(from, to)
                 .stream() // parse into lines for friendly display
                 .map(Transaction::toString)
@@ -102,11 +101,11 @@ public class AdminTransactionController implements IFeatureController {
 
         // Get query input from user
         view.display("Enter " + queryType + ":");
-        long input = view.getUserInputLong();
+        int input = (int)view.getUserInputLong();
 
         //Display query
-        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
-                .getTransactionsByCardNumber(input)
+        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
+                .getTransactionsByUserId(input)
                 .stream() // parse into lines for friendly display
                 .map(Transaction::toString)
                 .collect(Collectors.joining("\n")));
@@ -124,7 +123,7 @@ public class AdminTransactionController implements IFeatureController {
         int userId = (int) view.getUserInputLong();
 
         //Display query
-        view.display("Transactions by" + queryType + ":\n" + new TransactionService()
+        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
                 .getTransactionsByUserIdAndDateRange(userId, from, to)
                 .stream() // parse into lines for friendly display
                 .map(Transaction::toString)
