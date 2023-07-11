@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
