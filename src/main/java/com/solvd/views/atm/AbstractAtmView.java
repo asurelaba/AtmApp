@@ -2,10 +2,8 @@ package com.solvd.views.atm;
 
 import com.solvd.db.model.User;
 import com.solvd.views.iviews.atm.IAtmView;
-
 import java.time.LocalTime;
 import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,13 +27,8 @@ public abstract class AbstractAtmView implements IAtmView {
         LOG.info(message);
     }
 
-    /**
-     * displays colored log messages
-     * @param message to display
-     * @param logColor accepts "red", "yellow", or "blue" (type: String)
-     */
-    public void display(String message, String logColor) {
-        switch (logColor){
+    private void display(String message, String logColor) {
+        switch (logColor) {
             case "red" -> LOG.error(message);
             case "yellow" -> LOG.warn(message);
             case "blue" -> LOG.debug(message);
@@ -55,8 +48,14 @@ public abstract class AbstractAtmView implements IAtmView {
         display(message);
     }
 
-    public void displayBody(String message, String logType) {
-        display(message,logType);
+    /**
+     * displays colored log messages
+     *
+     * @param message  to display
+     * @param logColor accepts "red", "yellow", or "blue" (type: String)
+     */
+    public void displayBody(String message, String logColor) {
+        display(message, logColor);
     }
 
     public void displayExit() {

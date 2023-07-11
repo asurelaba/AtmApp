@@ -22,16 +22,16 @@ public class AtmLoginController implements IAtmLoginController {
         while (!loggedIn || atmCard == null ) {
             handleCardNumberInput();
             if (atmCard == null) {
-                view.display("Invalid Card Number.", "yellow");
+                view.displayBody("Invalid Card Number.", "yellow");
                 continue; // asks for cardNumber again;
             }
 
             if (isCardLock()) {
-                view.display("Card is locked. Enter correct pin to request unlock", "yellow");
+                view.displayBody("Card is locked. Enter correct pin to request unlock", "yellow");
                 if (handlePinNumberInput()){
                     handleClientCardLock();
                 }else{
-                    view.display("Incorrect pin. Goodbye.", "red");
+                    view.displayBody("Incorrect pin. Goodbye.", "red");
                 }
                 continue;
             }
@@ -52,13 +52,13 @@ public class AtmLoginController implements IAtmLoginController {
     private void handlePinAttempts(int pinAttempts) {
         view.display("Invalid Card PIN.");
         if (pinAttempts == MAX_PIN_ATTEMPTS - 2) {
-            view.display("2 more attempts remaining.", "yellow");
+            view.displayBody("2 more attempts remaining.", "yellow");
         } else if (pinAttempts == MAX_PIN_ATTEMPTS - 1) {
-            view.display("1 more attempt remaining.", "yellow");
+            view.displayBody("1 more attempt remaining.", "yellow");
         } else if (pinAttempts == MAX_PIN_ATTEMPTS) {
             atmCard.setStatus("locked");
             new CardService().update(atmCard);
-            view.display("Too many login attempts. Locking card.. Goodbye.", "red");
+            view.displayBody("Too many login attempts. Locking card.. Goodbye.", "red");
             setAtmCard(null);
         }
     }
