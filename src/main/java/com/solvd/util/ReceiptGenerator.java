@@ -1,6 +1,6 @@
 package com.solvd.util;
 
-import com.solvd.EnumEventNames;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.db.model.Transaction;
 import com.solvd.services.AccountService;
 import org.apache.logging.log4j.LogManager;

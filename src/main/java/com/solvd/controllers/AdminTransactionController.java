@@ -1,6 +1,7 @@
 package com.solvd.controllers;
 
 import com.solvd.controllers.icontrollers.IFeatureController;
+import com.solvd.db.model.Card;
 import com.solvd.db.model.Transaction;
 import com.solvd.services.TransactionService;
 import com.solvd.views.AdminTransactionView;
@@ -9,11 +10,11 @@ import java.sql.Timestamp;
 import java.util.stream.Collectors;
 
 public class AdminTransactionController implements IFeatureController {
-    private final Transaction transaction;
+    private final Card adminCard;
     private final AdminTransactionView view = new AdminTransactionView();
 
-    public AdminTransactionController(Transaction transaction) {
-        this.transaction = transaction;
+    public AdminTransactionController(Card adminCard) {
+        this.adminCard = adminCard;
     }
 
     @Override
@@ -40,8 +41,8 @@ public class AdminTransactionController implements IFeatureController {
 
     private void handleTransactionsByStatus() {
         String queryType = "Status";
-        view.display("Enter" + queryType + ":");
-        String status = view.getUserInputString(queryType);
+        view.display("Enter " + queryType + ":");
+        String status = view.getUserInputString();
         view.display("Transactions by" + queryType + ":\n" + new TransactionService()
                 .getTransactionsByStatus(status)
                 .stream() // parse into lines for friendly display
@@ -53,8 +54,8 @@ public class AdminTransactionController implements IFeatureController {
         String queryType = "Event Id";
 
         // Get query input from user
-        view.display("Enter" + queryType + ":");
-        long input = view.getUserInputLong(queryType);
+        view.display("Enter " + queryType + ":");
+        long input = view.getUserInputLong();
 
         //Display query
         view.display("Transactions by" + queryType + ":\n" + new TransactionService()
@@ -68,8 +69,8 @@ public class AdminTransactionController implements IFeatureController {
         String queryType = "Card Number";
 
         // Get query input from user
-        view.display("Enter" + queryType + ":");
-        long input = view.getUserInputLong(queryType);
+        view.display("Enter " + queryType + ":");
+        long input = view.getUserInputLong();
 
         //Display query
         view.display("Transactions by" + queryType + ":\n" + new TransactionService()
@@ -80,12 +81,13 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionsByDateRange() {
-        String queryType = "Date Range";
+        String queryType = "Date-Range";
 
         // Get query input from user
-        view.display("Enter" + queryType + ":");
-        Timestamp from = view.getUserInputDate(queryType).get(0);
-        Timestamp to = view.getUserInputDate("Date Range").get(0);
+        view.display("Enter " + queryType + " from:");
+        Timestamp from = view.getUserInputDate();
+        view.display("Enter " + queryType + " to:");
+        Timestamp to = view.getUserInputDate();
 
         //Display query
         view.display("Transactions by" + queryType + ":\n" + new TransactionService()
@@ -99,8 +101,8 @@ public class AdminTransactionController implements IFeatureController {
         String queryType = "User Id";
 
         // Get query input from user
-        view.display("Enter" + queryType + ":");
-        long input = view.getUserInputLong(queryType);
+        view.display("Enter " + queryType + ":");
+        long input = view.getUserInputLong();
 
         //Display query
         view.display("Transactions by" + queryType + ":\n" + new TransactionService()
@@ -114,10 +116,12 @@ public class AdminTransactionController implements IFeatureController {
         String queryType = "Date Range and User Id";
 
         // Get query input from user
-        view.display("Enter" + queryType + ":");
-        Timestamp from = view.getUserInputDate(queryType).get(0);
-        Timestamp to = view.getUserInputDate("Date Range").get(0);
-        int userId = (int) view.getUserInputLong(queryType);
+        view.display("Enter " + queryType + " from:");
+        Timestamp from = view.getUserInputDate();
+        view.display("Enter " + queryType + " to:");
+        Timestamp to = view.getUserInputDate();
+        view.display("Enter " + queryType + " User Id:");
+        int userId = (int) view.getUserInputLong();
 
         //Display query
         view.display("Transactions by" + queryType + ":\n" + new TransactionService()
