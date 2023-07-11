@@ -3,7 +3,6 @@ package com.solvd.services;
 import com.solvd.db.dao.idao.IEventDAO;
 import com.solvd.db.model.Event;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -25,8 +24,8 @@ public class EventService extends EntityService<Event, IEventDAO> implements IEv
     }
 
     @Override
-    public List<Event> getEventsByType(String typeName) {
-        return dao.getEventsByType(typeName);
+    public List<Event> getEventsByTypeName(String typeName) {
+        return dao.getEventsByTypeName(typeName);
     }
 
     @Override

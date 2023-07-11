@@ -50,9 +50,9 @@ public class EventServiceTest {
     }
 
     @org.testng.annotations.Test
-    public void testGetEventsByType() {
-        List<Event> events = eventService.getEventsByType(EnumEventName.BALANCE_INQUIRY.getEventName());
-        assertEquals(events.stream().map(Event::getEventType).map(EventType::getName).toList().get(0),EnumEventName.BALANCE_INQUIRY.getEventName() );
+    public void testGetEventsByTypeName() {
+        List<Event> events = eventService.getEventsByTypeName(EnumEventName.BALANCE_INQUIRY.getEventName());
+        assertEquals(events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList().get(0),EnumEventName.BALANCE_INQUIRY.getEventName() );
     }
 
     @org.testng.annotations.Test

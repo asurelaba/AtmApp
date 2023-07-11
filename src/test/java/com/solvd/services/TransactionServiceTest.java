@@ -23,7 +23,7 @@ public class TransactionServiceTest {
         // Get transaction from an event that has a deposit transaction
         ts = new TransactionService();
         actualTransaction = ts.getTransactionByEventId(new EventService()
-                .getEventsByType("Withdrawal")
+                .getEventsByTypeName("Withdrawal")
                 .get(0)
                 .getEventId());
         userId = actualTransaction.getEvent().getCard().getUser().getUserId();

@@ -23,7 +23,7 @@ public class EventTypeServiceTest {
     @Test
     public void testGetEventTypeByTypeName() {
         EventType withdrawalType = et.getEventTypeByTypeName("Withdrawal");
-        assertEquals(withdrawalType.getName(), "Withdrawal");
+        assertEquals(withdrawalType.getEventTypeName(), "Withdrawal");
     }
 
     @Test
@@ -36,7 +36,7 @@ public class EventTypeServiceTest {
         };
         for (String eventType : eventTypes) {
             assertTrue(setEventTypes.stream()
-                .map(EventType::getName)
+                .map(EventType::getEventTypeName)
                 .collect(Collectors.toSet())
                 .contains(eventType));
         }

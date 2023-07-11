@@ -15,11 +15,11 @@ public class EventType {
         this.typeId = typeId;
     }
 
-    public String getName() {
+    public String getEventTypeName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setEventTypeName(String name) {
         this.name = name;
     }
 
