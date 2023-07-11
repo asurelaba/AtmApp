@@ -11,9 +11,18 @@ public class AtmDepositController extends AbstractTransactionController {
 
     @Override
     public void getTransactionAmount() {
-        amount = view.getTransactionAmount();
+        while (true) {
+            amount = view.getTransactionAmount();
+            if ((checkBalance() + amount) > 9999999999d) {
+                view.displayBody("Invalid transaction amount. Enter a smaller amount.");
+            } else {
+                break;
+            }
+        }
+
         run();
     }
+
 
     @Override
     public void updateBalance() {

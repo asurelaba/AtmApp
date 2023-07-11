@@ -27,9 +27,7 @@ public class AtmTransferController extends AbstractTransactionController impleme
             view.displayNonexistentAccountChoices();
             int userSel = view.getUserChoice();
 
-            if (userSel == 1) {
-                exitRun(view);
-            } else {
+            if (userSel == 2) {
                 getRecipientAccountId();
             }
         }

@@ -39,7 +39,6 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
             event = logEvent(clientCard, eventType);
             recordTransaction();
             promptPrintReceipt(view, transaction);
-            exitRun(view);
         } catch (Exception e) {
             view.display("An error occurred during the transaction process. Please try again.");
         }
