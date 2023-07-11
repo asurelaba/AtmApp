@@ -1,6 +1,6 @@
 package com.solvd.controllers.icontrollers;
 
-import com.solvd.EnumEventNames;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
 import com.solvd.db.model.Transaction;
