@@ -1,52 +1,18 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.db.model.Card;
-import com.solvd.db.model.CardType;
-import com.solvd.db.model.Person;
-import com.solvd.db.model.User;
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
+import com.solvd.db.model.Card;
+import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 public class AtmLoginController implements IAtmLoginController {
 
     protected Card atmCard;
 
     private final AtmLoginView view = new AtmLoginView();
-
-    //TODO remove after full handleCard implementations
-    private Card getExampleClientCard() {
-        Card exampleClientCard = new Card();
-        CardType ct = new CardType();
-        ct.setName("ClientCard");
-        exampleClientCard.setCardNumber(1);
-        exampleClientCard.setPin(11);
-        exampleClientCard.setCardType(ct);
-        exampleClientCard.setStatus("active");
-        exampleClientCard.setUser(getExampleUser());
-        return exampleClientCard;
-    }
-
-    //TODO remove after full handleCard implementations
-    private Card getExampleAdminCard() {
-        Card exampleAdminCard = new Card();
-        CardType ct = new CardType();
-        ct.setName("AdministratorCard");
-        exampleAdminCard.setCardNumber(2);
-        exampleAdminCard.setPin(22);
-        exampleAdminCard.setCardType(ct);
-        exampleAdminCard.setStatus("active");
-        exampleAdminCard.setUser(getExampleUser());
-        return exampleAdminCard;
-    }
-
-    //TODO remove after setAtmUserByCardNumber implementation
-    private User getExampleUser() {
-        User exampleUser = new User();
-        Person examplePerson = new Person();
-        examplePerson.setFirstName("exampleFirstName");
-        exampleUser.setPerson(examplePerson);
-        return exampleUser;
-    }
 
     @Override
     public void run() {
@@ -57,41 +23,29 @@ public class AtmLoginController implements IAtmLoginController {
                 view.display("Invalid Card Number.");
                 continue; // asks for cardNumber again;
             }
-
             if (!handlePinNumberInput()) {
                 view.display("Invalid Card PIN.");
                 continue; //
             }
+            if (isCardLock()) {
+                handleClientCardLock();
+                continue;
+            }
             loggedIn = true;
+            logEvent(atmCard, EnumEventNames.LOG_IN);
         }
-
-        if (isCardLock()) {
-            handleClientCardLock();
-        }
-
-        setAtmUserByCardNumber(atmCard.getCardNumber());
     }
 
     @Override
     public void handleCardNumberInput() {
         long userInputCardNum = view.getCardNumber();
-
-        //TODO CardController.validateCardNum(userInputCardNum) -> return atmCard = validCard else null
-        Card exampleCard = atmCard;
-        if (userInputCardNum == getExampleClientCard().getCardNumber()) {
-            exampleCard = getExampleClientCard();
-        } else if (userInputCardNum == getExampleAdminCard().getCardNumber()) {
-            exampleCard = getExampleAdminCard();
-        } else {
-            exampleCard = null;
-        }// TODO remove if-else block when validateCardNUm impl
-        setAtmCard(exampleCard);
+        CardService cs = new CardService();
+        Card atmCard = cs.getCardByCardNumber(userInputCardNum);
+        setAtmCard(atmCard);
     }
 
     public boolean handlePinNumberInput() {
         int cardPin = view.getCardPin();
-
-        // TODO CardController.validateCardPin(atmCard, cardPin) -> boolean
         return cardPin == atmCard.getPin();
     }
 
@@ -102,14 +56,12 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleClientCardLock() {
-        view.display("You card is locked.");
-        view.display("Request unlock?");
-        // TODO cardController.unlock
-    }
-
-    @Override
-    public void setAtmUserByCardNumber(long cardNum) {
-        // TODO: userController.getUserByCardNumber
+        view.displayCardLocked();
+        boolean userRequestUnlock = view.displayUserRequestUnlock();
+        if (userRequestUnlock) {
+            logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
+        }
+        setAtmCard(null);
     }
 
     @Override

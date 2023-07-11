@@ -8,6 +8,8 @@ public interface IAtmClientController extends IFeatureController {
 
     void handleDeposit();
 
+    void handleTransfer();
+
     void handleCheckBalance();
 
     void handleLockCardRequest();

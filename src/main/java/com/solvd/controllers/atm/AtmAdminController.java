@@ -18,6 +18,7 @@ public class AtmAdminController implements IAtmAdminController {
     @Override
     public void run() {
         while (true) {
+            view.displayGreeting(adminCard.getUser());
             view.displayAdminView();
             int adminInput = view.getUserSelection();
             switch (adminInput) {
@@ -27,7 +28,7 @@ public class AtmAdminController implements IAtmAdminController {
                 case 4 -> placeHolder();
                 case 5 -> placeHolder();
                 case 6 -> placeHolder();
-                case 7 -> placeHolder();
+                case 7 -> handleChangePin();
                 case 8 -> {
                     handleLogout();
                     return;
@@ -60,6 +61,10 @@ public class AtmAdminController implements IAtmAdminController {
     @Override
     public void handleLockUserCard() {
         // TODO
+    }
+
+    public void handleChangePin() {
+        new ChangePinController(adminCard).run();
     }
 
     @Override
