@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class EventServiceTest {
 
@@ -52,7 +52,7 @@ public class EventServiceTest {
     @org.testng.annotations.Test
     public void testGetEventsByTypeName() {
         List<Event> events = eventService.getEventsByTypeName(EnumEventName.BALANCE_INQUIRY.getEventName());
-        assertEquals(events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList().get(0),EnumEventName.BALANCE_INQUIRY.getEventName() );
+        assertEquals(events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList().get(0), EnumEventName.BALANCE_INQUIRY.getEventName());
     }
 
     @org.testng.annotations.Test
