@@ -5,34 +5,61 @@ import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
-import java.sql.Timestamp;
-import java.time.Instant;
 
 public class AtmLoginController implements IAtmLoginController {
 
     protected Card atmCard;
 
+    private final int MAX_PIN_ATTEMPTS = 3;
     private final AtmLoginView view = new AtmLoginView();
 
     @Override
     public void run() {
         boolean loggedIn = false;
-        while (!loggedIn) {
+        int pinAttempts = 0;
+
+        outerLoop:
+        while (!loggedIn || atmCard == null ) {
             handleCardNumberInput();
             if (atmCard == null) {
-                view.display("Invalid Card Number.");
+                view.display("Invalid Card Number.", "yellow");
                 continue; // asks for cardNumber again;
             }
-            if (!handlePinNumberInput()) {
-                view.display("Invalid Card PIN.");
-                continue; //
-            }
+
             if (isCardLock()) {
-                handleClientCardLock();
+                view.display("Card is locked. Enter correct pin to request unlock", "yellow");
+                if (handlePinNumberInput()){
+                    handleClientCardLock();
+                }else{
+                    view.display("Incorrect pin. Goodbye.", "red");
+                }
                 continue;
             }
+
+            while (!handlePinNumberInput()) {
+                pinAttempts++;
+                handlePinAttempts(pinAttempts);
+                if (pinAttempts == MAX_PIN_ATTEMPTS) {
+                    continue outerLoop;
+                }
+            }
+
             loggedIn = true;
             logEvent(atmCard, EnumEventNames.LOG_IN);
+        }
+    }
+
+    private void handlePinAttempts(int pinAttempts) {
+        view.display("Invalid Card PIN.");
+        if (pinAttempts == MAX_PIN_ATTEMPTS - 2) {
+            view.display("2 more attempts remaining.", "yellow");
+        } else if (pinAttempts == MAX_PIN_ATTEMPTS - 1) {
+            view.display("1 more attempt remaining.", "yellow");
+        } else if (pinAttempts == MAX_PIN_ATTEMPTS) {
+            atmCard.setStatus("locked");
+            new CardService().update(atmCard);
+            view.display("Too many login attempts. Locking card.. Goodbye.", "red");
+            setAtmCard(null);
         }
     }
 

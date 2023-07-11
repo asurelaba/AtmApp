@@ -51,25 +51,27 @@ public class AtmLoginView extends AbstractAtmView implements IAtmLoginView {
 
     public void displayCardLocked() {
         displayBody("Your card is locked.");
-        displayBody("Request unlock (yes/no)? ");
+        displayBody("Request unlock? ");
+        displayBody("1. Yes");
+        displayBody("2. No");
     }
 
     public boolean displayUserRequestUnlock() {
-        boolean unlockRequested = false;
         while (true) {
-            String input = s.next().toLowerCase();
-            if (input.equals("yes")) {
-                unlockRequested = true;
-                displayBody("Card Unlock Requested.");
-                break;
-            } else if (input.equals("no")) {
-                break;
-            } else {
-                displayBody("Invalid input! Please enter either 'yes' or 'no': ");
+            String input = s.next();
+            switch (input) {
+                case "1" -> {
+                    displayBody("Card Unlock Requested.");
+                    displayBody("Thank you for using the AtmApp! Good Bye.");
+                    return true;
+                }
+                case "2" -> {
+                    displayBody("Thank you for using the AtmApp! Good Bye.");
+                    return false;
+                }
+                default -> displayBody("Invalid input! Please select choice 1 or 2. ");
             }
         }
-        displayBody("Thank you for using the AtmApp! Good Bye.");
-        return unlockRequested;
     }
 
 }
