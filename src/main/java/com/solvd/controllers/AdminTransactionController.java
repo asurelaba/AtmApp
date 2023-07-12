@@ -9,7 +9,6 @@ import com.solvd.views.AdminTransactionView;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AdminTransactionController implements IFeatureController {
 
