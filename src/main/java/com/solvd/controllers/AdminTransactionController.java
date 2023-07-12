@@ -136,8 +136,18 @@ public class AdminTransactionController implements IFeatureController {
         String firstName;
         String lastName;
 
-        view.display("Date | Transaction | Status | Amount | Balance | Transaction id | Event Id | Account Id | " +
-                "Card Number | User Id | First Name | Last Name");
+        // width of cells
+        int width = 10;
+        int dateWidth = 19;
+
+        // Header
+        view.display(view.centerAndTrim("Date", dateWidth) + " | " + view.centerAndTrim("Transaction", width) +
+                " | " + view.centerAndTrim("Status", width) + " | " + view.centerAndTrim("Amount", width) +
+                " | " + view.centerAndTrim("Balance", width) + " | " + view.centerAndTrim("Transaction id", width)
+                + " | " + view.centerAndTrim("Event Id", width) + " | " + view.centerAndTrim("Account Id", width)
+                + " | " + view.centerAndTrim("Card Number", width) + " | " + view.centerAndTrim("User Id", width)
+                + " | " + view.centerAndTrim("First Name", width) + " | " + view.centerAndTrim("Last Name", width)
+        );
 
         for (Transaction t : transactions) {
             date = t.getEvent().getDatetime().toString();
@@ -154,9 +164,9 @@ public class AdminTransactionController implements IFeatureController {
             cardNumber = String.valueOf(t.getEvent().getCard().getCardNumber());
             firstName = t.getEvent().getCard().getUser().getPerson().getFirstName();
             lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
-            int width = 7;
 
-            view.display(view.centerAndTrim(date, width) + " | " + view.centerAndTrim(transaction, width) +
+            // Data
+            view.display(view.centerAndTrim(date, dateWidth) + " | " + view.centerAndTrim(transaction, width) +
                     " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
                     " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
                     " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
