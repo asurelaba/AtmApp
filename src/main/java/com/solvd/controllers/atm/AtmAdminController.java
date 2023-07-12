@@ -1,6 +1,5 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.controllers.AdminTransactionController;
 import com.solvd.controllers.ExampleFeatureController;
 import com.solvd.controllers.icontrollers.atm.IAtmAdminController;
 import com.solvd.db.model.Card;
