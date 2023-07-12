@@ -29,7 +29,7 @@ public class ReceiptGenerator {
                     .getBalance();
 
             StringBuilder receipt = new StringBuilder();
-            receipt.append("********************************** ATM RECEIPT ***********************************");
+            receipt.append("********************************** ATM RECEIPT ***********************************\n");
             receipt.append("DATE & TIME: ").append(LocalDateTime.now().format(formatter)).append("\n");
             receipt.append("USER NAME: ").append(firstName).append(" ").append(lastName).append("\n");
             receipt.append("CARD NUMBER: ").append(maskedCardNumber).append("\n");

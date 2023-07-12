@@ -46,79 +46,92 @@ public class AdminTransactionController implements IFeatureController {
         String queryType = "Status";
 
         // Get query input from user
-        view.display("Enter " + queryType + ":");
+        view.displayBody("Enter " + queryType + ":");
         String input = view.getUserInputString();
 
         //Display query
-        view.display("Transactions by " + queryType + ":");
+        view.displayBody("Transactions by " + queryType + ":");
         formatObject(new TransactionService().getTransactionsByStatus(input));
+
+        exitRun(view);
     }
 
     // Event Id
     private void handleTransactionByEventId() {
         String queryType = "Event Id";
 
+
         // Get query input from user
-        view.display("Enter " + queryType + ":");
+        view.displayBody("Enter " + queryType + ":");
         int input = view.getUserInputInt();
 
         //Display query
-        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
+        view.displayBody("Transactions by " + queryType + ":\n" + new TransactionService()
                 .getTransactionByEventId(input));
+
+        exitRun(view);
     }
 
     private void handleTransactionsByCardNumber() {
         String queryType = "Card Number";
 
         // Get query input from user
-        view.display("Enter " + queryType + ":");
+        view.displayBody("Enter " + queryType + ":");
         long input = view.getUserInputLong();
 
         //Display query
-        view.display("Transactions by " + queryType + ":");
+        view.displayBody("Transactions by " + queryType + ":");
         formatObject(new TransactionService().getTransactionsByCardNumber(input));
+
+        exitRun(view);
     }
 
     private void handleTransactionsByDateRange() {
         String queryType = "Date-Range";
 
         // Get query input from user
-        view.display("Enter " + queryType + " from:");
+        view.displayBody("Enter " + queryType + " from:");
         Timestamp from = view.getUserInputDate();
-        view.display("Enter " + queryType + " to:");
+        view.displayBody("Enter " + queryType + " to:");
         Timestamp to = view.getUserInputDate();
 
         //Display query
-        view.display("Transactions by " + queryType + ":");
+        view.displayBody("Transactions by " + queryType + ":");
         formatObject(new TransactionService().getTransactionsByDateRange(from, to));
+
+        exitRun(view);
     }
 
     private void handleTransactionsByUserId() {
         String queryType = "User Id";
 
         // Get query input from user
-        view.display("Enter " + queryType + ":");
+        view.displayBody("Enter " + queryType + ":");
         int input = view.getUserInputInt();
 
         //Display query
-        view.display("Transactions by " + queryType + ":");
+        view.displayBody("Transactions by " + queryType + ":");
         formatObject(new TransactionService().getTransactionsByUserId(input));
+
+        exitRun(view);
     }
 
     private void handleTransactionsByUserIdAndDateRange() {
         String queryType = "Date Range and User Id";
 
         // Get query input from user
-        view.display("Enter " + queryType + " from:");
+        view.displayBody("Enter " + queryType + " from:");
         Timestamp from = view.getUserInputDate();
-        view.display("Enter " + queryType + " to:");
+        view.displayBody("Enter " + queryType + " to:");
         Timestamp to = view.getUserInputDate();
-        view.display("Enter " + queryType + " User Id:");
+        view.displayBody("Enter " + queryType + " User Id:");
         int userId = view.getUserInputInt();
 
         //Display query
-        view.display("Transactions by " + queryType + ":");
+        view.displayBody("Transactions by " + queryType + ":");
         formatObject(new TransactionService().getTransactionsByUserIdAndDateRange(userId, from, to));
+
+        exitRun(view);
     }
 
     // Format object for user view
@@ -137,11 +150,11 @@ public class AdminTransactionController implements IFeatureController {
         String lastName;
 
         // width of cells
-        int width = 10;
+        int width = 11;
         int dateWidth = 19;
 
         // Header
-        view.display(view.centerAndTrim("Date", dateWidth) + " | " + view.centerAndTrim("Transaction", width) +
+        view.displayBody(view.centerAndTrim("Date", dateWidth) + " | " + view.centerAndTrim("Transaction", width) +
                 " | " + view.centerAndTrim("Status", width) + " | " + view.centerAndTrim("Amount", width) +
                 " | " + view.centerAndTrim("Balance", width) + " | " + view.centerAndTrim("Transaction id", width)
                 + " | " + view.centerAndTrim("Event Id", width) + " | " + view.centerAndTrim("Account Id", width)
@@ -166,7 +179,7 @@ public class AdminTransactionController implements IFeatureController {
             lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
 
             // Data
-            view.display(view.centerAndTrim(date, dateWidth) + " | " + view.centerAndTrim(transaction, width) +
+            view.displayBody(view.centerAndTrim(date, dateWidth) + " | " + view.centerAndTrim(transaction, width) +
                     " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
                     " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
                     " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
