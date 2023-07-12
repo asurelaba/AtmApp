@@ -74,7 +74,7 @@ public class AtmLoginController implements IAtmLoginController {
     }
 
     private long validateCardNumber() {
-        String cardNumber = "";
+        String cardNumber;
         while (true) {
             try {
                 cardNumber = view.getCardNumber();
@@ -94,16 +94,15 @@ public class AtmLoginController implements IAtmLoginController {
     }
 
     public boolean handlePinNumberInput() {
-
         int cardPin = validatePinNumber();
         return cardPin == atmCard.getPin();
     }
 
     private int validatePinNumber() {
-        String cardPin = "";
+        String cardPin;
         while (true) {
             try {
-                cardPin =  view.getCardPin();
+                cardPin = view.getCardPin();
                 for (char c : cardPin.toCharArray()) {
                     if (!Character.isDigit(c)) {
                         throw new InputMismatchException("Invalid Character: " + c);
