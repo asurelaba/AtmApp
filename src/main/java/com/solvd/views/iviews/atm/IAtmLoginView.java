@@ -2,8 +2,8 @@ package com.solvd.views.iviews.atm;
 
 public interface IAtmLoginView {
 
-    long getCardNumber();
+    String getCardNumber();
 
-    int getCardPin();
+    String getCardPin();
 
 }
