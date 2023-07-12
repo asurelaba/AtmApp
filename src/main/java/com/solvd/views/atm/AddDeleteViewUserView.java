@@ -1,6 +1,7 @@
 package com.solvd.views.atm;
 
 import com.solvd.db.model.User;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -75,13 +76,22 @@ public class AddDeleteViewUserView extends AbstractAtmView {
 
     public void displayUsers(List<User> users) {
         int screenWidth = 100;
-        String columnSpacer = " ".repeat(10);
+        int columnWidth = screenWidth / 4;
         display("-".repeat(screenWidth));
-        display("USERID             | FIRSTNAME             | LASTNAME          | ROLE");
+        display("|" + centerAndTrim("USERID", columnWidth) + "|" +
+                centerAndTrim("FIRSTNAME", columnWidth) + "|" +
+                centerAndTrim("LASTNAME", columnWidth) + "|" +
+                centerAndTrim("ROLE", columnWidth) + "|" );
         display("-".repeat(screenWidth));
         for (User user : users) {
-            display(user.getUserId() + columnSpacer + user.getPerson().getFirstName() + columnSpacer
-                    + user.getPerson().getLastName() + columnSpacer + user.getUserRole().getName());
+            display("|" + centerAndTrim(String.valueOf(user.getUserId()), columnWidth) + "|" +
+                    centerAndTrim(user.getPerson().getFirstName(), columnWidth) + "|" +
+                    centerAndTrim(user.getPerson().getLastName(), columnWidth) + "|" +
+                    centerAndTrim(user.getUserRole().getName(), columnWidth) + "|");
         }
+    }
+
+    private String centerAndTrim(String s, int width) {
+        return StringUtils.center(s.substring(0, Math.min(s.length(), width)), width);
     }
 }

@@ -22,14 +22,19 @@ public class AddDeleteViewUserController implements IFeatureController {
 
     @Override
     public void run() {
-        view.displayUsersMenu();
-        int choice = view.getUserSelection();
-        switch (choice) {
-            case 1 -> handleAddUser();
-            case 2 -> handleDeleteUser();
-            case 3 -> viewAllUsers();
-            case 0 -> view.display("\n");
-            default -> view.display("Invalid selection");
+        boolean stop = false;
+        while(!stop){
+            view.displayUsersMenu();
+            int choice = view.getUserSelection();
+            switch (choice) {
+                case 1 -> handleAddUser();
+                case 2 -> handleDeleteUser();
+                case 3 -> viewAllUsers();
+                case 0 -> {
+                    stop = true;
+                }
+                default -> view.display("Invalid selection");
+            }
         }
     }
 
@@ -53,7 +58,12 @@ public class AddDeleteViewUserController implements IFeatureController {
         new UserService().insert(user);
 
         view.displaySuccessMessage(userOption);
-        view.displayExit();
+        view.display("Returning to Users Menu");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void handleDeleteUser() {
@@ -62,7 +72,12 @@ public class AddDeleteViewUserController implements IFeatureController {
         int userId = view.getUserId();
         new UserService().delete(userId);
         view.displaySuccessMessage(userOption);
-        view.displayExit();
+        view.display("Returning to Users Menu");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void viewAllUsers() {
@@ -70,6 +85,6 @@ public class AddDeleteViewUserController implements IFeatureController {
         view.displayTitle(view.featureTitle(userOption));
         List<User> users = new UserService().getAll();
         view.displayUsers(users);
-        view.displayExit();
+        exitRun(view);
     }
 }
