@@ -34,6 +34,30 @@ public class AtmTransferController extends AbstractTransactionController impleme
     }
 
     @Override
+    public void getTransactionAmount() {
+        boolean validTransfer = false;
+
+        while (!validTransfer) {
+            amount = view.getTransactionAmount();
+
+            double balance = checkBalance();
+            if (amount <= balance) {
+                if (validateAmount(amount)) {
+                    run();
+                    validTransfer = true;
+                } else {
+                    return;
+                }
+            } else {
+                view.display("Insufficient balance.");
+                if (handleInsufficientBalance() == 1) {
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
     public void updateBalance() {
         account.setBalance(checkBalance() - amount);
         accountService.update(account);
@@ -46,6 +70,25 @@ public class AtmTransferController extends AbstractTransactionController impleme
     @Override
     public EnumEventNames getEventType() {
         return EnumEventNames.TRANSFER;
+    }
+
+    @Override
+    public boolean validateAmount(double amount) {
+        Account recipientAccount = accountService.getById(recipientAccountId);
+        if (recipientAccount.getBalance() == 9999999999d) {
+            view.displayBody("The recipient account balance has reached the maximum limit.");
+            exitRun(view);
+
+            return false;
+        } else if ((recipientAccount.getBalance() + amount) > 9999999999d) {
+            view.displayBody("Invalid transaction amount. The recipient's account will reach its maximum balance " +
+                    "with this amount.");
+            exitRun(view);
+
+            return false;
+        }
+
+        return true;
     }
 
 }

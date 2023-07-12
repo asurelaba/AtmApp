@@ -88,6 +88,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
         transaction.setAmount(amount);
         transaction.setEvent(event);
         transactionService.insert(transaction);
+        view.displayBody("Transaction completed!");
     }
 
 }
