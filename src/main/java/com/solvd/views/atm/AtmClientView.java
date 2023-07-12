@@ -15,10 +15,11 @@ public class AtmClientView extends AbstractAtmView implements IAtmClientView {
         display(featureTitle());
         display("1. Withdraw");
         display("2. Deposit");
-        display("3. Check Balance");
-        display("4. Lock Card");
-        display("5. Change PIN");
-        display("6. Log Out");
+        display("3. Transfer");
+        display("4. Check Balance");
+        display("5. Lock Card");
+        display("6. Change PIN");
+        display("7. Log Out");
     }
 
 }
