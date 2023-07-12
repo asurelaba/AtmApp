@@ -139,6 +139,7 @@ public class AtmLoginController implements IAtmLoginController {
         if (userRequestUnlock) {
             logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
         }
+        view.displayBody("Thank you for using the AtmApp! Good Bye.");
         setAtmCard(null);
     }
 
@@ -147,10 +148,8 @@ public class AtmLoginController implements IAtmLoginController {
             String input = view.displayUserRequestUnlock();
             if (input.equals("1")) {
                 view.displayBody("Card Unlock Requested.");
-                view.displayBody("Thank you for using the AtmApp! Good Bye.");
                 return true;
             } else if (input.equals("2")) {
-                view.displayBody("Thank you for using the AtmApp! Good Bye.");
                 setAtmCard(null);
                 return false;
             } else {
