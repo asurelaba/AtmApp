@@ -2,10 +2,9 @@ package com.solvd.views.atm;
 
 import com.solvd.db.model.User;
 import com.solvd.views.iviews.atm.IAtmView;
-
 import java.time.LocalTime;
 import java.util.Scanner;
-
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +13,7 @@ public abstract class AbstractAtmView implements IAtmView {
     protected final Logger LOG = LogManager.getLogger(this.getClass());
 
     protected static final Scanner s = new Scanner(System.in);
+    public static final int SCREEN_WIDTH = 100;
 
     @Override
     public int getUserSelection() {
@@ -29,6 +29,16 @@ public abstract class AbstractAtmView implements IAtmView {
         LOG.info(message);
     }
 
+    private void display(String message, String logColor) {
+        switch (logColor) {
+            case "red" -> LOG.error(message);
+            case "yellow" -> LOG.warn(message);
+            case "blue" -> LOG.debug(message);
+            default -> LOG.info(message);
+
+        }
+    }
+
     public void displayTitle(String message) {
         display("\033[H\033[2J");
         display("-".repeat(50));
@@ -38,6 +48,16 @@ public abstract class AbstractAtmView implements IAtmView {
 
     public void displayBody(String message) {
         display(message);
+    }
+
+    /**
+     * displays colored log messages
+     *
+     * @param message  to display
+     * @param logColor accepts "red", "yellow", or "blue" (type: String)
+     */
+    public void displayBody(String message, String logColor) {
+        display(message, logColor);
     }
 
     public void displayExit() {
@@ -56,7 +76,9 @@ public abstract class AbstractAtmView implements IAtmView {
             greetType = "Good Evening, ";
         }
         displayBody(greetType + user.getPerson().getFirstName() + ".");
-
     }
 
+    public String centerAndTrim(String s, int width) {
+        return StringUtils.center(s.substring(0, Math.min(s.length(), width)), width);
+    }
 }

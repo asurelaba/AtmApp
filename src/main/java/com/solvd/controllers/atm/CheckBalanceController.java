@@ -9,6 +9,7 @@ import com.solvd.db.model.Transaction;
 import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
 import com.solvd.views.CheckBalanceView;
+import java.text.NumberFormat;
 
 public class CheckBalanceController implements IFeatureController {
 
@@ -27,8 +28,8 @@ public class CheckBalanceController implements IFeatureController {
         double clientBalance = getAccountBalance();
         String cardNum = String.valueOf(clientCard.getCardNumber());
         String lastFour = cardNum.substring(cardNum.length() - 4);
-
-        view.displayBalance(clientBalance, lastFour);
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        view.displayBalance(formatter.format(clientBalance), lastFour);
         Event event = logEvent(clientCard, EnumEventNames.BALANCE_INQUIRY);
 
         Transaction transaction = new Transaction();

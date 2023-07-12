@@ -9,9 +9,9 @@ public class CheckBalanceView extends AbstractAtmView {
         return "Check Balance";
     }
 
-    public void displayBalance(double clientBalance, String lastFour) {
+    public void displayBalance(String clientBalance, String lastFour) {
         displayBody("Current Balance For Card Number Ending In " + lastFour);
-        displayBody(String.valueOf(clientBalance));
+        displayBody(clientBalance);
     }
 
 }

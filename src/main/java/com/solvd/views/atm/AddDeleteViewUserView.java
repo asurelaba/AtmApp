@@ -90,8 +90,4 @@ public class AddDeleteViewUserView extends AbstractAtmView {
                     centerAndTrim(user.getUserRole().getName(), columnWidth) + "|");
         }
     }
-
-    private String centerAndTrim(String s, int width) {
-        return StringUtils.center(s.substring(0, Math.min(s.length(), width)), width);
-    }
 }
