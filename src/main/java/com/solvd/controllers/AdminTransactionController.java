@@ -3,10 +3,12 @@ package com.solvd.controllers;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Transaction;
+import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
 import com.solvd.views.AdminTransactionView;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdminTransactionController implements IFeatureController {
@@ -43,13 +45,14 @@ public class AdminTransactionController implements IFeatureController {
     // Status
     private void handleTransactionsByStatus() {
         String queryType = "Status";
+
+        // Get query input from user
         view.display("Enter " + queryType + ":");
-        String status = view.getUserInputString();
-        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
-                .getTransactionsByStatus(status)
-                .stream() // parse into lines for friendly display
-                .map(Transaction::toString)
-                .collect(Collectors.joining("\n")));
+        String input = view.getUserInputString();
+
+        //Display query
+        view.display("Transactions by " + queryType + ":");
+        formatObject(new TransactionService().getTransactionsByStatus(input));
     }
 
     // Event Id
@@ -73,11 +76,8 @@ public class AdminTransactionController implements IFeatureController {
         long input = view.getUserInputLong();
 
         //Display query
-        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
-                .getTransactionsByCardNumber(input)
-                .stream() // parse into lines for friendly display
-                .map(Transaction::toString)
-                .collect(Collectors.joining("\n")));
+        view.display("Transactions by " + queryType + ":");
+        formatObject(new TransactionService().getTransactionsByCardNumber(input));
     }
 
     private void handleTransactionsByDateRange() {
@@ -90,11 +90,8 @@ public class AdminTransactionController implements IFeatureController {
         Timestamp to = view.getUserInputDate();
 
         //Display query
-        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
-                .getTransactionsByDateRange(from, to)
-                .stream() // parse into lines for friendly display
-                .map(Transaction::toString)
-                .collect(Collectors.joining("\n")));
+        view.display("Transactions by " + queryType + ":");
+        formatObject(new TransactionService().getTransactionsByDateRange(from, to));
     }
 
     private void handleTransactionsByUserId() {
@@ -105,11 +102,8 @@ public class AdminTransactionController implements IFeatureController {
         int input = view.getUserInputInt();
 
         //Display query
-        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
-                .getTransactionsByUserId(input)
-                .stream() // parse into lines for friendly display
-                .map(Transaction::toString)
-                .collect(Collectors.joining("\n")));
+        view.display("Transactions by " + queryType + ":");
+        formatObject(new TransactionService().getTransactionsByUserId(input));
     }
 
     private void handleTransactionsByUserIdAndDateRange() {
@@ -124,10 +118,45 @@ public class AdminTransactionController implements IFeatureController {
         int userId = view.getUserInputInt();
 
         //Display query
-        view.display("Transactions by " + queryType + ":\n" + new TransactionService()
-                .getTransactionsByUserIdAndDateRange(userId, from, to)
-                .stream() // parse into lines for friendly display
-                .map(Transaction::toString)
-                .collect(Collectors.joining("\n")));
+        view.display("Transactions by " + queryType + ":");
+        formatObject(new TransactionService().getTransactionsByUserIdAndDateRange(userId, from, to));
+    }
+
+    // Format object for user view
+    private void formatObject(List<Transaction> transactions) {
+        String date;
+        String transaction;
+        String status;
+        String amount;
+        String balance;
+        String transactionId;
+        String eventId;
+        String accountId;
+        String cardNumber;
+        String userId;
+        String firstName;
+        String lastName;
+        view.display("Date | Transaction | Status | Amount | Balance | Transaction id | Event Id | Account Id | " +
+                "Card Number | User Id | First Name | Last Name");
+        for (Transaction t : transactions) {
+            date = t.getEvent().getDatetime().toString();
+            transaction = t.getEvent().getEventType().getEventTypeName();
+            status = t.getStatus();
+            amount = String.valueOf(t.getAmount());
+            balance = String.valueOf(new AccountService().getAccountByUserId(t.getEvent().getCard().getUser().
+                    getUserId()).getBalance());
+            transactionId = String.valueOf(t.getTransactionId());
+            eventId = String.valueOf(t.getEvent().getEventId());
+            accountId = String.valueOf(new AccountService().getAccountByUserId(t.getEvent().getCard().getUser()
+                    .getUserId()).getAccountId());
+            userId = String.valueOf(t.getEvent().getCard().getUser().getUserId());
+            cardNumber = String.valueOf(t.getEvent().getCard().getCardNumber());
+            firstName = t.getEvent().getCard().getUser().getPerson().getFirstName();
+            lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
+
+            view.display(date + " | " + transaction + " | " + status + " | " + amount + " | " + balance + " | " +
+                    transactionId + " | " + eventId + " | " + accountId + " | " + userId + " | " + cardNumber + " | " +
+                    firstName + " | " + lastName);
+        }
     }
 }
