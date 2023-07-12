@@ -20,7 +20,7 @@ public class AtmLoginController implements IAtmLoginController {
         int pinAttempts = 0;
 
         outerLoop:
-        while (!loggedIn || atmCard == null) {
+        while (!loggedIn) {
             handleCardNumberInput();
             if (atmCard == null) {
                 view.displayBody("Invalid Card Number.", "yellow");
@@ -135,12 +135,28 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleClientCardLock() {
-        view.displayCardLocked();
-        boolean userRequestUnlock = view.displayUserRequestUnlock();
+        boolean userRequestUnlock = getUserRequestUnlock();
         if (userRequestUnlock) {
             logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
         }
         setAtmCard(null);
+    }
+
+    private boolean getUserRequestUnlock() {
+        while (true) {
+            String input = view.displayUserRequestUnlock();
+            if (input.equals("1")) {
+                view.displayBody("Card Unlock Requested.");
+                view.displayBody("Thank you for using the AtmApp! Good Bye.");
+                return true;
+            } else if (input.equals("2")) {
+                view.displayBody("Thank you for using the AtmApp! Good Bye.");
+                setAtmCard(null);
+                return false;
+            } else {
+                view.displayBody("Invalid input! Please select choice 1 or 2. ");
+            }
+        }
     }
 
     @Override

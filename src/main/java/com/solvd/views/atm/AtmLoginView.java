@@ -11,10 +11,10 @@ public class AtmLoginView extends AbstractAtmView implements IAtmLoginView {
 
     @Override
     public String getCardNumber() {
-            display("Admin  Example Card: 1111111111111111"); // TODO remove for prod
-            display("Client Example Card: 2222222222222213"); // TODO remove for prod
-            display("Enter your Card Number: ");
-            return s.nextLine().trim();
+        display("Admin  Example Card: 1111111111111111"); // TODO remove for prod
+        display("Client Example Card: 2222222222222213"); // TODO remove for prod
+        display("Enter your Card Number: ");
+        return s.nextLine().trim();
     }
 
     @Override
@@ -25,29 +25,12 @@ public class AtmLoginView extends AbstractAtmView implements IAtmLoginView {
         return s.nextLine().trim();
     }
 
-    public void displayCardLocked() {
+    public String displayUserRequestUnlock() {
         displayBody("Your card is locked.");
         displayBody("Request unlock? ");
         displayBody("1. Yes");
         displayBody("2. No");
-    }
-
-    public boolean displayUserRequestUnlock() {
-        while (true) {
-            String input = s.next();
-            switch (input) {
-                case "1" -> {
-                    displayBody("Card Unlock Requested.");
-                    displayBody("Thank you for using the AtmApp! Good Bye.");
-                    return true;
-                }
-                case "2" -> {
-                    displayBody("Thank you for using the AtmApp! Good Bye.");
-                    return false;
-                }
-                default -> displayBody("Invalid input! Please select choice 1 or 2. ");
-            }
-        }
+        return s.nextLine();
     }
 
 }
