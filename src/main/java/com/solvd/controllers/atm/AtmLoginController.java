@@ -5,6 +5,7 @@ import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
+import java.util.InputMismatchException;
 
 public class AtmLoginController implements IAtmLoginController {
 
@@ -19,7 +20,7 @@ public class AtmLoginController implements IAtmLoginController {
         int pinAttempts = 0;
 
         outerLoop:
-        while (!loggedIn || atmCard == null ) {
+        while (!loggedIn || atmCard == null) {
             handleCardNumberInput();
             if (atmCard == null) {
                 view.displayBody("Invalid Card Number.", "yellow");
@@ -28,9 +29,9 @@ public class AtmLoginController implements IAtmLoginController {
 
             if (isCardLock()) {
                 view.displayBody("Card is locked. Enter correct pin to request unlock", "yellow");
-                if (handlePinNumberInput()){
+                if (handlePinNumberInput()) {
                     handleClientCardLock();
-                }else{
+                } else {
                     view.displayBody("Incorrect pin. Goodbye.", "red");
                 }
                 continue;
@@ -65,15 +66,66 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleCardNumberInput() {
-        long userInputCardNum = view.getCardNumber();
+        long userInputCardNum = validateCardNumber();
         CardService cs = new CardService();
         Card atmCard = cs.getCardByCardNumber(userInputCardNum);
         setAtmCard(atmCard);
     }
 
+    private long validateCardNumber() {
+        String cardNumber = "";
+        while (true) {
+            try {
+                cardNumber = view.getCardNumber();
+                for (char c : cardNumber.toCharArray()) {
+                    if (!Character.isDigit(c)) {
+                        throw new InputMismatchException("Invalid Character: " + c);
+                    }
+                }
+                if (cardNumber.isEmpty()) {
+                    throw new InputMismatchException(
+                        "Card number cannot be empty");
+                }
+                if (cardNumber.length() != 16) {
+                    throw new InputMismatchException("Card number must be comprised of 16 digits");
+                }
+                break;
+            } catch (InputMismatchException e) {
+                view.displayBody(e.getMessage(), "yellow");
+            }
+        }
+        return Long.parseLong(cardNumber);
+    }
+
     public boolean handlePinNumberInput() {
-        int cardPin = view.getCardPin();
+
+        int cardPin = validatePinNumber();
         return cardPin == atmCard.getPin();
+    }
+
+    private int validatePinNumber() {
+        String cardPin = "";
+        while (true) {
+            try {
+                cardPin =  view.getCardPin();
+                for (char c : cardPin.toCharArray()) {
+                    if (!Character.isDigit(c)) {
+                        throw new InputMismatchException("Invalid Character: " + c);
+                    }
+                }
+                if (cardPin.isEmpty()) {
+                    throw new InputMismatchException(
+                        "Card pin cannot be empty");
+                }
+                if (cardPin.length() != 4) {
+                    throw new InputMismatchException("Card number must be comprised of 4 digits");
+                }
+                break;
+            } catch (InputMismatchException e) {
+                view.displayBody(e.getMessage(), "yellow");
+            }
+        }
+        return Integer.parseInt(cardPin);
     }
 
     @Override
