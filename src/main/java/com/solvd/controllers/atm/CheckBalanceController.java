@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventName;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
@@ -29,7 +29,7 @@ public class CheckBalanceController implements IFeatureController {
         String lastFour = cardNum.substring(cardNum.length() - 4);
 
         view.displayBalance(clientBalance, lastFour);
-        Event event = logEvent(clientCard, EnumEventName.BALANCE_INQUIRY);
+        Event event = logEvent(clientCard, EnumEventNames.BALANCE_INQUIRY);
 
         Transaction transaction = new Transaction();
         transaction.setStatus("approved");

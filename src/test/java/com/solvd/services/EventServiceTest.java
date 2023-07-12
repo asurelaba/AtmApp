@@ -4,7 +4,7 @@ import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
 import com.solvd.db.model.EventType;
 import com.solvd.db.model.Transaction;
-import com.solvd.enums.EnumEventName;
+import com.solvd.enums.EnumEventNames;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -51,8 +51,8 @@ public class EventServiceTest {
 
     @org.testng.annotations.Test
     public void testGetEventsByTypeName() {
-        List<Event> events = eventService.getEventsByTypeName(EnumEventName.BALANCE_INQUIRY.getEventName());
-        assertEquals(events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList().get(0), EnumEventName.BALANCE_INQUIRY.getEventName());
+        List<Event> events = eventService.getEventsByTypeName(EnumEventNames.BALANCE_INQUIRY.getEventName());
+        assertEquals(events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList().get(0), EnumEventNames.BALANCE_INQUIRY.getEventName());
     }
 
     @org.testng.annotations.Test

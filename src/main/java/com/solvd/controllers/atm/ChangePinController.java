@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventName;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
@@ -30,7 +30,7 @@ public class ChangePinController implements IFeatureController {
         }
         card.setPin(newPin);
         new CardService().update(card);
-        logEvent(card, EnumEventName.CHANGE_PIN);
+        logEvent(card, EnumEventNames.CHANGE_PIN);
         changePinView.displayBody("Pin changed successfully");
     }
 }
