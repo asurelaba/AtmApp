@@ -15,6 +15,7 @@ public abstract class AbstractAtmView implements IAtmView {
     protected final Logger LOG = LogManager.getLogger(this.getClass());
 
     protected static final Scanner s = new Scanner(System.in);
+    public static final int SCREEN_WIDTH = 100;
 
     @Override
     public int getUserSelection() {
