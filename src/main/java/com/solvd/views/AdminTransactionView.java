@@ -13,7 +13,6 @@ public class AdminTransactionView extends AbstractAtmView {
     }
 
     public void displayAdminTransactionViewMenu() {
-        displayTitle(System.lineSeparator());
         displayTitle(featureTitle());
         displayBody("1. Query by Status");
         displayBody("2. Query by Event Id");
@@ -64,11 +63,11 @@ public class AdminTransactionView extends AbstractAtmView {
             }
 
             try {
-                return s.next();
+                return input;
             } catch (InputMismatchException e) {
                 s.next();
-                displayBody("Invalid input. Valid Option: approved");
-                displayBody("Press 'q' to quit or enter a valid date to try again:");
+                displayBody("Invalid input. Please enter a valid option.");
+                displayBody("Press 'q' to quit or enter a valid option to try again:");
             }
         }
     }

@@ -49,9 +49,16 @@ public class AdminTransactionController implements IFeatureController {
         view.displayBody("Enter " + queryType + ":");
         String input = view.getUserInputString();
 
-        //Display query
-        view.displayBody("Transactions by " + queryType + ":");
-        formatObject(new TransactionService().getTransactionsByStatus(input));
+        // Display query
+        if (input != null) {
+            List<Transaction> transactions = new TransactionService().getTransactionsByStatus(input);
+            if (transactions != null && !transactions.isEmpty()) {
+                view.displayBody("Transactions by " + queryType + ":");
+                formatObject(transactions);
+            } else {
+                view.displayBody("No transactions found for the given " + queryType);
+            }
+        }
 
         exitRun(view);
     }
