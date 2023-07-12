@@ -41,8 +41,8 @@ public interface IFeatureController {
         while (true) {
             int userSel = view.getUserSelection();
             if (userSel == 1) {
-                ReceiptGenerator.createReceipt(transaction);
                 view.displayBody("Printing Receipt..");
+                ReceiptGenerator.createReceipt(transaction);
                 break;
             } else if (userSel == 2) {
                 break;
@@ -50,5 +50,4 @@ public interface IFeatureController {
         }
         view.displayBody("Returning to main menu..");
     }
-
 }

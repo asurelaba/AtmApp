@@ -3,7 +3,9 @@ package com.solvd.util;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import java.awt.*;
-import java.awt.print.*;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 
 public class Printer {
 
