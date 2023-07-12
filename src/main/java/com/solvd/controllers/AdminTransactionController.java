@@ -135,8 +135,10 @@ public class AdminTransactionController implements IFeatureController {
         String userId;
         String firstName;
         String lastName;
+
         view.display("Date | Transaction | Status | Amount | Balance | Transaction id | Event Id | Account Id | " +
                 "Card Number | User Id | First Name | Last Name");
+
         for (Transaction t : transactions) {
             date = t.getEvent().getDatetime().toString();
             transaction = t.getEvent().getEventType().getEventTypeName();
@@ -152,10 +154,14 @@ public class AdminTransactionController implements IFeatureController {
             cardNumber = String.valueOf(t.getEvent().getCard().getCardNumber());
             firstName = t.getEvent().getCard().getUser().getPerson().getFirstName();
             lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
+            int width = 7;
 
-            view.display(date + " | " + transaction + " | " + status + " | " + amount + " | " + balance + " | " +
-                    transactionId + " | " + eventId + " | " + accountId + " | " + userId + " | " + cardNumber + " | " +
-                    firstName + " | " + lastName);
+            view.display(view.centerAndTrim(date, width) + " | " + view.centerAndTrim(transaction, width) +
+                    " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
+                    " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
+                    " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
+                    " | " + view.centerAndTrim(userId, width) + " | " + view.centerAndTrim(cardNumber, width) +
+                    " | " + view.centerAndTrim(firstName, width) + " | " + view.centerAndTrim(lastName, width));
         }
     }
 }

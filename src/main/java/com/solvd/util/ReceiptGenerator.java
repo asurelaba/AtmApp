@@ -1,6 +1,6 @@
 package com.solvd.util;
 
-import com.solvd.enums.EnumEventName;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.db.model.Transaction;
 import com.solvd.services.AccountService;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +41,7 @@ public class ReceiptGenerator {
             receipt.append("CARD NUMBER: ").append(maskedCardNumber).append("\n");
             receipt.append("EVENT TYPE: ").append(eventType).append("\n");
 
-            if (eventType.contentEquals(EnumEventName.BALANCE_INQUIRY.getEventName())) {
+            if (eventType.contentEquals(EnumEventNames.BALANCE_INQUIRY.getEventName())) {
                 receipt.append("REMAIN BALANCE: ").append(decimalFormat.format(balance)).append("\n");
             } else {
                 double amount = transaction.getAmount();

@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventName;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
@@ -47,7 +47,7 @@ public class AtmLoginController implements IAtmLoginController {
             }
 
             loggedIn = true;
-            logEvent(atmCard, EnumEventName.LOG_IN);
+            logEvent(atmCard, EnumEventNames.LOG_IN);
         }
     }
 
@@ -132,7 +132,7 @@ public class AtmLoginController implements IAtmLoginController {
     public void handleClientCardLock() {
         boolean userRequestUnlock = getUserRequestUnlock();
         if (userRequestUnlock) {
-            logEvent(atmCard, EnumEventName.UNLOCK_CARD_REQUEST);
+            logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
         }
         view.displayBody("Thank you for using the AtmApp! Good Bye.");
         setAtmCard(null);

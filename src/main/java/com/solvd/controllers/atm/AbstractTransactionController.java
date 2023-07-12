@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventName;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmTransactionController;
 import com.solvd.db.model.*;
 import com.solvd.services.*;
@@ -17,7 +17,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
     protected TransactionService transactionService;
     protected UserService userService;
     protected double amount = 0;
-    protected EnumEventName eventType;
+    protected EnumEventNames eventType;
     protected final AtmTransactionView view = new AtmTransactionView();
 
     public AbstractTransactionController(Card clientCard) {
@@ -48,7 +48,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
     public abstract void updateBalance();
 
     @Override
-    public abstract EnumEventName getEventType();
+    public abstract EnumEventNames getEventType();
 
     // This method will be overridden in AtmDepositController where check balance is not necessary.
     @Override
@@ -84,7 +84,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
 
     @Override
     public void recordTransaction() {
-        transaction.setStatus(EnumEventName.APPROVED.getEventName());
+        transaction.setStatus(EnumEventNames.APPROVED.getEventName());
         transaction.setAmount(amount);
         transaction.setEvent(event);
         transactionService.insert(transaction);
