@@ -1,4 +1,4 @@
-package com.solvd.controllers;
+package com.solvd.controllers.atm;
 
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
@@ -6,7 +6,7 @@ import com.solvd.db.model.Transaction;
 import com.solvd.enums.EnumEventNames;
 import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
-import com.solvd.views.AdminTransactionView;
+import com.solvd.views.atm.AdminTransactionView;
 
 import java.sql.Timestamp;
 import java.util.List;
