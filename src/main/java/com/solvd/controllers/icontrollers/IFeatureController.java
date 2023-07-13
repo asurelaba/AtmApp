@@ -10,6 +10,9 @@ import com.solvd.util.ReceiptGenerator;
 import com.solvd.views.atm.AbstractAtmView;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.InputMismatchException;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 public interface IFeatureController {
 
@@ -41,14 +44,34 @@ public interface IFeatureController {
         while (true) {
             int userSel = view.getUserSelection();
             if (userSel == 1) {
-                ReceiptGenerator.createReceipt(transaction);
                 view.displayBody("Printing Receipt..");
+                ReceiptGenerator.createReceipt(transaction);
                 break;
             } else if (userSel == 2) {
                 break;
             }
         }
         view.displayBody("Returning to main menu..");
+    }
+
+    default Long cardNumberValidator(AbstractAtmView view, Supplier<String> getCardNumInput) {
+        String cardNumber;
+        while (true) {
+            try {
+                cardNumber = getCardNumInput.get();
+                if (cardNumber.isEmpty()) {
+                    throw new InputMismatchException(
+                        "Card number cannot be empty");
+                }
+                if (cardNumber.length() != 16 || !Pattern.matches("\\d+", cardNumber)) {
+                    throw new InputMismatchException("Card number must be comprised of 16 digits");
+                }
+                break;
+            } catch (InputMismatchException e) {
+                view.displayBody(e.getMessage(), "yellow");
+            }
+        }
+        return Long.parseLong(cardNumber);
     }
 
 }

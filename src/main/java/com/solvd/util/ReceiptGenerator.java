@@ -53,11 +53,8 @@ public class ReceiptGenerator {
 
             Printer.print(receipt.toString());
 
-            // Log the event
-            System.out.println("The receipt has been printed. Please collect it.");
-
         } catch (PrinterException e) {
-            LOGGER.error("Error occurred while printing the receipt:", e);
+            LOGGER.error("Error occurred while printing the receipt");
         }
     }
 }
