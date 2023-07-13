@@ -18,7 +18,9 @@ public abstract class AbstractAtmView implements IAtmView {
     @Override
     public int getUserSelection() {
         display("Enter selection choice: ");
-        return s.nextInt();
+        int userSel = s.nextInt();
+        clearScanner();
+        return userSel;
     }
 
     @Override
@@ -81,4 +83,11 @@ public abstract class AbstractAtmView implements IAtmView {
     public String centerAndTrim(String s, int width) {
         return StringUtils.center(s.substring(0, Math.min(s.length(), width)), width);
     }
+
+    public void clearScanner() {
+        if (s.hasNextLine()) {
+            s.nextLine();
+        }
+    }
+
 }

@@ -31,4 +31,9 @@ public class CardsView extends AbstractAtmView {
         displayBody("CARD OWNER: " + p.getFirstName() + " " + p.getLastName());
     }
 
+    public String getCardNumberToDelete() {
+        displayBody("Enter the card number to delete: ");
+        return s.next().trim();
+    }
+
 }

@@ -1,13 +1,17 @@
 package com.solvd.controllers.atm.cardsmenu;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
+import com.solvd.services.CardService;
 import com.solvd.views.atm.CardsView;
+import java.util.function.Supplier;
 
 public class CardsController implements IFeatureController {
 
     private final Card adminCard;
-    CardsView view = new CardsView();
+    private final CardService cs = new CardService();
+    private final CardsView view = new CardsView();
 
     public CardsController(Card adminCard) {
         this.adminCard = adminCard;
@@ -35,12 +39,21 @@ public class CardsController implements IFeatureController {
     }
 
     private void handleAddCard(Card adminCard) {
-        // "Card Creation"
         new AddCardsController(adminCard).run();
     }
 
     private void handleDeleteCard(Card adminCard) {
-        // "Card Removal"
+        while (true) {
+            Supplier<String> getCardNumInput = view::getCardNumberToDelete;
+            long userInputCardNum = cardNumberValidator(view, getCardNumInput);
+            Card cardToDelete = cs.getCardByCardNumber(userInputCardNum);
+            if (cardToDelete != null) {
+                cs.delete(cardToDelete.getCardId());
+                logEvent(adminCard, EnumEventNames.CARD_REMOVAL);
+                break;
+            }
+            view.displayBody("Card Number not in database. Enter a valid card number.", "yellow");
+        }
     }
 
     private void handleLockCard(Card adminCard) {
