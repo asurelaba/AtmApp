@@ -6,6 +6,7 @@ import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
 import java.util.InputMismatchException;
+import java.util.regex.Pattern;
 
 public class AtmLoginController implements IAtmLoginController {
 
@@ -73,20 +74,15 @@ public class AtmLoginController implements IAtmLoginController {
     }
 
     private long validateCardNumber() {
-        String cardNumber = "";
+        String cardNumber;
         while (true) {
             try {
                 cardNumber = view.getCardNumber();
-                for (char c : cardNumber.toCharArray()) {
-                    if (!Character.isDigit(c)) {
-                        throw new InputMismatchException("Invalid Character: " + c);
-                    }
-                }
                 if (cardNumber.isEmpty()) {
                     throw new InputMismatchException(
                         "Card number cannot be empty");
                 }
-                if (cardNumber.length() != 16) {
+                if (cardNumber.length() != 16 || !Pattern.matches("\\d+", cardNumber)) {
                     throw new InputMismatchException("Card number must be comprised of 16 digits");
                 }
                 break;
@@ -98,16 +94,15 @@ public class AtmLoginController implements IAtmLoginController {
     }
 
     public boolean handlePinNumberInput() {
-
         int cardPin = validatePinNumber();
         return cardPin == atmCard.getPin();
     }
 
     private int validatePinNumber() {
-        String cardPin = "";
+        String cardPin;
         while (true) {
             try {
-                cardPin =  view.getCardPin();
+                cardPin = view.getCardPin();
                 for (char c : cardPin.toCharArray()) {
                     if (!Character.isDigit(c)) {
                         throw new InputMismatchException("Invalid Character: " + c);
