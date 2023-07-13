@@ -23,7 +23,7 @@ public class AtmAdminController implements IAtmAdminController {
             view.displayAdminView();
             int adminInput = view.getUserSelection();
             switch (adminInput) {
-                case 1 -> handleCreateUser();
+                case 1 -> handleAddDeleteViewUsers();
                 case 2 -> handleUnlockCardRequests();
                 case 3 -> handleLockUserCard();
                 case 4 -> placeHolder();
@@ -54,11 +54,6 @@ public class AtmAdminController implements IAtmAdminController {
     }
 
     @Override
-    public void handleCreateUser() {
-        // TODO
-    }
-
-    @Override
     public void handleUnlockCardRequests() {
         // TODO
     }
@@ -84,4 +79,8 @@ public class AtmAdminController implements IAtmAdminController {
         AtmController.isRunning = false;
     }
 
+    @Override
+    public void handleAddDeleteViewUsers() {
+        new AddDeleteViewUserController(adminCard).run();
+    }
 }
