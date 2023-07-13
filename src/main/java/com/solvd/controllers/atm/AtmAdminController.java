@@ -1,6 +1,5 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.controllers.ExampleFeatureController;
 import com.solvd.controllers.atm.cardsmenu.CardsController;
 import com.solvd.controllers.icontrollers.atm.IAtmAdminController;
 import com.solvd.db.model.Card;
@@ -26,8 +25,8 @@ public class AtmAdminController implements IAtmAdminController {
                 case 1 -> handleAddDeleteViewUsers();
                 case 2 -> handleUnlockCardRequests();
                 case 3 -> handleLockUserCard();
-                case 4 -> handleClientAccounts();
-                case 5 -> handleModifyCards();
+                case 4 -> handleTransactionQueryMenu();
+                case 5 -> handleClientAccounts();
                 case 6 -> placeHolder();
                 case 7 -> handleChangePin();
                 case 8 -> {
@@ -44,13 +43,12 @@ public class AtmAdminController implements IAtmAdminController {
 
     }
 
-    public void placeHolder() {
-        view.display("placeholder");
-        new ExampleFeatureController(adminCard).run();
+    public void handleTransactionQueryMenu() {
+        new AdminTransactionController(adminCard).run();
     }
 
-    public void handleModifyCards() {
-        new CardsController(adminCard).run();
+    public void placeHolder() {
+        view.display("placeholder");
     }
 
     @Override
@@ -58,12 +56,14 @@ public class AtmAdminController implements IAtmAdminController {
         // TODO
     }
 
-    public void handleClientAccounts() {
-        new AdminClientAccountController(adminCard).run();
-    }
-
+    @Override
     public void handleLockUserCard() {
         // TODO
+    }
+
+    @Override
+    public void handleClientAccounts() {
+        new AdminClientAccountController(adminCard).run();
     }
 
     public void handleChangePin() {

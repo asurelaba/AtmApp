@@ -3,7 +3,6 @@ package com.solvd.db.dao.idao;
 import com.solvd.db.model.Event;
 import org.apache.ibatis.annotations.Param;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface IEventDAO extends IBaseDAO<Event> {
 
     List<Event> getEventsByCardId(int cardId);
 
-    List<Event> getEventsByType(String typeName); // Type: Deposit, Change of pin, etc
+    List<Event> getEventsByTypeName(String typeName); // Type: Deposit, Change of pin, etc
 
     List<Event> getEventsByUserId(int userId); // All events from a single user
 

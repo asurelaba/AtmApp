@@ -15,7 +15,7 @@ public interface IAdminClientAccountController extends IFeatureController {
 
     void viewAccounts();
 
-    void validateAccount(int userInput);
+    void validateAndDeleteAccount(int userInput);
 
     boolean validateUser(int userId);
 

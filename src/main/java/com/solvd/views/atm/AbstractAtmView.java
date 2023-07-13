@@ -3,36 +3,35 @@ package com.solvd.views.atm;
 import com.solvd.db.model.User;
 import com.solvd.views.iviews.atm.IAtmView;
 
-import java.time.LocalTime;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.LocalTime;
+import java.util.Scanner;
+
 public abstract class AbstractAtmView implements IAtmView {
 
-    protected final Logger LOG = LogManager.getLogger(this.getClass());
-
-    protected static final Scanner s = new Scanner(System.in);
     public static final int SCREEN_WIDTH = 100;
+    protected static final Scanner s = new Scanner(System.in);
+    protected final Logger LOG = LogManager.getLogger(this.getClass());
 
     @Override
     public int getUserSelection() {
-        int choice;
+        int userSel;
         do {
             try {
                 display("Enter selection choice: ");
-                choice = s.nextInt();
+                userSel = s.nextInt();
                 break;
             } catch (InputMismatchException e) {
                 displayBody("Please enter corresponding number for selection");
-                s.next();
+                clearScanner();
             }
         } while (true);
-        clearScanner();
-        return choice;
+        return userSel;
     }
 
     @Override
@@ -54,10 +53,7 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     public void displayTitle(String message) {
-        display("\033[H\033[2J");
-        display("-".repeat(50));
         display(message);
-        display("-".repeat(50));
     }
 
     public void displayBody(String message) {
@@ -75,7 +71,6 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     public void displayExit() {
-        display("-".repeat(50));
         display("Enter 0 to Exit");
     }
 
