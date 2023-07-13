@@ -20,6 +20,7 @@ public class CardsController implements IFeatureController {
     @Override
     public void run() {
         while (true) {
+            view.displayTitle(view.featureTitle());
             view.displayCardsMenuSelection();
             int menuChoice = view.getUserSelection();
 
@@ -44,6 +45,7 @@ public class CardsController implements IFeatureController {
 
     private void handleDeleteCard(Card adminCard) {
         while (true) {
+            view.displayTitle("Delete Card");
             Supplier<String> getCardNumInput = view::getCardNumberToDelete;
             long userInputCardNum = cardNumberValidator(view, getCardNumInput);
             Card cardToDelete = cs.getCardByCardNumber(userInputCardNum);
@@ -60,6 +62,7 @@ public class CardsController implements IFeatureController {
 
     private void handleLockCard(Card adminCard) {
         while (true) {
+            view.displayTitle("Lock Card");
             Supplier<String> getCardNumInput = view::getCardNumberToLock;
             long userInputCardNum = cardNumberValidator(view, getCardNumInput);
             Card cardToLock = cs.getCardByCardNumber(userInputCardNum);
@@ -80,6 +83,7 @@ public class CardsController implements IFeatureController {
     }
 
     private void handleViewAllCards() {
+        view.displayTitle("All Cards");
         view.displayCards(cs.getAll());
         exitRun(view);
     }

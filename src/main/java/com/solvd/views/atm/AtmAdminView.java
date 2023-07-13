@@ -18,7 +18,7 @@ public class AtmAdminView extends AbstractAtmView implements IAtmAdminView {
         display("3. Lock User Card");
         display("4. Transactions Query Menu");
         display("5. Manager Client Accounts");
-        display("6. PlaceHolder - Example Feature");
+        display("6. Modify Cards");
         display("7. Change Pin");
         display("8. Logout");
         display("9. Shutdown AtmApp");

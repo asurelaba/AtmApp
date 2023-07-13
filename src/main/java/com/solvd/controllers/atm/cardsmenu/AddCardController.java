@@ -25,6 +25,7 @@ public class AddCardController implements IFeatureController {
 
     @Override
     public void run() {
+        view.displayTitle("Add New Card");
         cardToAdd = new Card();
         User user = handleUser();
         cardToAdd.setUser(user);
