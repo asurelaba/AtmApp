@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.controllers.ExampleFeatureController;
+import com.solvd.controllers.atm.cardsmenu.CardsController;
 import com.solvd.controllers.icontrollers.atm.IAtmAdminController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
@@ -49,7 +49,6 @@ public class AtmAdminController implements IAtmAdminController {
 
     public void placeHolder() {
         view.display("placeholder");
-        new ExampleFeatureController(adminCard).run();
     }
 
     @Override
