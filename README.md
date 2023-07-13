@@ -6,11 +6,14 @@ Customer can:
 - check balance
 - withdraw and deposit
 - funds transfer
+- change pin
+- lock their card
+- place an unlock card request
 
 Administrator can:
 - Login
-- view transactions
-- add/delete/view users, accounts and cards
+- view transactions based on different search criteria 
+- add/delete/view users, accounts and cards 
 - lock and unlock cards
 
 This is the schema designed for the ATM App:
