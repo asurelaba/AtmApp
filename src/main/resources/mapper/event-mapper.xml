@@ -44,7 +44,7 @@
         SELECT * FROM events WHERE card_id = #{cardId};
     </select>
 
-    <select id="getEventsByType" parameterType="string" resultMap="eventResultMap">
+    <select id="getEventsByTypeName" parameterType="string" resultMap="eventResultMap">
         SELECT * FROM events e
         INNER JOIN event_types et ON e.type_id = et.type_id
         WHERE et.name = #{typeName};

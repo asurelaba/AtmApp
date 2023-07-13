@@ -16,10 +16,10 @@ public interface ITransactionDAO extends IBaseDAO<Transaction> {
 
     List<Transaction> getTransactionsByCardNumber(long cardNumber);
 
-    List<Transaction> getTransactionsByRangeDate(@Param("from") Timestamp from, @Param("to") Timestamp to); // All data by data range
+    List<Transaction> getTransactionsByDateRange(@Param("from") Timestamp from, @Param("to") Timestamp to); // All data by data range
 
     List<Transaction> getTransactionsByUserId(int userId); // All user's transaction history
 
-    List<Transaction> getTransactionsByRangeDateAndUserId(@Param("userId") int userId, @Param("from") Timestamp from,
+    List<Transaction> getTransactionsByUserIdAndDateRange(@Param("userId") int userId, @Param("from") Timestamp from,
                                                           @Param("to") Timestamp to); // Users data by date
 }
