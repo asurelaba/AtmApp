@@ -10,6 +10,7 @@ public class AtmClientController implements IAtmClientController {
     protected Card clientCard;
 
     private final AtmClientView view = new AtmClientView();
+    private boolean cardLocked = false;
 
     public AtmClientController(Card clientCard) {
         this.clientCard = clientCard;
@@ -17,7 +18,7 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void run() {
-        while (true) {
+        while (!cardLocked) {
             view.displayGreeting(clientCard.getUser());
             view.displayClientMenu();
             int clientInput = view.getUserSelection();
@@ -60,7 +61,8 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void handleLockCardRequest() {
-        // TODO
+        ClientCardLockController clientCardLockController = new ClientCardLockController(clientCard);
+        cardLocked = clientCardLockController.handleLockRequest();
     }
 
     @Override
