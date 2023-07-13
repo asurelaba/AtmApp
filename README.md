@@ -1,6 +1,7 @@
 # AtmApp
 
 The project is an ATM application, which can provide services to the user to access account information by providing their card number. The ATM can offer different choices based on the category of user. The user could be Admin or Customer. Following are the functionalities ATM provide when they interact with the user based on their category.
+
 Customer can:
 - Login
 - check balance
