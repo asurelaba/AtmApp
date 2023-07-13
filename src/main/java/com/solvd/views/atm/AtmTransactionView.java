@@ -1,6 +1,7 @@
 package com.solvd.views.atm;
 
 import com.solvd.views.iviews.atm.IAtmTransactionView;
+import java.util.InputMismatchException;
 
 public class AtmTransactionView extends AbstractAtmView implements IAtmTransactionView {
 
@@ -29,11 +30,16 @@ public class AtmTransactionView extends AbstractAtmView implements IAtmTransacti
         int userSel;
 
         while (true) {
-            userSel = getUserSelection();
-            if (userSel == 1 || userSel == 2) {
-                break;
+            try {
+                userSel = getUserSelection();
+                if (userSel == 1 || userSel == 2) {
+                    break;
+                }
+                displayBody("Invalid Selection");
+            } catch (InputMismatchException e) {
+                displayBody("Invalid Selection");
+                s.nextLine();
             }
-            displayBody("Invalid Selection");
         }
 
         return userSel;
@@ -45,15 +51,20 @@ public class AtmTransactionView extends AbstractAtmView implements IAtmTransacti
         double amount = 0;
 
         while (!isRunning) {
-            displayBody("Enter transaction amount:");
-            amount = s.nextDouble();
+            try {
+                displayBody("Enter transaction amount:");
+                amount = s.nextDouble();
 
-            if (amount <= 0) {
-                displayBody("Invalid transaction amount. Amount must be greater than 0.");
-                continue;
+                if (amount <= 0) {
+                    displayBody("Invalid transaction amount. Amount must be greater than 0.");
+                    continue;
+                }
+
+                isRunning = true;
+            } catch (InputMismatchException e) {
+                displayBody("Invalid input. The transaction amount must be a numeric value.");
+                s.nextLine();
             }
-
-            isRunning = true;
         }
 
         return amount;
@@ -61,8 +72,22 @@ public class AtmTransactionView extends AbstractAtmView implements IAtmTransacti
 
     @Override
     public int getAccountId() {
-        displayBody("Enter the recipient's account ID:");
-        return s.nextInt();
+        boolean isRunning = false;
+        int accountId = 0;
+
+        while (!isRunning) {
+            try {
+                displayBody("Enter the recipient's account ID:");
+                accountId = s.nextInt();
+
+                isRunning = true;
+            } catch (InputMismatchException e) {
+                displayBody("Invalid input. Account ID must an integer.");
+                s.nextLine();
+            }
+        }
+
+        return accountId;
     }
 
 }

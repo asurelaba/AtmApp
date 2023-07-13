@@ -23,7 +23,7 @@ public class TransactionServiceTest {
         // Get transaction from an event that has a deposit transaction
         ts = new TransactionService();
         actualTransaction = ts.getTransactionByEventId(new EventService()
-                .getEventsByType("Withdrawal")
+                .getEventsByTypeName("Withdrawal")
                 .get(0)
                 .getEventId());
         userId = actualTransaction.getEvent().getCard().getUser().getUserId();
@@ -56,8 +56,8 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void testGetTransactionsByRangeDate() {
-        assertTrue(ts.getTransactionsByRangeDate(from, to)
+    public void testGetTransactionsByDateRange() {
+        assertTrue(ts.getTransactionsByDateRange(from, to)
                 .stream()
                 .anyMatch(transaction -> actualTransaction.equals(transaction)));
     }
@@ -70,8 +70,8 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void testGetTransactionsByRangeDateAndUserId() {
-        assertTrue(ts.getTransactionsByRangeDateAndUserId(userId, from, to)
+    public void testGetTransactionsByUserIdAndDateRange() {
+        assertTrue(ts.getTransactionsByUserIdAndDateRange(userId, from, to)
                 .stream()
                 .anyMatch(transaction -> actualTransaction.equals(transaction)));
     }
