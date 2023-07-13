@@ -28,9 +28,9 @@ public abstract class AbstractAtmView implements IAtmView {
                 break;
             } catch (InputMismatchException e) {
                 displayBody("Please enter corresponding number for selection");
-                clearScanner();
             }
         } while (true);
+        clearScanner();
         return userSel;
     }
 

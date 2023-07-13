@@ -27,7 +27,7 @@ public class AtmAdminController implements IAtmAdminController {
                 case 3 -> handleLockUserCard();
                 case 4 -> handleTransactionQueryMenu();
                 case 5 -> handleClientAccounts();
-                case 6 -> placeHolder();
+                case 6 -> handleCards();
                 case 7 -> handleChangePin();
                 case 8 -> {
                     handleLogout();
@@ -47,8 +47,8 @@ public class AtmAdminController implements IAtmAdminController {
         new AdminTransactionController(adminCard).run();
     }
 
-    public void placeHolder() {
-        view.display("placeholder");
+    public void handleCards() {
+        new CardsController(adminCard).run();
     }
 
     @Override
