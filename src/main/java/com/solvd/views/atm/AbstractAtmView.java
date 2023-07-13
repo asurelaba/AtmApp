@@ -2,7 +2,9 @@ package com.solvd.views.atm;
 
 import com.solvd.db.model.User;
 import com.solvd.views.iviews.atm.IAtmView;
+
 import java.util.InputMismatchException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +24,7 @@ public abstract class AbstractAtmView implements IAtmView {
         do {
             try {
                 display("Enter selection choice: ");
-                int userSel = s.nextInt();
+                userSel = s.nextInt();
                 break;
             } catch (InputMismatchException e) {
                 displayBody("Please enter corresponding number for selection");
