@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.atm.IAdminClientAccountController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
@@ -62,7 +62,7 @@ public class AdminClientAccountController implements IAdminClientAccountControll
 
             accountService.insert(newAccount);
             view.displayBody("New account created successfully with ID: " + newAccount.getAccountId());
-            logEvent(adminCard, EnumEventNames.ACCOUNT_CREATION);
+            logEvent(adminCard, EnumEventName.ACCOUNT_CREATION);
         }
     }
 
@@ -70,13 +70,13 @@ public class AdminClientAccountController implements IAdminClientAccountControll
     public void deleteAccount() {
         accountService.delete(accountId);
         view.displayBody("Account with ID " + accountId + " deleted successfully!");
-        logEvent(adminCard, EnumEventNames.ACCOUNT_REMOVAL);
+        logEvent(adminCard, EnumEventName.ACCOUNT_REMOVAL);
     }
 
     @Override
     public void viewAccounts() {
         displayAccounts(accountService.getAll());
-        logEvent(adminCard, EnumEventNames.ACCOUNTS_QUERY);
+        logEvent(adminCard, EnumEventName.ACCOUNTS_QUERY);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm.cardsmenu;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
@@ -49,7 +49,7 @@ public class CardsController implements IFeatureController {
             Card cardToDelete = cs.getCardByCardNumber(userInputCardNum);
             if (cardToDelete != null) {
                 cs.delete(cardToDelete.getCardId());
-                logEvent(adminCard, EnumEventNames.CARD_REMOVAL);
+                logEvent(adminCard, EnumEventName.CARD_REMOVAL);
                 view.displayBody("Successfully deleted card.");
                 break;
             }
@@ -66,7 +66,7 @@ public class CardsController implements IFeatureController {
             if (cardToLock != null) {
                 cardToLock.setStatus("locked");
                 cs.update(cardToLock);
-                logEvent(adminCard, EnumEventNames.LOCK_CARD);
+                logEvent(adminCard, EnumEventName.LOCK_CARD);
                 view.displayBody("Successfully locked card.");
                 break;
             }

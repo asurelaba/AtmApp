@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.services.CardService;
@@ -31,7 +31,7 @@ public class ClientCardLockController implements IFeatureController {
         if (choice == 1) {
             card.setStatus("locked");
             new CardService().update(card);
-            logEvent(card, EnumEventNames.LOCK_CARD);
+            logEvent(card, EnumEventName.LOCK_CARD);
             view.displayBody("Card is locked. Logging out...");
             return true;
         }

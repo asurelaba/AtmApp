@@ -3,7 +3,7 @@ package com.solvd.enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum EnumEventNames {
+public enum EnumEventName {
     LOG_IN("Log In"),
     LOG_OUT("Log Out"),
     LOCK_CARD("Lock Card"),
@@ -30,13 +30,13 @@ public enum EnumEventNames {
 
     private final String eventName;
 
-    EnumEventNames(String eventName) {
+    EnumEventName(String eventName) {
         this.eventName = eventName;
     }
 
     public static List<String> getAllEventNames() {
         List<String> eventNames = new ArrayList<>();
-        for (EnumEventNames enumValue : EnumEventNames.values()) {
+        for (EnumEventName enumValue : EnumEventName.values()) {
             eventNames.add(enumValue.getEventName());
         }
         return eventNames;
