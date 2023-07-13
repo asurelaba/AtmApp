@@ -76,7 +76,6 @@ public class CardsController implements IFeatureController {
     }
 
     private void handleUnlockCard(Card adminCard) {
-        // "Unlock Card" via "Unlock Card Request"
         new UnlockCardController(adminCard).run();
     }
 

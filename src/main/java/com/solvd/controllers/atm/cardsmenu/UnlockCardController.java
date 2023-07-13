@@ -53,25 +53,18 @@ public class UnlockCardController implements IFeatureController {
         }
 
         if (validTokens.contains("all")) {
-            cardIds.forEach(cardIdStr -> {
-                int cardId = Integer.parseInt(cardIdStr);
-                Card card = cs.getById(cardId);
-                card.setStatus("active");
-                cs.update(card);
-                logEvent(adminCard, EnumEventNames.UNLOCK_CARD);
-            });
-            view.displayBody(cardIds.size() + " card(s) unlocked: " + String.join(", ", cardIds));
-        } else {
-            validTokens.forEach(cardIdStrToken -> {
-                int cardId = Integer.parseInt(cardIdStrToken);
-                Card card = cs.getById(cardId);
-                card.setStatus("active");
-                cs.update(card);
-                logEvent(adminCard, EnumEventNames.UNLOCK_CARD);
-            });
-            view.displayBody(
-                validTokens.size() + " card(s) unlocked: " + String.join(", ", validTokens));
+            validTokens = new HashSet<>(cardIds);
         }
+
+        validTokens.forEach(cardIdStrToken -> {
+            int cardId = Integer.parseInt(cardIdStrToken);
+            Card card = cs.getById(cardId);
+            card.setStatus("active");
+            cs.update(card);
+            logEvent(adminCard, EnumEventNames.UNLOCK_CARD);
+        });
+
+        view.displayBody(validTokens.size() + " card(s) unlocked: " + String.join(", ", validTokens));
 
     }
 
