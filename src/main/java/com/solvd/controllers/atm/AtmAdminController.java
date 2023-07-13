@@ -23,17 +23,15 @@ public class AtmAdminController implements IAtmAdminController {
             int adminInput = view.getUserSelection();
             switch (adminInput) {
                 case 1 -> handleAddDeleteViewUsers();
-                case 2 -> handleUnlockCardRequests();
-                case 3 -> handleLockUserCard();
-                case 4 -> handleTransactionQueryMenu();
-                case 5 -> handleClientAccounts();
-                case 6 -> handleCards();
-                case 7 -> handleChangePin();
-                case 8 -> {
+                case 2 -> handleTransactionQueryMenu();
+                case 3 -> handleClientAccounts();
+                case 4 -> handleCards();
+                case 5 -> handleChangePin();
+                case 6 -> {
                     handleLogout();
                     return;
                 }
-                case 9 -> {
+                case 7 -> {
                     handleAppShutdown();
                     return;
                 }
@@ -43,22 +41,14 @@ public class AtmAdminController implements IAtmAdminController {
 
     }
 
+    @Override
     public void handleTransactionQueryMenu() {
         new AdminTransactionController(adminCard).run();
     }
 
+    @Override
     public void handleCards() {
         new CardsController(adminCard).run();
-    }
-
-    @Override
-    public void handleUnlockCardRequests() {
-        // TODO
-    }
-
-    @Override
-    public void handleLockUserCard() {
-        // TODO
     }
 
     @Override
@@ -66,6 +56,7 @@ public class AtmAdminController implements IAtmAdminController {
         new AdminClientAccountController(adminCard).run();
     }
 
+    @Override
     public void handleChangePin() {
         new ChangePinController(adminCard).run();
     }
@@ -77,7 +68,8 @@ public class AtmAdminController implements IAtmAdminController {
         view.display("Logging out");
     }
 
-    private void handleAppShutdown() {
+    @Override
+    public void handleAppShutdown() {
         handleLogout();
         AtmController.isRunning = false;
     }
@@ -86,4 +78,5 @@ public class AtmAdminController implements IAtmAdminController {
     public void handleAddDeleteViewUsers() {
         new AddDeleteViewUserController(adminCard).run();
     }
+
 }
