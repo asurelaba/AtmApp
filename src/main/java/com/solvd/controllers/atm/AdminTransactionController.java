@@ -171,10 +171,10 @@ public class AdminTransactionController implements IFeatureController {
 
         // width of cells
         int width = 11;
-        int dateWidth = 19;
+        int width2 = 19;
 
         // Header
-        view.displayBody(view.centerAndTrim("Date", dateWidth) + " | " + view.centerAndTrim("Transaction", width) +
+        view.displayBody(view.centerAndTrim("Date", width2) + " | " + view.centerAndTrim("Transaction", width2) +
                 " | " + view.centerAndTrim("Status", width) + " | " + view.centerAndTrim("Amount", width) +
                 " | " + view.centerAndTrim("Balance", width) + " | " + view.centerAndTrim("Transaction id", width)
                 + " | " + view.centerAndTrim("Event Id", width) + " | " + view.centerAndTrim("Account Id", width)
@@ -199,7 +199,7 @@ public class AdminTransactionController implements IFeatureController {
             lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
 
             // Data
-            view.displayBody(view.centerAndTrim(date, dateWidth) + " | " + view.centerAndTrim(transaction, width) +
+            view.displayBody(view.centerAndTrim(date, width2) + " | " + view.centerAndTrim(transaction, width) +
                     " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
                     " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
                     " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
