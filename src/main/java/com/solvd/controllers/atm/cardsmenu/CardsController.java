@@ -39,7 +39,7 @@ public class CardsController implements IFeatureController {
     }
 
     private void handleAddCard(Card adminCard) {
-        new AddCardsController(adminCard).run();
+        new AddCardController(adminCard).run();
     }
 
     private void handleDeleteCard(Card adminCard) {
@@ -50,18 +50,34 @@ public class CardsController implements IFeatureController {
             if (cardToDelete != null) {
                 cs.delete(cardToDelete.getCardId());
                 logEvent(adminCard, EnumEventNames.CARD_REMOVAL);
+                view.displayBody("Successfully deleted card.");
                 break;
             }
             view.displayBody("Card Number not in database. Enter a valid card number.", "yellow");
         }
+        exitRun(view);
     }
 
     private void handleLockCard(Card adminCard) {
-        // "Lock Card"
+        while (true) {
+            Supplier<String> getCardNumInput = view::getCardNumberToLock;
+            long userInputCardNum = cardNumberValidator(view, getCardNumInput);
+            Card cardToLock = cs.getCardByCardNumber(userInputCardNum);
+            if (cardToLock != null) {
+                cardToLock.setStatus("locked");
+                cs.update(cardToLock);
+                logEvent(adminCard, EnumEventNames.LOCK_CARD);
+                view.displayBody("Successfully locked card.");
+                break;
+            }
+            view.displayBody("Card Number not in database. Enter a valid card number.", "yellow");
+        }
+        exitRun(view);
     }
 
     private void handleUnlockCard(Card adminCard) {
         // "Unlock Card" via "Unlock Card Request"
+        new UnlockCardController(adminCard).run();
     }
 
     private void handleViewAllCards() {

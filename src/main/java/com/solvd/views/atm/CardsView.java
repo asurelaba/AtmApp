@@ -2,6 +2,7 @@ package com.solvd.views.atm;
 
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Person;
+import java.util.List;
 
 public class CardsView extends AbstractAtmView {
 
@@ -34,6 +35,61 @@ public class CardsView extends AbstractAtmView {
     public String getCardNumberToDelete() {
         displayBody("Enter the card number to delete: ");
         return s.next().trim();
+    }
+
+    public String getCardNumberToLock() {
+        displayBody("Enter the card number to lock: ");
+        return s.next().trim();
+    }
+
+    public void displayReqUnlockCards(List<Card> cards) {
+        int screenWidth = 100;
+        int columnWidth = screenWidth / 4;
+        display("-".repeat(screenWidth));
+        display("|" +
+            centerAndTrim("CARD ID", columnWidth) + "|" +
+            centerAndTrim("CARD NUMBER", columnWidth) + "|" +
+            centerAndTrim("NAME", columnWidth) + "|" +
+            centerAndTrim("STATUS", columnWidth) + "|"
+        );
+        display("-".repeat(screenWidth));
+        for (Card card : cards) {
+            Person p = card.getUser().getPerson();
+            String name = p.getFirstName() + " " + p.getLastName();
+            display("|" +
+                centerAndTrim(String.valueOf(card.getCardId()), columnWidth) + "|" +
+                centerAndTrim(String.valueOf(card.getCardNumber()), columnWidth) + "|" +
+                centerAndTrim(name, columnWidth) + "|" +
+                centerAndTrim(card.getStatus(), columnWidth) + "|"
+            );
+        }
+    }
+
+    public void displayCards(List<Card> cards) {
+        int screenWidth = 100;
+        int columnWidth = screenWidth / 4;
+        display("-".repeat(screenWidth));
+        display("|" +
+            centerAndTrim("CARD ID", columnWidth) + "|" +
+            centerAndTrim("CARD NUMBER", columnWidth) + "|" +
+            centerAndTrim("NAME", columnWidth) + "|" +
+            centerAndTrim("STATUS", columnWidth) + "|"
+        );
+        display("-".repeat(screenWidth));
+        for (Card card : cards) {
+            Person p = card.getUser().getPerson();
+            String name = p.getFirstName() + " " + p.getLastName();
+            display("|" +
+                centerAndTrim(String.valueOf(card.getCardId()), columnWidth) + "|" +
+                centerAndTrim(String.valueOf(card.getCardNumber()), columnWidth) + "|" +
+                centerAndTrim(name, columnWidth) + "|" +
+                centerAndTrim(card.getStatus(), columnWidth) + "|"
+            );
+        }
+    }
+
+    public String getUserInputCardUnlock() {
+        return s.nextLine();
     }
 
 }

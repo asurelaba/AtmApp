@@ -11,7 +11,7 @@ import com.solvd.services.UserService;
 import com.solvd.views.atm.CardsView;
 import java.util.Random;
 
-public class AddCardsController implements IFeatureController {
+public class AddCardController implements IFeatureController {
 
     private final Card adminCard;
     private Card cardToAdd;
@@ -19,7 +19,7 @@ public class AddCardsController implements IFeatureController {
 
     CardsView view = new CardsView();
 
-    public AddCardsController(Card adminCard) {
+    public AddCardController(Card adminCard) {
         this.adminCard = adminCard;
     }
 
