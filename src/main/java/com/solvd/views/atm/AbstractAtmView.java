@@ -4,6 +4,7 @@ import com.solvd.db.model.User;
 import com.solvd.views.iviews.atm.IAtmView;
 import java.time.LocalTime;
 import java.util.Scanner;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,11 +13,14 @@ public abstract class AbstractAtmView implements IAtmView {
     protected final Logger LOG = LogManager.getLogger(this.getClass());
 
     protected static final Scanner s = new Scanner(System.in);
+    public static final int SCREEN_WIDTH = 100;
 
     @Override
     public int getUserSelection() {
         display("Enter selection choice: ");
-        return s.nextInt();
+        int userSel = s.nextInt();
+        clearScanner();
+        return userSel;
     }
 
     @Override
@@ -74,7 +78,16 @@ public abstract class AbstractAtmView implements IAtmView {
             greetType = "Good Evening, ";
         }
         displayBody(greetType + user.getPerson().getFirstName() + ".");
+    }
 
+    public String centerAndTrim(String s, int width) {
+        return StringUtils.center(s.substring(0, Math.min(s.length(), width)), width);
+    }
+
+    public void clearScanner() {
+        if (s.hasNextLine()) {
+            s.nextLine();
+        }
     }
 
 }

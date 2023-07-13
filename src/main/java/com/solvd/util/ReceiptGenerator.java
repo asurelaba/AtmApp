@@ -20,6 +20,8 @@ public class ReceiptGenerator {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - hh:mm:ss a");
             DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
+
+
             String firstName = transaction.getEvent().getCard().getUser().getPerson().getFirstName();
             String lastName = transaction.getEvent().getCard().getUser().getPerson().getLastName();
             String maskedCardNumber = "**** **** **** " + String.valueOf(transaction.getEvent().getCard().getCardNumber())
@@ -27,10 +29,14 @@ public class ReceiptGenerator {
             String eventType = transaction.getEvent().getEventType().getName();
             double balance = new AccountService().getAccountByUserId(transaction.getEvent().getCard().getUser().getUserId())
                     .getBalance();
+            int account = new AccountService()
+                    .getAccountByUserId(transaction.getEvent().getCard().getUser().getUserId())
+                    .getAccountId();
 
             StringBuilder receipt = new StringBuilder();
-            receipt.append("********************************** ATM RECEIPT ***********************************");
+            receipt.append("********************************** ATM RECEIPT ***********************************\n");
             receipt.append("DATE & TIME: ").append(LocalDateTime.now().format(formatter)).append("\n");
+            receipt.append("ACCOUNT: ").append(account).append("\n");
             receipt.append("USER NAME: ").append(firstName).append(" ").append(lastName).append("\n");
             receipt.append("CARD NUMBER: ").append(maskedCardNumber).append("\n");
             receipt.append("EVENT TYPE: ").append(eventType).append("\n");
