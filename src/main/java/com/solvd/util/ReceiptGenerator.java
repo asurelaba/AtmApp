@@ -48,7 +48,7 @@ public class ReceiptGenerator {
             Printer.print(receipt.toString());
 
         } catch (PrinterException e) {
-            LOGGER.error("Apologize, an error occurred while attempting to print the receipt");
+            LOGGER.error("Error occurred while printing the receipt");
         }
     }
 }
