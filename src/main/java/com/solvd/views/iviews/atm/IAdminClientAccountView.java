@@ -8,7 +8,7 @@ public interface IAdminClientAccountView {
 
     int getUserSelectionWithTwoChoices();
 
-    int getUserSelectionWithThreeChoices();
+    int getUserSelectionWithFourChoices();
 
     int getUserInputWithInteger(String prompt);
 

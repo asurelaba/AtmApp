@@ -18,13 +18,14 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
         display("1. Add An Account");
         display("2. Delete An Account");
         display("3. View Accounts");
+        display("4. Go Back To Main Menu");
     }
 
     @Override
     public void displayNonexistentChoices() {
         displayBody("Account does not exist.");
         displayBody("Select Your Choice");
-        displayBody("1. Go Back To Main Menu");
+        displayBody("1. Go Back To Account Menu");
         displayBody("2. Re-enter Account ID");
     }
 
@@ -49,13 +50,13 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
     }
 
     @Override
-    public int getUserSelectionWithThreeChoices() {
+    public int getUserSelectionWithFourChoices() {
         int userSel;
 
         while (true) {
             try {
                 userSel = getUserSelection();
-                if (userSel == 1 || userSel == 2 || userSel == 3) {
+                if (userSel == 1 || userSel == 2 || userSel == 3 || userSel == 4) {
                     break;
                 }
                 displayBody("Invalid Selection");
