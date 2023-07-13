@@ -199,7 +199,7 @@ public class AdminTransactionController implements IFeatureController {
             lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
 
             // Data
-            view.displayBody(view.centerAndTrim(date, width2) + " | " + view.centerAndTrim(transaction, width) +
+            view.displayBody(view.centerAndTrim(date, width2) + " | " + view.centerAndTrim(transaction, width2) +
                     " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
                     " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
                     " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
