@@ -6,7 +6,6 @@ import com.solvd.db.model.Event;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -82,11 +81,11 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventsByType(String typeName) {
+    public List<Event> getEventsByTypeName(String typeName) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
-            events = ieventDAO.getEventsByType(typeName);
+            events = ieventDAO.getEventsByTypeName(typeName);
         }
         return events;
     }
