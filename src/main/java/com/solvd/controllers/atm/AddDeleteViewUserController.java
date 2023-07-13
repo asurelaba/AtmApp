@@ -1,5 +1,6 @@
 package com.solvd.controllers.atm;
 
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Person;
@@ -23,7 +24,7 @@ public class AddDeleteViewUserController implements IFeatureController {
     @Override
     public void run() {
         boolean stop = false;
-        while(!stop){
+        while (!stop) {
             view.displayUsersMenu();
             int choice = view.getUserSelection();
             switch (choice) {
@@ -58,25 +59,36 @@ public class AddDeleteViewUserController implements IFeatureController {
         new UserService().insert(user);
 
         view.displaySuccessMessage(userOption);
+        logEvent(card, EnumEventNames.USER_CREATION);
         view.display("Returning to Users Menu");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void handleDeleteUser() {
         String userOption = "delete";
         view.displayTitle(view.featureTitle(userOption));
-        int userId = view.getUserId();
-        new UserService().delete(userId);
-        view.displaySuccessMessage(userOption);
-        view.display("Returning to Users Menu");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+
+        while (true) {
+            int userId = view.getUserId();
+            UserService userService = new UserService();
+            User user = userService.getById(userId);
+            if (user != null) {
+                userService.delete(userId);
+                new PersonService().delete(user.getPerson().getPersonId());
+                view.displaySuccessMessage(userOption);
+                logEvent(card, EnumEventNames.USER_REMOVAL);
+                view.display("Returning to Users Menu");
+                break;
+            } else {
+                view.displayBody("User Id does not exist.");
+                int choice;
+                do {
+                    view.displayBody("Please enter 1. To enter another userid \n 2. To return to Add/Delete/View Users Menu");
+                    choice = view.getUserSelection();
+                } while (choice < 1 || choice > 2);
+                if (choice == 2) {
+                    break;
+                }
+            }
         }
     }
 

@@ -1,10 +1,16 @@
 package com.solvd.views.atm;
 
+import com.solvd.db.model.Account;
+import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
+import com.solvd.services.AccountService;
+import com.solvd.services.CardService;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Locale;
 
 public class AddDeleteViewUserView extends AbstractAtmView {
     @Override
@@ -31,7 +37,14 @@ public class AddDeleteViewUserView extends AbstractAtmView {
     }
 
     public String getInputString() {
-        return s.next();
+        while (true) {
+            try {
+                return s.next("[A-Z|a-z| ]+");
+            } catch (InputMismatchException e) {
+                displayBody("Please enter a valid name. Name cannot be empty, contain digits or special characters");
+                s.next();
+            }
+        }
     }
 
     public String getFirstName() {
@@ -62,6 +75,7 @@ public class AddDeleteViewUserView extends AbstractAtmView {
                 break;
             } catch (InputMismatchException e) {
                 display("Invalid Input. UserId accepts only digits");
+                s.next();
             }
         }
         return userId;
@@ -75,19 +89,41 @@ public class AddDeleteViewUserView extends AbstractAtmView {
     }
 
     public void displayUsers(List<User> users) {
-        int screenWidth = 100;
-        int columnWidth = screenWidth / 4;
-        display("-".repeat(screenWidth));
+        int columnWidth = SCREEN_WIDTH / 5;
+        display("-".repeat(SCREEN_WIDTH));
         display("|" + centerAndTrim("USERID", columnWidth) + "|" +
                 centerAndTrim("FIRSTNAME", columnWidth) + "|" +
                 centerAndTrim("LASTNAME", columnWidth) + "|" +
-                centerAndTrim("ROLE", columnWidth) + "|" );
-        display("-".repeat(screenWidth));
+                centerAndTrim("ROLE", columnWidth) + "|" +
+                centerAndTrim("ACCOUNT", columnWidth) + "|" +
+                centerAndTrim("CARD NUMBER", columnWidth) + "|");
+        display("-".repeat(SCREEN_WIDTH));
         for (User user : users) {
-            display("|" + centerAndTrim(String.valueOf(user.getUserId()), columnWidth) + "|" +
-                    centerAndTrim(user.getPerson().getFirstName(), columnWidth) + "|" +
-                    centerAndTrim(user.getPerson().getLastName(), columnWidth) + "|" +
-                    centerAndTrim(user.getUserRole().getName(), columnWidth) + "|");
+            try {
+                List<Long> cards = new CardService().getCardsByUserId(user.getUserId()).stream()
+                        .map(Card::getCardNumber).toList();
+                Account account = new AccountService().getAccountByUserId(user.getUserId());
+
+                String record = "|" + centerAndTrim(String.valueOf(user.getUserId()), columnWidth) + "|" +
+                        centerAndTrim(user.getPerson().getFirstName(), columnWidth) + "|" +
+                        centerAndTrim(user.getPerson().getLastName(), columnWidth) + "|" +
+                        centerAndTrim(user.getUserRole().getName(), columnWidth) + "|" +
+                        centerAndTrim(String.valueOf(account == null ? " ".repeat(columnWidth) : account.getAccountId()), columnWidth) + "|";
+
+                if (cards.isEmpty()) {
+                    display(record);
+                } else {
+                    display(record + centerAndTrim(String.valueOf(cards.get(0)), columnWidth) + "|");
+                }
+                if (cards.size() > 1) {
+                    for (int i = 1; i < cards.size(); i++) {
+                        display("|" + " ".repeat(record.length()) + centerAndTrim(String.valueOf(cards.get(i)), columnWidth) + "|");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }
