@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Person;
@@ -59,7 +59,7 @@ public class AddDeleteViewUserController implements IFeatureController {
         new UserService().insert(user);
 
         view.displaySuccessMessage(userOption);
-        logEvent(card, EnumEventNames.USER_CREATION);
+        logEvent(card, EnumEventName.USER_CREATION);
         view.display("Returning to Users Menu");
     }
 
@@ -75,7 +75,7 @@ public class AddDeleteViewUserController implements IFeatureController {
                 userService.delete(userId);
                 new PersonService().delete(user.getPerson().getPersonId());
                 view.displaySuccessMessage(userOption);
-                logEvent(card, EnumEventNames.USER_REMOVAL);
+                logEvent(card, EnumEventName.USER_REMOVAL);
                 view.display("Returning to Users Menu");
                 break;
             } else {

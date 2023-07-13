@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm.cardsmenu;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.CardType;
@@ -38,7 +38,7 @@ public class AddCardController implements IFeatureController {
         view.displayBody("New card created.");
         view.displayCardInformation(cardToAdd);
 
-        logEvent(adminCard, EnumEventNames.CARD_CREATION);
+        logEvent(adminCard, EnumEventName.CARD_CREATION);
         exitRun(view);
     }
 

@@ -3,7 +3,7 @@ package com.solvd.controllers.atm;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Transaction;
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
 import com.solvd.views.atm.AdminTransactionView;
@@ -44,7 +44,7 @@ public class AdminTransactionController implements IFeatureController {
 
     // Status
     private void handleTransactionsByStatus() {
-        logEvent(adminCard, EnumEventNames.TRANSACTION_QUERY);
+        logEvent(adminCard, EnumEventName.TRANSACTION_QUERY);
 
         String queryType = "Status";
 
@@ -68,7 +68,7 @@ public class AdminTransactionController implements IFeatureController {
 
     // Event Id
     private void handleTransactionByEventId() {
-        logEvent(adminCard, EnumEventNames.TRANSACTION_QUERY);
+        logEvent(adminCard, EnumEventName.TRANSACTION_QUERY);
 
         String queryType = "Event Id";
 
@@ -91,7 +91,7 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionsByCardNumber() {
-        logEvent(adminCard, EnumEventNames.TRANSACTION_QUERY);
+        logEvent(adminCard, EnumEventName.TRANSACTION_QUERY);
 
         String queryType = "Card Number";
 
@@ -114,7 +114,7 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionsByDateRange() {
-        logEvent(adminCard, EnumEventNames.TRANSACTION_QUERY);
+        logEvent(adminCard, EnumEventName.TRANSACTION_QUERY);
 
         String queryType = "Date-Range";
 
@@ -139,7 +139,7 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionsByUserId() {
-        logEvent(adminCard, EnumEventNames.TRANSACTION_QUERY);
+        logEvent(adminCard, EnumEventName.TRANSACTION_QUERY);
 
         String queryType = "User Id";
 
@@ -162,7 +162,7 @@ public class AdminTransactionController implements IFeatureController {
     }
 
     private void handleTransactionsByUserIdAndDateRange() {
-        logEvent(adminCard, EnumEventNames.TRANSACTION_QUERY);
+        logEvent(adminCard, EnumEventName.TRANSACTION_QUERY);
 
         String queryType = "Date Range and User Id";
 

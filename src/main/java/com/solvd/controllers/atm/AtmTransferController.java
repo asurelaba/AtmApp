@@ -1,6 +1,6 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventNames;
+import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.atm.IAtmTransferController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
@@ -68,8 +68,8 @@ public class AtmTransferController extends AbstractTransactionController impleme
     }
 
     @Override
-    public EnumEventNames getEventType() {
-        return EnumEventNames.TRANSFER;
+    public EnumEventName getEventType() {
+        return EnumEventName.TRANSFER;
     }
 
     @Override
