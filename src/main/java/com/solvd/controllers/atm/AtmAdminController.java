@@ -26,7 +26,7 @@ public class AtmAdminController implements IAtmAdminController {
                 case 2 -> handleUnlockCardRequests();
                 case 3 -> handleLockUserCard();
                 case 4 -> handleTransactionQueryMenu();
-                case 5 -> placeHolder();
+                case 5 -> handleClientAccounts();
                 case 6 -> placeHolder();
                 case 7 -> handleChangePin();
                 case 8 -> {
@@ -65,6 +65,11 @@ public class AtmAdminController implements IAtmAdminController {
     @Override
     public void handleLockUserCard() {
         // TODO
+    }
+
+    @Override
+    public void handleClientAccounts() {
+        new AdminClientAccountController(adminCard).run();
     }
 
     public void handleChangePin() {

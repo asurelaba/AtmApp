@@ -25,7 +25,8 @@ public enum EnumEventNames {
     ADMIN_REMOVAL("Admin Removal"),
     UNLOCK_CARD("Unlock Card"),
     BALANCE_ADJUSTMENT("Balance Adjustment"),
-    APPROVED("approved");
+    APPROVED("approved"),
+    ACCOUNTS_QUERY("Accounts Query");
 
     private final String eventName;
 

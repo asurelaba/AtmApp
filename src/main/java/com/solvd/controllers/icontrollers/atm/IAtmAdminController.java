@@ -10,6 +10,8 @@ public interface IAtmAdminController extends IFeatureController {
 
     void handleLockUserCard();
 
+    void handleClientAccounts();
+
     void handleLogout();
 
 }
