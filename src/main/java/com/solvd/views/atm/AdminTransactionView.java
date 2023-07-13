@@ -1,7 +1,5 @@
 package com.solvd.views.atm;
 
-import com.solvd.views.atm.AbstractAtmView;
-
 import java.sql.Timestamp;
 import java.util.InputMismatchException;
 

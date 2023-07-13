@@ -72,14 +72,20 @@ public class AdminTransactionController implements IFeatureController {
 
         String queryType = "Event Id";
 
-
         // Get query input from user
         view.displayBody("Enter " + queryType + ":");
         int input = view.getUserInputInt();
 
         //Display query
-        view.displayBody("Transactions by " + queryType + ":\n" + new TransactionService()
-                .getTransactionByEventId(input));
+        if (input != 0) {
+            Transaction transaction = new TransactionService().getTransactionByEventId(input);
+            if (transaction != null) {
+                view.displayBody("Transactions by " + queryType + ":\n");
+                formatObject(transaction);
+            } else {
+                view.displayBody("No transactions found for the given " + queryType);
+            }
+        }
 
         exitRun(view);
     }
@@ -93,9 +99,16 @@ public class AdminTransactionController implements IFeatureController {
         view.displayBody("Enter " + queryType + ":");
         long input = view.getUserInputLong();
 
-        //Display query
-        view.displayBody("Transactions by " + queryType + ":");
-        formatObject(new TransactionService().getTransactionsByCardNumber(input));
+        // Display query
+        if (input != 0) {
+            List<Transaction> transactions = new TransactionService().getTransactionsByCardNumber(input);
+            if (transactions != null && !transactions.isEmpty()) {
+                view.displayBody("Transactions by " + queryType + ":");
+                formatObject(transactions);
+            } else {
+                view.displayBody("No transactions found for the given " + queryType);
+            }
+        }
 
         exitRun(view);
     }
@@ -111,9 +124,16 @@ public class AdminTransactionController implements IFeatureController {
         view.displayBody("Enter " + queryType + " to:");
         Timestamp to = view.getUserInputDate();
 
-        //Display query
-        view.displayBody("Transactions by " + queryType + ":");
-        formatObject(new TransactionService().getTransactionsByDateRange(from, to));
+        // Display query
+        if (from != null && to != null) {
+            List<Transaction> transactions = new TransactionService().getTransactionsByDateRange(from, to);
+            if (transactions != null && !transactions.isEmpty()) {
+                view.displayBody("Transactions by " + queryType + ":");
+                formatObject(transactions);
+            } else {
+                view.displayBody("No transactions found for the given " + queryType);
+            }
+        }
 
         exitRun(view);
     }
@@ -127,9 +147,16 @@ public class AdminTransactionController implements IFeatureController {
         view.displayBody("Enter " + queryType + ":");
         int input = view.getUserInputInt();
 
-        //Display query
-        view.displayBody("Transactions by " + queryType + ":");
-        formatObject(new TransactionService().getTransactionsByUserId(input));
+        // Display query
+        if (input != 0) {
+            List<Transaction> transactions = new TransactionService().getTransactionsByUserId(input);
+            if (transactions != null && !transactions.isEmpty()) {
+                view.displayBody("Transactions by " + queryType + ":");
+                formatObject(transactions);
+            } else {
+                view.displayBody("No transactions found for the given " + queryType);
+            }
+        }
 
         exitRun(view);
     }
@@ -147,9 +174,17 @@ public class AdminTransactionController implements IFeatureController {
         view.displayBody("Enter " + queryType + " User Id:");
         int userId = view.getUserInputInt();
 
-        //Display query
-        view.displayBody("Transactions by " + queryType + ":");
-        formatObject(new TransactionService().getTransactionsByUserIdAndDateRange(userId, from, to));
+        // Display query
+        if (from != null && to != null && userId != 0) {
+            List<Transaction> transactions = new TransactionService().
+                    getTransactionsByUserIdAndDateRange(userId, from, to);
+            if (transactions != null && !transactions.isEmpty()) {
+                view.displayBody("Transactions by " + queryType + ":");
+                formatObject(transactions);
+            } else {
+                view.displayBody("No transactions found for the given " + queryType);
+            }
+        }
 
         exitRun(view);
     }
@@ -206,5 +241,44 @@ public class AdminTransactionController implements IFeatureController {
                     " | " + view.centerAndTrim(userId, width) + " | " + view.centerAndTrim(cardNumber, width) +
                     " | " + view.centerAndTrim(firstName, width) + " | " + view.centerAndTrim(lastName, width));
         }
+    }
+
+    private void formatObject(Transaction t) {
+        // width of cells
+        int width = 11;
+        int width2 = 19;
+
+        // Pull data
+        String date = t.getEvent().getDatetime().toString();
+        String transactionName = t.getEvent().getEventType().getEventTypeName();
+        String status = t.getStatus();
+        String amount = String.valueOf(t.getAmount());
+        String balance = String.valueOf(new AccountService().getAccountByUserId(t.getEvent().getCard().getUser().
+                getUserId()).getBalance());
+        String transactionId = String.valueOf(t.getTransactionId());
+        String eventId = String.valueOf(t.getEvent().getEventId());
+        String accountId = String.valueOf(new AccountService().getAccountByUserId(t.getEvent().getCard().getUser()
+                .getUserId()).getAccountId());
+        String userId = String.valueOf(t.getEvent().getCard().getUser().getUserId());
+        String cardNumber = String.valueOf(t.getEvent().getCard().getCardNumber());
+        String firstName = t.getEvent().getCard().getUser().getPerson().getFirstName();
+        String lastName = t.getEvent().getCard().getUser().getPerson().getLastName();
+
+        // Header
+        view.displayBody(view.centerAndTrim("Date", width2) + " | " + view.centerAndTrim("Transaction", width2) +
+                " | " + view.centerAndTrim("Status", width) + " | " + view.centerAndTrim("Amount", width) +
+                " | " + view.centerAndTrim("Balance", width) + " | " + view.centerAndTrim("Transaction id", width)
+                + " | " + view.centerAndTrim("Event Id", width) + " | " + view.centerAndTrim("Account Id", width)
+                + " | " + view.centerAndTrim("Card Number", width) + " | " + view.centerAndTrim("User Id", width)
+                + " | " + view.centerAndTrim("First Name", width) + " | " + view.centerAndTrim("Last Name", width)
+        );
+
+        // Data
+        view.displayBody(view.centerAndTrim(date, width2) + " | " + view.centerAndTrim(transactionName, width2) +
+                " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
+                " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
+                " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
+                " | " + view.centerAndTrim(userId, width) + " | " + view.centerAndTrim(cardNumber, width) +
+                " | " + view.centerAndTrim(firstName, width) + " | " + view.centerAndTrim(lastName, width));
     }
 }
