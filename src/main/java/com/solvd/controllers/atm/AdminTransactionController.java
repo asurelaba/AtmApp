@@ -238,7 +238,7 @@ public class AdminTransactionController implements IFeatureController {
                     " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
                     " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
                     " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
-                    " | " + view.centerAndTrim(userId, width) + " | " + view.centerAndTrim(cardNumber, width) +
+                    " | " + view.centerAndTrim(cardNumber, width) + " | " + view.centerAndTrim(userId, width) +
                     " | " + view.centerAndTrim(firstName, width) + " | " + view.centerAndTrim(lastName, width));
         }
     }
@@ -278,7 +278,7 @@ public class AdminTransactionController implements IFeatureController {
                 " | " + view.centerAndTrim(status, width) + " | " + view.centerAndTrim(amount, width) +
                 " | " + view.centerAndTrim(balance, width) + " | " + view.centerAndTrim(transactionId, width) +
                 " | " + view.centerAndTrim(eventId, width) + " | " + view.centerAndTrim(accountId, width) +
-                " | " + view.centerAndTrim(userId, width) + " | " + view.centerAndTrim(cardNumber, width) +
+                " | " + view.centerAndTrim(cardNumber, width) + " | " + view.centerAndTrim(userId, width) +
                 " | " + view.centerAndTrim(firstName, width) + " | " + view.centerAndTrim(lastName, width));
     }
 }
