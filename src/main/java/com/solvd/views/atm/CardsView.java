@@ -66,14 +66,16 @@ public class CardsView extends AbstractAtmView {
     }
 
     public void displayCards(List<Card> cards) {
-        int screenWidth = 100;
-        int columnWidth = screenWidth / 4;
+        int screenWidth = 110;
+        int columnWidth = screenWidth / 6;
         display("-".repeat(screenWidth));
         display("|" +
             centerAndTrim("CARD ID", columnWidth) + "|" +
             centerAndTrim("CARD NUMBER", columnWidth) + "|" +
-            centerAndTrim("NAME", columnWidth) + "|" +
-            centerAndTrim("STATUS", columnWidth) + "|"
+            centerAndTrim("CARD PIN", columnWidth) + "|" +
+            centerAndTrim("STATUS", columnWidth) + "|" +
+            centerAndTrim("TYPE", columnWidth) + "|" +
+            centerAndTrim("NAME", columnWidth) + "|"
         );
         display("-".repeat(screenWidth));
         for (Card card : cards) {
@@ -82,8 +84,10 @@ public class CardsView extends AbstractAtmView {
             display("|" +
                 centerAndTrim(String.valueOf(card.getCardId()), columnWidth) + "|" +
                 centerAndTrim(String.valueOf(card.getCardNumber()), columnWidth) + "|" +
-                centerAndTrim(name, columnWidth) + "|" +
-                centerAndTrim(card.getStatus(), columnWidth) + "|"
+                centerAndTrim(String.valueOf(card.getPin()), columnWidth) + "|" +
+                centerAndTrim(card.getStatus(), columnWidth) + "|" +
+                centerAndTrim(card.getCardType().getName(), columnWidth) + "|" +
+                centerAndTrim(name, columnWidth) + "|"
             );
         }
     }

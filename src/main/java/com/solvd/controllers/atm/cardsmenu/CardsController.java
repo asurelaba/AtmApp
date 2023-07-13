@@ -80,7 +80,8 @@ public class CardsController implements IFeatureController {
     }
 
     private void handleViewAllCards() {
-        // "Cards Query"
+        view.displayCards(cs.getAll());
+        exitRun(view);
     }
 
 }
