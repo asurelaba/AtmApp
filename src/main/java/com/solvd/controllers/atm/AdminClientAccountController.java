@@ -1,13 +1,12 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.EnumEventNames;
+import com.solvd.enums.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAdminClientAccountController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
 import com.solvd.services.AccountService;
 import com.solvd.services.UserService;
 import com.solvd.views.atm.AdminClientAccountView;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -118,29 +117,25 @@ public class AdminClientAccountController implements IAdminClientAccountControll
         int screenWidth = 100;
         int columnWidth = screenWidth / 7;
         view.display("-".repeat(screenWidth));
-        view.display("|" + centerAndTrim("ACCOUNT ID", columnWidth) + "|" +
-                centerAndTrim("ROUTING NUMBER", columnWidth) + "|" +
-                centerAndTrim("BALANCE", columnWidth) + "|" +
-                centerAndTrim("USER ID", columnWidth) + "|" +
-                centerAndTrim("FIRST NAME", columnWidth) + "|" +
-                centerAndTrim("LAST NAME", columnWidth) + "|" +
-                centerAndTrim("ROLE", columnWidth) + "|");
+        view.display("|" + view.centerAndTrim("ACCOUNT ID", columnWidth) + "|" +
+                view.centerAndTrim("ROUTING NUMBER", columnWidth) + "|" +
+                view.centerAndTrim("BALANCE", columnWidth) + "|" +
+                view.centerAndTrim("USER ID", columnWidth) + "|" +
+                view.centerAndTrim("FIRST NAME", columnWidth) + "|" +
+                view.centerAndTrim("LAST NAME", columnWidth) + "|" +
+                view.centerAndTrim("ROLE", columnWidth) + "|");
 
         view.display("-".repeat(screenWidth));
         for (Account account : accounts) {
-            view.display("|" + centerAndTrim(String.valueOf(account.getAccountId()), columnWidth) + "|" +
-                    centerAndTrim(String.valueOf(account.getRoutingNumber()), columnWidth) + "|" +
-                    centerAndTrim(String.valueOf(account.getBalance()), columnWidth) + "|" +
-                    centerAndTrim(String.valueOf(account.getUser().getUserId()), columnWidth) + "|" +
-                    centerAndTrim(account.getUser().getPerson().getFirstName(), columnWidth) + "|" +
-                    centerAndTrim(account.getUser().getPerson().getLastName(), columnWidth) + "|" +
-                    centerAndTrim(account.getUser().getUserRole().getName(), columnWidth) + "|");
+            view.display("|" + view.centerAndTrim(String.valueOf(account.getAccountId()), columnWidth) + "|" +
+                    view.centerAndTrim(String.valueOf(account.getRoutingNumber()), columnWidth) + "|" +
+                    view.centerAndTrim(String.valueOf(account.getBalance()), columnWidth) + "|" +
+                    view.centerAndTrim(String.valueOf(account.getUser().getUserId()), columnWidth) + "|" +
+                    view.centerAndTrim(account.getUser().getPerson().getFirstName(), columnWidth) + "|" +
+                    view.centerAndTrim(account.getUser().getPerson().getLastName(), columnWidth) + "|" +
+                    view.centerAndTrim(account.getUser().getUserRole().getName(), columnWidth) + "|");
         }
     }
 
-    //TODO: This method will be deleted after it is created in common features.
-    public String centerAndTrim(String s, int width) {
-        return StringUtils.center(s.substring(0, Math.min(s.length(), width)), width);
-    }
 }
 
