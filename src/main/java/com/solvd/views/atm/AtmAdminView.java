@@ -19,7 +19,7 @@ public class AtmAdminView extends AbstractAtmView implements IAtmAdminView {
         display("4. PlaceHolder - Example Feature");
         display("5. PlaceHolder - Example Feature");
         display("6. PlaceHolder - Example Feature");
-        display("7. PlaceHolder - Example Feature");
+        display("7. Change Pin");
         display("8. Logout");
         display("9. Shutdown AtmApp");
     }

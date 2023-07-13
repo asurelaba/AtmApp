@@ -1,98 +1,126 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.db.model.Card;
-import com.solvd.db.model.CardType;
-import com.solvd.db.model.Person;
-import com.solvd.db.model.User;
+import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
+import com.solvd.db.model.Card;
+import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
+import java.util.InputMismatchException;
+import java.util.regex.Pattern;
 
 public class AtmLoginController implements IAtmLoginController {
 
     protected Card atmCard;
 
+    private final int MAX_PIN_ATTEMPTS = 3;
     private final AtmLoginView view = new AtmLoginView();
-
-    //TODO remove after full handleCard implementations
-    private Card getExampleClientCard() {
-        Card exampleClientCard = new Card();
-        CardType ct = new CardType();
-        ct.setName("ClientCard");
-        exampleClientCard.setCardNumber(1);
-        exampleClientCard.setPin(11);
-        exampleClientCard.setCardType(ct);
-        exampleClientCard.setStatus("active");
-        exampleClientCard.setUser(getExampleUser());
-        return exampleClientCard;
-    }
-
-    //TODO remove after full handleCard implementations
-    private Card getExampleAdminCard() {
-        Card exampleAdminCard = new Card();
-        CardType ct = new CardType();
-        ct.setName("AdministratorCard");
-        exampleAdminCard.setCardNumber(2);
-        exampleAdminCard.setPin(22);
-        exampleAdminCard.setCardType(ct);
-        exampleAdminCard.setStatus("active");
-        exampleAdminCard.setUser(getExampleUser());
-        return exampleAdminCard;
-    }
-
-    //TODO remove after setAtmUserByCardNumber implementation
-    private User getExampleUser() {
-        User exampleUser = new User();
-        Person examplePerson = new Person();
-        examplePerson.setFirstName("exampleFirstName");
-        exampleUser.setPerson(examplePerson);
-        return exampleUser;
-    }
 
     @Override
     public void run() {
         boolean loggedIn = false;
+        int pinAttempts = 0;
+
+        outerLoop:
         while (!loggedIn) {
             handleCardNumberInput();
             if (atmCard == null) {
-                view.display("Invalid Card Number.");
+                view.displayBody("Invalid Card Number.", "yellow");
                 continue; // asks for cardNumber again;
             }
 
-            if (!handlePinNumberInput()) {
-                view.display("Invalid Card PIN.");
-                continue; //
+            if (isCardLock()) {
+                view.displayBody("Card is locked. Enter correct pin to request unlock", "yellow");
+                if (handlePinNumberInput()) {
+                    handleClientCardLock();
+                } else {
+                    view.displayBody("Incorrect pin. Goodbye.", "red");
+                }
+                continue;
             }
+
+            while (!handlePinNumberInput()) {
+                pinAttempts++;
+                handlePinAttempts(pinAttempts);
+                if (pinAttempts == MAX_PIN_ATTEMPTS) {
+                    continue outerLoop;
+                }
+            }
+
             loggedIn = true;
+            logEvent(atmCard, EnumEventNames.LOG_IN);
         }
+    }
 
-        if (isCardLock()) {
-            handleClientCardLock();
+    private void handlePinAttempts(int pinAttempts) {
+        view.display("Invalid Card PIN.");
+        if (pinAttempts == MAX_PIN_ATTEMPTS - 2) {
+            view.displayBody("2 more attempts remaining.", "yellow");
+        } else if (pinAttempts == MAX_PIN_ATTEMPTS - 1) {
+            view.displayBody("1 more attempt remaining.", "yellow");
+        } else if (pinAttempts == MAX_PIN_ATTEMPTS) {
+            atmCard.setStatus("locked");
+            new CardService().update(atmCard);
+            view.displayBody("Too many login attempts. Locking card.. Goodbye.", "red");
+            setAtmCard(null);
         }
-
-        setAtmUserByCardNumber(atmCard.getCardNumber());
     }
 
     @Override
     public void handleCardNumberInput() {
-        long userInputCardNum = view.getCardNumber();
+        long userInputCardNum = validateCardNumber();
+        CardService cs = new CardService();
+        Card atmCard = cs.getCardByCardNumber(userInputCardNum);
+        setAtmCard(atmCard);
+    }
 
-        //TODO CardController.validateCardNum(userInputCardNum) -> return atmCard = validCard else null
-        Card exampleCard = atmCard;
-        if (userInputCardNum == getExampleClientCard().getCardNumber()) {
-            exampleCard = getExampleClientCard();
-        } else if (userInputCardNum == getExampleAdminCard().getCardNumber()) {
-            exampleCard = getExampleAdminCard();
-        } else {
-            exampleCard = null;
-        }// TODO remove if-else block when validateCardNUm impl
-        setAtmCard(exampleCard);
+    private long validateCardNumber() {
+        String cardNumber;
+        while (true) {
+            try {
+                cardNumber = view.getCardNumber();
+                if (cardNumber.isEmpty()) {
+                    throw new InputMismatchException(
+                        "Card number cannot be empty");
+                }
+                if (cardNumber.length() != 16 || !Pattern.matches("\\d+", cardNumber)) {
+                    throw new InputMismatchException("Card number must be comprised of 16 digits");
+                }
+                break;
+            } catch (InputMismatchException e) {
+                view.displayBody(e.getMessage(), "yellow");
+            }
+        }
+        return Long.parseLong(cardNumber);
     }
 
     public boolean handlePinNumberInput() {
-        int cardPin = view.getCardPin();
-
-        // TODO CardController.validateCardPin(atmCard, cardPin) -> boolean
+        int cardPin = validatePinNumber();
         return cardPin == atmCard.getPin();
+    }
+
+    private int validatePinNumber() {
+        String cardPin;
+        while (true) {
+            try {
+                cardPin = view.getCardPin();
+                for (char c : cardPin.toCharArray()) {
+                    if (!Character.isDigit(c)) {
+                        throw new InputMismatchException("Invalid Character: " + c);
+                    }
+                }
+                if (cardPin.isEmpty()) {
+                    throw new InputMismatchException(
+                        "Card pin cannot be empty");
+                }
+                if (cardPin.length() != 4) {
+                    throw new InputMismatchException("Card number must be comprised of 4 digits");
+                }
+                break;
+            } catch (InputMismatchException e) {
+                view.displayBody(e.getMessage(), "yellow");
+            }
+        }
+        return Integer.parseInt(cardPin);
     }
 
     @Override
@@ -102,14 +130,27 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleClientCardLock() {
-        view.display("You card is locked.");
-        view.display("Request unlock?");
-        // TODO cardController.unlock
+        boolean userRequestUnlock = getUserRequestUnlock();
+        if (userRequestUnlock) {
+            logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
+        }
+        view.displayBody("Thank you for using the AtmApp! Good Bye.");
+        setAtmCard(null);
     }
 
-    @Override
-    public void setAtmUserByCardNumber(long cardNum) {
-        // TODO: userController.getUserByCardNumber
+    private boolean getUserRequestUnlock() {
+        while (true) {
+            String input = view.displayUserRequestUnlock();
+            if (input.equals("1")) {
+                view.displayBody("Card Unlock Requested.");
+                return true;
+            } else if (input.equals("2")) {
+                setAtmCard(null);
+                return false;
+            } else {
+                view.displayBody("Invalid input! Please select choice 1 or 2. ");
+            }
+        }
     }
 
     @Override
