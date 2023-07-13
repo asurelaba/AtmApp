@@ -7,6 +7,7 @@ import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
 
 import java.util.InputMismatchException;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 public class AtmLoginController implements IAtmLoginController {
@@ -68,7 +69,8 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleCardNumberInput() {
-        long userInputCardNum = validateCardNumber();
+        Supplier<String> getCardNumInput = view::getCardNumber;
+        long userInputCardNum = cardNumberValidator(view, getCardNumInput);
         CardService cs = new CardService();
         Card atmCard = cs.getCardByCardNumber(userInputCardNum);
         setAtmCard(atmCard);
