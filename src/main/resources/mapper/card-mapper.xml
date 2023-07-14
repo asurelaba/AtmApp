@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.ICardDAO">
+    <resultMap id="cardResultMap" type="Card" autoMapping="false">
+        <id property="cardId" column="card_id"/>
+        <result property="cardNumber" column="card_number"/>
+        <result property="pin" column="pin"/>
+        <result property="status" column="status"/>
+        <association property="cardType" column="type_id"
+          javaType="CardType" select="com.solvd.db.dao.idao.ICardTypeDAO.getById"/>
+        <association property="user" column="user_id"
+          javaType="User" select="com.solvd.db.dao.idao.IUserDAO.getById"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="Card" keyProperty="cardId" useGeneratedKeys="true">
+        INSERT INTO cards (card_number, pin, status, type_id, user_id)
+        VALUES (#{cardNumber}, #{pin}, #{status}, #{cardType.typeId}, #{user.userId});
+    </insert>
+
+    <update id="update" parameterType="Card">
+        UPDATE cards
+        SET card_number = #{cardNumber}, pin = #{pin}, status = #{status}, type_id =
+        #{cardType.typeId}, user_id = #{user.userId}
+        WHERE card_id = #{cardId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM cards WHERE card_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="cardResultMap">
+        SELECT * FROM cards WHERE card_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="cardResultMap">
+        SELECT * FROM cards;
+    </select>
+
+    <select id="getCardByCardNumber" parameterType="long" resultMap="cardResultMap">
+        SELECT * FROM cards WHERE card_number = #{cardNumber};
+    </select>
+
+    <select id="getCardsByUserId" parameterType="int" resultMap="cardResultMap">
+        SELECT * FROM cards WHERE user_id = #{userId};
+    </select>
+
+    <select id="getCardsByCardStatus" parameterType="string" resultMap="cardResultMap">
+        SELECT * FROM cards WHERE status = #{statusName};
+    </select>
+
+    <select id="getCardsByCardType" parameterType="string" resultMap="cardResultMap">
+        SELECT * FROM cards c
+        INNER JOIN card_types ct on c.type_id = ct.type_id
+        WHERE ct.name = #{typeName};
+    </select>
+</mapper>

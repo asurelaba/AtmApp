@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+    <typeAliases>
+        <typeAlias alias="Account" type="com.solvd.db.model.Account"/>
+        <typeAlias alias="Card" type="com.solvd.db.model.Card"/>
+        <typeAlias alias="CardType" type="com.solvd.db.model.CardType"/>
+        <typeAlias alias="Event" type="com.solvd.db.model.Event"/>
+        <typeAlias alias="EventType" type="com.solvd.db.model.EventType"/>
+        <typeAlias alias="Person" type="com.solvd.db.model.Person"/>
+        <typeAlias alias="Transaction" type="com.solvd.db.model.Transaction"/>
+        <typeAlias alias="User" type="com.solvd.db.model.User"/>
+        <typeAlias alias="UserRole" type="com.solvd.db.model.UserRole"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.DRIVER}"/>
+                <property name="url" value="${db.URL}"/>
+                <property name="username" value="${db.USER}"/>
+                <property name="password" value="${db.PASSWORD}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/account-mapper.xml"/>
+        <mapper resource="mapper/card-mapper.xml"/>
+        <mapper resource="mapper/card-type-mapper.xml"/>
+        <mapper resource="mapper/event-mapper.xml"/>
+        <mapper resource="mapper/event-type-mapper.xml"/>
+        <mapper resource="mapper/person-mapper.xml"/>
+        <mapper resource="mapper/transaction-mapper.xml"/>
+        <mapper resource="mapper/user-mapper.xml"/>
+        <mapper resource="mapper/user-role-mapper.xml"/>
+    </mappers>
+</configuration>

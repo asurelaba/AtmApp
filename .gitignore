@@ -31,4 +31,4 @@ bin/
 .DS_Store
 
 ### Properties ###
-db.properties
+src/main/resources/db.properties

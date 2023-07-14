@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.IAccountDAO">
+    <resultMap id="accountResultMap" type="Account" autoMapping="false">
+        <id property="accountId" column="account_id"/>
+        <result property="routingNumber" column="routing_number"/>
+        <result property="balance" column="balance"/>
+        <association property="user" column="user_id"
+          javaType="User" select="com.solvd.db.dao.idao.IUserDAO.getById"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="Account" keyProperty="accountId" useGeneratedKeys="true">
+        INSERT INTO accounts (routing_number, balance, user_id)
+        VALUES (#{routingNumber}, #{balance}, #{user.userId});
+    </insert>
+
+    <update id="update" parameterType="Account">
+        UPDATE accounts
+        SET routing_number = #{routingNumber}, balance = #{balance}, user_id = #{user.userId}
+        WHERE account_id = #{accountId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM accounts WHERE account_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="accountResultMap">
+        SELECT * FROM accounts WHERE account_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="accountResultMap">
+        SELECT * FROM accounts;
+    </select>
+
+    <select id="getAccountByUserId" parameterType="int" resultMap="accountResultMap">
+        SELECT * FROM accounts WHERE user_id = #{userId};
+    </select>
+</mapper>

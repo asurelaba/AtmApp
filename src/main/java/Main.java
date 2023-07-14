@@ -1,5 +1,10 @@
+import com.solvd.controllers.atm.AtmController;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        AtmController atmController = new AtmController();
+        atmController.run();
     }
+
 }
