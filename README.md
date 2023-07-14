@@ -28,3 +28,7 @@ https://drive.google.com/file/d/1UwcBZcBHpVnEd0PtKvzc9qQ1Qs_WNQvm/view?usp=shari
 Screens or Messages for the different Menu options:
 
 ![ScreenFlow drawio (10)](https://github.com/asurelaba/AtmApp/assets/130489863/542c40c5-fb93-4928-9c08-279834e1f74f)
+
+Class Diagram:
+![AtmAppDiagram](https://github.com/asurelaba/AtmApp/assets/130489863/e04faa34-1dd4-4666-ac3b-e911a8a8b9f7)
+
