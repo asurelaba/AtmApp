@@ -1,10 +1,12 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.adminmenu;
 
-import com.solvd.controllers.atm.cardsmenu.CardsController;
+import com.solvd.controllers.atm.AtmController;
+import com.solvd.controllers.atm.ChangePinController;
+import com.solvd.controllers.atm.adminmenu.cardsmenu.CardsController;
 import com.solvd.controllers.icontrollers.atm.IAtmAdminController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
-import com.solvd.views.atm.AtmAdminView;
+import com.solvd.views.atm.admin.AtmAdminView;
 
 public class AtmAdminController implements IAtmAdminController {
 

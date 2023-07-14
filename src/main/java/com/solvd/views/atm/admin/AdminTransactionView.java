@@ -1,5 +1,6 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.admin;
 
+import com.solvd.views.atm.AbstractAtmView;
 import java.sql.Timestamp;
 import java.util.InputMismatchException;
 
@@ -81,9 +82,11 @@ public class AdminTransactionView extends AbstractAtmView {
                 return Timestamp.valueOf(input + " 00:00:00");
             } catch (IllegalArgumentException e) {
                 s.nextLine();
-                displayBody("Invalid date format. Please enter a valid date in the format 'YYYY-MM-DD'.");
+                displayBody(
+                    "Invalid date format. Please enter a valid date in the format 'YYYY-MM-DD'.");
                 displayBody("Press 'q' to quit or enter a valid date to try again:");
             }
         }
     }
+
 }

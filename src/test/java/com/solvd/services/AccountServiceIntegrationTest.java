@@ -1,13 +1,15 @@
 package com.solvd.services;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
+
 import com.solvd.db.model.Account;
+import java.util.List;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
-
-import static org.testng.Assert.*;
 
 public class AccountServiceIntegrationTest {
 
@@ -77,7 +79,8 @@ public class AccountServiceIntegrationTest {
 
     @Test
     public void testGetAccountByUserId() {
-        Account retrievedAccount = accountService.getAccountByUserId(testAccount.getUser().getUserId());
+        Account retrievedAccount = accountService.getAccountByUserId(
+            testAccount.getUser().getUserId());
 
         assertEquals(testAccount, retrievedAccount);
     }
@@ -88,5 +91,6 @@ public class AccountServiceIntegrationTest {
             accountService.delete(testAccount.getAccountId());
         }
     }
+
 }
 

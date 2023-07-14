@@ -1,9 +1,13 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu;
 
+import com.solvd.controllers.atm.ChangePinController;
+import com.solvd.controllers.atm.clientmenu.transactions.AtmDepositController;
+import com.solvd.controllers.atm.clientmenu.transactions.AtmTransferController;
+import com.solvd.controllers.atm.clientmenu.transactions.AtmWithdrawController;
 import com.solvd.controllers.icontrollers.atm.IAtmClientController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
-import com.solvd.views.atm.AtmClientView;
+import com.solvd.views.atm.client.AtmClientView;
 
 public class AtmClientController implements IAtmClientController {
 
@@ -61,7 +65,8 @@ public class AtmClientController implements IAtmClientController {
 
     @Override
     public void handleLockCardRequest() {
-        ClientCardLockController clientCardLockController = new ClientCardLockController(clientCard);
+        ClientCardLockController clientCardLockController = new ClientCardLockController(
+            clientCard);
         cardLocked = clientCardLockController.handleLockRequest();
     }
 

@@ -1,10 +1,16 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu.transactions;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.atm.IAtmTransactionController;
-import com.solvd.db.model.*;
-import com.solvd.services.*;
-import com.solvd.views.atm.AtmTransactionView;
+import com.solvd.db.model.Account;
+import com.solvd.db.model.Card;
+import com.solvd.db.model.Event;
+import com.solvd.db.model.Transaction;
+import com.solvd.db.model.User;
+import com.solvd.enums.EnumEventName;
+import com.solvd.services.AccountService;
+import com.solvd.services.TransactionService;
+import com.solvd.services.UserService;
+import com.solvd.views.atm.admin.AtmTransactionView;
 
 public abstract class AbstractTransactionController implements IAtmTransactionController {
 

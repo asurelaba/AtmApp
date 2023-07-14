@@ -1,4 +1,6 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.client;
+
+import com.solvd.views.atm.AbstractAtmView;
 
 public class ClientCardLockView extends AbstractAtmView {
 
@@ -6,4 +8,5 @@ public class ClientCardLockView extends AbstractAtmView {
     public String featureTitle() {
         return "Lock Card Request";
     }
+
 }

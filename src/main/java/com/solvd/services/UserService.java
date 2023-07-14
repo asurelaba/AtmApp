@@ -2,7 +2,6 @@ package com.solvd.services;
 
 import com.solvd.db.dao.idao.IUserDAO;
 import com.solvd.db.model.User;
-
 import java.util.List;
 
 public class UserService extends EntityService<User, IUserDAO> implements IUserDAO {

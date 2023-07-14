@@ -3,10 +3,9 @@ package com.solvd.db.dao.mybatisdao;
 import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IEventTypeDAO;
 import com.solvd.db.model.EventType;
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-
-import java.util.List;
 
 public class EventTypeDAO implements IEventTypeDAO {
 
@@ -68,4 +67,5 @@ public class EventTypeDAO implements IEventTypeDAO {
         }
         return eventType;
     }
+
 }

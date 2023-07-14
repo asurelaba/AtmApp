@@ -1,11 +1,12 @@
 package com.solvd.util;
 
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 
 public class Printer {
 
@@ -41,4 +42,5 @@ public class Printer {
             throw new PrinterException("No default printer available.");
         }
     }
+
 }

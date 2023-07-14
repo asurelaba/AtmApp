@@ -1,19 +1,18 @@
 package com.solvd.services;
 
+import static org.testng.Assert.assertEquals;
+
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
 import com.solvd.db.model.EventType;
 import com.solvd.db.model.Transaction;
 import com.solvd.enums.EnumEventName;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-import static org.testng.Assert.assertEquals;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class EventServiceTest {
 
@@ -35,9 +34,11 @@ public class EventServiceTest {
     @org.testng.annotations.Test
     public void testGetEventsByRangeDate() {
         try {
-            Timestamp from = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse("2023-06-25").getTime());
+            Timestamp from = new Timestamp(
+                new SimpleDateFormat("yyyy-MM-dd").parse("2023-06-25").getTime());
             Timestamp toDate = new Timestamp(System.currentTimeMillis() + 1000);
-            assertEquals(eventService.getEventsByRangeDate(from, toDate).size(), eventService.getAll().size());
+            assertEquals(eventService.getEventsByRangeDate(from, toDate).size(),
+                eventService.getAll().size());
         } catch (ParseException e) {
             assert false;
         }
@@ -51,8 +52,11 @@ public class EventServiceTest {
 
     @org.testng.annotations.Test
     public void testGetEventsByTypeName() {
-        List<Event> events = eventService.getEventsByTypeName(EnumEventName.BALANCE_INQUIRY.getEventName());
-        assertEquals(events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList().get(0), EnumEventName.BALANCE_INQUIRY.getEventName());
+        List<Event> events = eventService.getEventsByTypeName(
+            EnumEventName.BALANCE_INQUIRY.getEventName());
+        assertEquals(
+            events.stream().map(Event::getEventType).map(EventType::getEventTypeName).toList()
+                .get(0), EnumEventName.BALANCE_INQUIRY.getEventName());
     }
 
     @org.testng.annotations.Test
@@ -64,7 +68,8 @@ public class EventServiceTest {
     @org.testng.annotations.Test
     public void testGetEventsByRangeDateAndUserId() {
         try {
-            Timestamp from = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse("2023-07-02").getTime());
+            Timestamp from = new Timestamp(
+                new SimpleDateFormat("yyyy-MM-dd").parse("2023-07-02").getTime());
             Timestamp toDate = new Timestamp(System.currentTimeMillis());
             assertEquals(eventService.getEventsByRangeDateAndUserId(25, from, toDate).size(), 2);
         } catch (ParseException e) {
@@ -98,7 +103,9 @@ public class EventServiceTest {
         transaction.setStatus("approved");
         transaction.setAmount(100);
         new TransactionService().insert(transaction);
-        assertEquals(eventService.getEventByTransactionId(transaction.getTransactionId()).getEventId(), transaction.getEvent().getEventId());
+        assertEquals(
+            eventService.getEventByTransactionId(transaction.getTransactionId()).getEventId(),
+            transaction.getEvent().getEventId());
     }
 
     @AfterMethod
@@ -106,4 +113,5 @@ public class EventServiceTest {
         eventService = new EventService();
         eventService.delete(event.getEventId());
     }
+
 }

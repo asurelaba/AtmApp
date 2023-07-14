@@ -1,5 +1,6 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.admin;
 
+import com.solvd.views.atm.AbstractAtmView;
 import com.solvd.views.iviews.atm.IAtmTransactionView;
 import java.util.InputMismatchException;
 

@@ -1,21 +1,20 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.adminmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.atm.IAdminClientAccountController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.AccountService;
 import com.solvd.services.UserService;
-import com.solvd.views.atm.AdminClientAccountView;
-
+import com.solvd.views.atm.admin.AdminClientAccountView;
 import java.util.List;
 
 public class AdminClientAccountController implements IAdminClientAccountController {
 
     private int accountId;
-    private Card adminCard;
-    private AccountService accountService;
-    private UserService userService;
+    private final Card adminCard;
+    private final AccountService accountService;
+    private final UserService userService;
     protected final AdminClientAccountView view = new AdminClientAccountView();
 
     public AdminClientAccountController(Card adminCard) {
@@ -61,7 +60,8 @@ public class AdminClientAccountController implements IAdminClientAccountControll
             newAccount.setUser(userService.getById(userId));
 
             accountService.insert(newAccount);
-            view.displayBody("New account created successfully with ID: " + newAccount.getAccountId());
+            view.displayBody(
+                "New account created successfully with ID: " + newAccount.getAccountId());
             logEvent(adminCard, EnumEventName.ACCOUNT_CREATION);
         }
     }
@@ -104,7 +104,7 @@ public class AdminClientAccountController implements IAdminClientAccountControll
 
         if (accountService.getAccountByUserId(userId) != null) {
             view.displayBody("An account already exists for this user. Account ID: " +
-                    accountService.getAccountByUserId(userId).getAccountId());
+                accountService.getAccountByUserId(userId).getAccountId());
 
             return false;
         }
@@ -118,22 +118,29 @@ public class AdminClientAccountController implements IAdminClientAccountControll
         int columnWidth = screenWidth / 7;
         view.display("-".repeat(screenWidth));
         view.display("|" + view.centerAndTrim("ACCOUNT ID", columnWidth) + "|" +
-                view.centerAndTrim("ROUTING NUMBER", columnWidth) + "|" +
-                view.centerAndTrim("BALANCE", columnWidth) + "|" +
-                view.centerAndTrim("USER ID", columnWidth) + "|" +
-                view.centerAndTrim("FIRST NAME", columnWidth) + "|" +
-                view.centerAndTrim("LAST NAME", columnWidth) + "|" +
-                view.centerAndTrim("ROLE", columnWidth) + "|");
+            view.centerAndTrim("ROUTING NUMBER", columnWidth) + "|" +
+            view.centerAndTrim("BALANCE", columnWidth) + "|" +
+            view.centerAndTrim("USER ID", columnWidth) + "|" +
+            view.centerAndTrim("FIRST NAME", columnWidth) + "|" +
+            view.centerAndTrim("LAST NAME", columnWidth) + "|" +
+            view.centerAndTrim("ROLE", columnWidth) + "|");
 
         view.display("-".repeat(screenWidth));
         for (Account account : accounts) {
-            view.display("|" + view.centerAndTrim(String.valueOf(account.getAccountId()), columnWidth) + "|" +
-                    view.centerAndTrim(String.valueOf(account.getRoutingNumber()), columnWidth) + "|" +
+            view.display(
+                "|" + view.centerAndTrim(String.valueOf(account.getAccountId()), columnWidth) + "|"
+                    +
+                    view.centerAndTrim(String.valueOf(account.getRoutingNumber()), columnWidth)
+                    + "|" +
                     view.centerAndTrim(String.valueOf(account.getBalance()), columnWidth) + "|" +
-                    view.centerAndTrim(String.valueOf(account.getUser().getUserId()), columnWidth) + "|" +
-                    view.centerAndTrim(account.getUser().getPerson().getFirstName(), columnWidth) + "|" +
-                    view.centerAndTrim(account.getUser().getPerson().getLastName(), columnWidth) + "|" +
-                    view.centerAndTrim(account.getUser().getUserRole().getName(), columnWidth) + "|");
+                    view.centerAndTrim(String.valueOf(account.getUser().getUserId()), columnWidth)
+                    + "|" +
+                    view.centerAndTrim(account.getUser().getPerson().getFirstName(), columnWidth)
+                    + "|" +
+                    view.centerAndTrim(account.getUser().getPerson().getLastName(), columnWidth)
+                    + "|" +
+                    view.centerAndTrim(account.getUser().getUserRole().getName(), columnWidth)
+                    + "|");
         }
     }
 

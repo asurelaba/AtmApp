@@ -1,7 +1,8 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.admin;
 
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Person;
+import com.solvd.views.atm.AbstractAtmView;
 import java.util.List;
 
 public class CardsView extends AbstractAtmView {

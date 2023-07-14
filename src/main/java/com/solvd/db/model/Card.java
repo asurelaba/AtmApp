@@ -62,25 +62,32 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "cardId=" + cardId +
-                ", cardNumber=" + cardNumber +
-                ", pin=" + pin +
-                ", status='" + status + '\'' +
-                ", cardType=" + cardType +
-                ", user=" + user +
-                '}';
+            "cardId=" + cardId +
+            ", cardNumber=" + cardNumber +
+            ", pin=" + pin +
+            ", status='" + status + '\'' +
+            ", cardType=" + cardType +
+            ", user=" + user +
+            '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Card card = (Card) o;
-        return cardId == card.cardId && cardNumber == card.cardNumber && pin == card.pin && Objects.equals(status, card.status) && Objects.equals(cardType, card.cardType) && Objects.equals(user, card.user);
+        return cardId == card.cardId && cardNumber == card.cardNumber && pin == card.pin
+            && Objects.equals(status, card.status) && Objects.equals(cardType, card.cardType)
+            && Objects.equals(user, card.user);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(cardId, cardNumber, pin, status, cardType, user);
     }
+
 }

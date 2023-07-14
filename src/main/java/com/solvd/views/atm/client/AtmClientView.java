@@ -1,5 +1,6 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.client;
 
+import com.solvd.views.atm.AbstractAtmView;
 import com.solvd.views.iviews.atm.IAtmClientView;
 
 public class AtmClientView extends AbstractAtmView implements IAtmClientView {
@@ -11,7 +12,6 @@ public class AtmClientView extends AbstractAtmView implements IAtmClientView {
 
     @Override
     public void displayClientMenu() {
-        display(System.lineSeparator());
         display(featureTitle());
         display("1. Withdraw");
         display("2. Deposit");

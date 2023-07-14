@@ -26,15 +26,19 @@ public class EventType {
     @Override
     public String toString() {
         return "EventType{" +
-                "typeId=" + typeId +
-                ", name='" + name + '\'' +
-                '}';
+            "typeId=" + typeId +
+            ", name='" + name + '\'' +
+            '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         EventType eventType = (EventType) o;
         return typeId == eventType.typeId && Objects.equals(name, eventType.name);
     }
@@ -43,4 +47,5 @@ public class EventType {
     public int hashCode() {
         return Objects.hash(typeId, name);
     }
+
 }

@@ -1,10 +1,10 @@
-package com.solvd.controllers.atm.cardsmenu;
+package com.solvd.controllers.atm.adminmenu.cardsmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.CardService;
-import com.solvd.views.atm.CardsView;
+import com.solvd.views.atm.admin.CardsView;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -64,7 +64,8 @@ public class UnlockCardController implements IFeatureController {
             logEvent(adminCard, EnumEventName.UNLOCK_CARD);
         });
 
-        view.displayBody(validTokens.size() + " card(s) unlocked: " + String.join(", ", validTokens));
+        view.displayBody(
+            validTokens.size() + " card(s) unlocked: " + String.join(", ", validTokens));
 
     }
 

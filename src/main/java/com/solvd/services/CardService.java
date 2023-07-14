@@ -2,7 +2,6 @@ package com.solvd.services;
 
 import com.solvd.db.dao.idao.ICardDAO;
 import com.solvd.db.model.Card;
-
 import java.util.List;
 
 public class CardService extends EntityService<Card, ICardDAO> implements ICardDAO {

@@ -7,4 +7,5 @@ and delete are covered by the IBaseDao interface*/
 public interface IAccountDAO extends IBaseDAO<Account> {
 
     Account getAccountByUserId(int userId);
+
 }

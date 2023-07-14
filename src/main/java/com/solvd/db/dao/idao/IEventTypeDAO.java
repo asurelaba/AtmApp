@@ -7,4 +7,5 @@ and delete are covered by the IBaseDao interface*/
 public interface IEventTypeDAO extends IBaseDAO<EventType> {
 
     EventType getEventTypeByTypeName(String typeName);
+
 }

@@ -1,14 +1,14 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
 import com.solvd.db.model.Transaction;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
-import com.solvd.views.CheckBalanceView;
+import com.solvd.views.atm.client.CheckBalanceView;
 import java.text.NumberFormat;
 
 public class CheckBalanceController implements IFeatureController {

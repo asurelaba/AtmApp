@@ -2,7 +2,6 @@ package com.solvd.controllers.icontrollers.atm;
 
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
-
 import java.util.List;
 
 public interface IAdminClientAccountController extends IFeatureController {

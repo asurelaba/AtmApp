@@ -1,10 +1,10 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.CardService;
-import com.solvd.views.atm.ClientCardLockView;
+import com.solvd.views.atm.client.ClientCardLockView;
 
 public class ClientCardLockController implements IFeatureController {
 
@@ -22,7 +22,9 @@ public class ClientCardLockController implements IFeatureController {
 
     public boolean handleLockRequest() {
         view.displayTitle(view.featureTitle());
-        view.displayBody("You are locking card number ending " + String.valueOf(card.getCardNumber()).substring(12));
+        view.displayBody(
+            "You are locking card number ending " + String.valueOf(card.getCardNumber())
+                .substring(12));
         int choice;
         do {
             view.displayBody("Please confirm 1. Yes / 2. No");
@@ -37,4 +39,5 @@ public class ClientCardLockController implements IFeatureController {
         }
         return false;
     }
+
 }

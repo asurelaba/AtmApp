@@ -8,7 +8,6 @@ import com.solvd.services.EventService;
 import com.solvd.services.EventTypeService;
 import com.solvd.util.ReceiptGenerator;
 import com.solvd.views.atm.AbstractAtmView;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.InputMismatchException;
