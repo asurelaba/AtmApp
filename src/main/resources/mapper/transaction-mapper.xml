@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.db.dao.idao.ITransactionDAO">
     <resultMap id="transactionResultMap" type="Transaction" autoMapping="false">
@@ -9,10 +9,11 @@
         <result property="amount" column="amount"/>
         <result property="status" column="status"/>
         <association property="event" column="event_id"
-                     javaType="Event" select="com.solvd.db.dao.idao.IEventDAO.getById"/>
+          javaType="Event" select="com.solvd.db.dao.idao.IEventDAO.getById"/>
     </resultMap>
 
-    <insert id="insert" parameterType="Transaction" keyProperty="transactionId" useGeneratedKeys="true">
+    <insert id="insert" parameterType="Transaction" keyProperty="transactionId"
+      useGeneratedKeys="true">
         INSERT INTO transactions (amount, status, event_id)
         VALUES (#{amount}, #{status}, #{event.eventId});
     </insert>
@@ -50,7 +51,7 @@
         WHERE c.card_number = #{cardNumber};
     </select>
 
-    <select id="getTransactionsByRangeDate" resultMap="transactionResultMap">
+    <select id="getTransactionsByDateRange" resultMap="transactionResultMap">
         SELECT * FROM transactions t
         INNER JOIN events e ON t.event_id = e.event_id
         WHERE e.datetime BETWEEN #{from} AND #{to};
@@ -64,7 +65,7 @@
         WHERE u.user_id = #{userId};
     </select>
 
-    <select id="getTransactionsByRangeDateAndUserId" resultMap="transactionResultMap">
+    <select id="getTransactionsByUserIdAndDateRange" resultMap="transactionResultMap">
         SELECT * FROM transactions t
         INNER JOIN events e ON t.event_id = e.event_id
         INNER JOIN cards c ON e.card_id = c.card_id

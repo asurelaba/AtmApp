@@ -2,12 +2,11 @@ package com.solvd.services;
 
 import com.solvd.db.dao.idao.ITransactionDAO;
 import com.solvd.db.model.Transaction;
-
 import java.sql.Timestamp;
 import java.util.List;
 
 public class TransactionService extends EntityService<Transaction, ITransactionDAO> implements
-        ITransactionDAO {
+    ITransactionDAO {
 
     @Override
     protected String getTableName() {
@@ -31,8 +30,8 @@ public class TransactionService extends EntityService<Transaction, ITransactionD
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDate(Timestamp from, Timestamp to) {
-        return dao.getTransactionsByRangeDate(from, to);
+    public List<Transaction> getTransactionsByDateRange(Timestamp from, Timestamp to) {
+        return dao.getTransactionsByDateRange(from, to);
     }
 
     @Override
@@ -41,8 +40,9 @@ public class TransactionService extends EntityService<Transaction, ITransactionD
     }
 
     @Override
-    public List<Transaction> getTransactionsByRangeDateAndUserId(int userId, Timestamp from, Timestamp to) {
-        return dao.getTransactionsByRangeDateAndUserId(userId, from, to);
+    public List<Transaction> getTransactionsByUserIdAndDateRange(int userId, Timestamp from,
+        Timestamp to) {
+        return dao.getTransactionsByUserIdAndDateRange(userId, from, to);
     }
 
 }

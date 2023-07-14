@@ -4,7 +4,7 @@ import com.solvd.db.dao.idao.IEventTypeDAO;
 import com.solvd.db.model.EventType;
 
 public class EventTypeService extends EntityService<EventType, IEventTypeDAO> implements
-        IEventTypeDAO {
+    IEventTypeDAO {
 
     @Override
     protected String getTableName() {

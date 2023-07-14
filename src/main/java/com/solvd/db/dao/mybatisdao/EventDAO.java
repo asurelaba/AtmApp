@@ -3,12 +3,10 @@ package com.solvd.db.dao.mybatisdao;
 import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IEventDAO;
 import com.solvd.db.model.Event;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 public class EventDAO implements IEventDAO {
 
@@ -82,11 +80,11 @@ public class EventDAO implements IEventDAO {
     }
 
     @Override
-    public List<Event> getEventsByType(String typeName) {
+    public List<Event> getEventsByTypeName(String typeName) {
         List<Event> events;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IEventDAO ieventDAO = sqlSession.getMapper(IEventDAO.class);
-            events = ieventDAO.getEventsByType(typeName);
+            events = ieventDAO.getEventsByTypeName(typeName);
         }
         return events;
     }
@@ -140,4 +138,5 @@ public class EventDAO implements IEventDAO {
         }
         return event;
     }
+
 }

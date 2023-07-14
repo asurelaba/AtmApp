@@ -1,14 +1,14 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu;
 
-import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Event;
 import com.solvd.db.model.Transaction;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.AccountService;
 import com.solvd.services.TransactionService;
-import com.solvd.views.CheckBalanceView;
+import com.solvd.views.atm.client.CheckBalanceView;
 import java.text.NumberFormat;
 
 public class CheckBalanceController implements IFeatureController {
@@ -30,7 +30,7 @@ public class CheckBalanceController implements IFeatureController {
         String lastFour = cardNum.substring(cardNum.length() - 4);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         view.displayBalance(formatter.format(clientBalance), lastFour);
-        Event event = logEvent(clientCard, EnumEventNames.BALANCE_INQUIRY);
+        Event event = logEvent(clientCard, EnumEventName.BALANCE_INQUIRY);
 
         Transaction transaction = new Transaction();
         transaction.setStatus("approved");

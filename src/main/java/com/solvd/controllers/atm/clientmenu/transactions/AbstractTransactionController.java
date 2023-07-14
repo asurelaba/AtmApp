@@ -1,10 +1,16 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu.transactions;
 
-import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmTransactionController;
-import com.solvd.db.model.*;
-import com.solvd.services.*;
-import com.solvd.views.atm.AtmTransactionView;
+import com.solvd.db.model.Account;
+import com.solvd.db.model.Card;
+import com.solvd.db.model.Event;
+import com.solvd.db.model.Transaction;
+import com.solvd.db.model.User;
+import com.solvd.enums.EnumEventName;
+import com.solvd.services.AccountService;
+import com.solvd.services.TransactionService;
+import com.solvd.services.UserService;
+import com.solvd.views.atm.admin.AtmTransactionView;
 
 public abstract class AbstractTransactionController implements IAtmTransactionController {
 
@@ -17,7 +23,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
     protected TransactionService transactionService;
     protected UserService userService;
     protected double amount = 0;
-    protected EnumEventNames eventType;
+    protected EnumEventName eventType;
     protected final AtmTransactionView view = new AtmTransactionView();
 
     public AbstractTransactionController(Card clientCard) {
@@ -48,7 +54,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
     public abstract void updateBalance();
 
     @Override
-    public abstract EnumEventNames getEventType();
+    public abstract EnumEventName getEventType();
 
     // This method will be overridden in AtmDepositController where check balance is not necessary.
     @Override
@@ -84,7 +90,7 @@ public abstract class AbstractTransactionController implements IAtmTransactionCo
 
     @Override
     public void recordTransaction() {
-        transaction.setStatus(EnumEventNames.APPROVED.getEventName());
+        transaction.setStatus(EnumEventName.APPROVED.getEventName());
         transaction.setAmount(amount);
         transaction.setEvent(event);
         transactionService.insert(transaction);

@@ -7,4 +7,5 @@ and delete are covered by the IBaseDao interface*/
 public interface ICardTypeDAO extends IBaseDAO<CardType> {
 
     CardType getCardTypeByName(String typeName);
+
 }

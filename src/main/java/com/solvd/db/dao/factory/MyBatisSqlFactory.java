@@ -1,13 +1,20 @@
 package com.solvd.db.dao.factory;
 
 import com.solvd.db.dao.idao.IBaseDAO;
-import com.solvd.db.dao.mybatisdao.*;
+import com.solvd.db.dao.mybatisdao.AccountDAO;
+import com.solvd.db.dao.mybatisdao.CardDAO;
+import com.solvd.db.dao.mybatisdao.CardTypeDAO;
+import com.solvd.db.dao.mybatisdao.EventDAO;
+import com.solvd.db.dao.mybatisdao.EventTypeDAO;
+import com.solvd.db.dao.mybatisdao.PersonDAO;
+import com.solvd.db.dao.mybatisdao.TransactionDAO;
+import com.solvd.db.dao.mybatisdao.UserDAO;
+import com.solvd.db.dao.mybatisdao.UserRoleDAO;
+import java.io.IOException;
+import java.io.Reader;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import java.io.IOException;
-import java.io.Reader;
 
 public class MyBatisSqlFactory {
 
@@ -40,4 +47,5 @@ public class MyBatisSqlFactory {
             default -> throw new DAONotFoundException(tableName + "DAO not found");
         };
     }
+
 }

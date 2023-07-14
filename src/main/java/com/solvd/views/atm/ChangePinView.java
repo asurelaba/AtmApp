@@ -1,9 +1,8 @@
 package com.solvd.views.atm;
 
+import java.util.InputMismatchException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.InputMismatchException;
 
 public class ChangePinView extends AbstractAtmView {
 
@@ -31,4 +30,5 @@ public class ChangePinView extends AbstractAtmView {
         }
         return pinNumber;
     }
+
 }

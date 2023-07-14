@@ -1,11 +1,12 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu.transactions;
 
-import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmTransferController;
 import com.solvd.db.model.Account;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 
-public class AtmTransferController extends AbstractTransactionController implements IAtmTransferController {
+public class AtmTransferController extends AbstractTransactionController implements
+    IAtmTransferController {
 
     private int recipientAccountId;
 
@@ -68,16 +69,17 @@ public class AtmTransferController extends AbstractTransactionController impleme
     }
 
     @Override
-    public EnumEventNames getEventType() {
-        return EnumEventNames.TRANSFER;
+    public EnumEventName getEventType() {
+        return EnumEventName.TRANSFER;
     }
 
     @Override
     public boolean validateAmount(double amount) {
         Account recipientAccount = accountService.getById(recipientAccountId);
-        if (recipientAccount.getBalance() == 9999999999d || (recipientAccount.getBalance() + amount) > 9999999999d) {
+        if (recipientAccount.getBalance() == 9999999999d
+            || (recipientAccount.getBalance() + amount) > 9999999999d) {
             view.displayBody("Transfer to this recipient is currently unavailable. " +
-                    "Please contact the branch office for assistance.");
+                "Please contact the branch office for assistance.");
             exitRun(view);
 
             return false;

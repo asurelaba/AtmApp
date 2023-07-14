@@ -1,12 +1,11 @@
 package com.solvd.db.dao.mybatisdao;
 
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.ICardTypeDAO;
 import com.solvd.db.model.CardType;
-import com.solvd.db.dao.factory.MyBatisSqlFactory;
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-
-import java.util.List;
 
 public class CardTypeDAO implements ICardTypeDAO {
 
@@ -68,4 +67,5 @@ public class CardTypeDAO implements ICardTypeDAO {
         }
         return cardType;
     }
+
 }

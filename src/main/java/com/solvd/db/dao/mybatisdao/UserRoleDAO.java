@@ -1,13 +1,12 @@
 package com.solvd.db.dao.mybatisdao;
 
 
+import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IUserRoleDAO;
 import com.solvd.db.model.UserRole;
-import com.solvd.db.dao.factory.MyBatisSqlFactory;
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-
-import java.util.List;
 
 public class UserRoleDAO implements IUserRoleDAO {
 
@@ -69,4 +68,5 @@ public class UserRoleDAO implements IUserRoleDAO {
         }
         return userRole;
     }
+
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.db.dao.idao.IEventDAO">
     <resultMap id="eventResultMap" type="Event" autoMapping="false">
         <id property="eventId" column="event_id"/>
         <result property="datetime" column="datetime"/>
         <association property="card" column="card_id"
-                     javaType="Card" select="com.solvd.db.dao.idao.ICardDAO.getById"/>
+          javaType="Card" select="com.solvd.db.dao.idao.ICardDAO.getById"/>
         <association property="eventType" column="type_id"
-                     javaType="EventType" select="com.solvd.db.dao.idao.IEventTypeDAO.getById"/>
+          javaType="EventType" select="com.solvd.db.dao.idao.IEventTypeDAO.getById"/>
     </resultMap>
 
     <insert id="insert" parameterType="Event" keyProperty="eventId" useGeneratedKeys="true">
@@ -44,7 +44,7 @@
         SELECT * FROM events WHERE card_id = #{cardId};
     </select>
 
-    <select id="getEventsByType" parameterType="string" resultMap="eventResultMap">
+    <select id="getEventsByTypeName" parameterType="string" resultMap="eventResultMap">
         SELECT * FROM events e
         INNER JOIN event_types et ON e.type_id = et.type_id
         WHERE et.name = #{typeName};

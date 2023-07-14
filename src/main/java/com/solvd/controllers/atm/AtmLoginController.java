@@ -1,11 +1,12 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.EnumEventNames;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
 import java.util.InputMismatchException;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 public class AtmLoginController implements IAtmLoginController {
@@ -47,7 +48,7 @@ public class AtmLoginController implements IAtmLoginController {
             }
 
             loggedIn = true;
-            logEvent(atmCard, EnumEventNames.LOG_IN);
+            logEvent(atmCard, EnumEventName.LOG_IN);
         }
     }
 
@@ -67,7 +68,8 @@ public class AtmLoginController implements IAtmLoginController {
 
     @Override
     public void handleCardNumberInput() {
-        long userInputCardNum = validateCardNumber();
+        Supplier<String> getCardNumInput = view::getCardNumber;
+        long userInputCardNum = cardNumberValidator(view, getCardNumInput);
         CardService cs = new CardService();
         Card atmCard = cs.getCardByCardNumber(userInputCardNum);
         setAtmCard(atmCard);
@@ -132,7 +134,7 @@ public class AtmLoginController implements IAtmLoginController {
     public void handleClientCardLock() {
         boolean userRequestUnlock = getUserRequestUnlock();
         if (userRequestUnlock) {
-            logEvent(atmCard, EnumEventNames.UNLOCK_CARD_REQUEST);
+            logEvent(atmCard, EnumEventName.UNLOCK_CARD_REQUEST);
         }
         view.displayBody("Thank you for using the AtmApp! Good Bye.");
         setAtmCard(null);

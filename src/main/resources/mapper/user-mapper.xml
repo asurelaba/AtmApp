@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.db.dao.idao.IUserDAO">
     <resultMap id="userResultMap" type="User" autoMapping="false">
         <id property="userId" column="user_id"/>
         <result property="status" column="status"/>
         <association property="person" column="person_id"
-                     javaType="Person" select="com.solvd.db.dao.idao.IPersonDAO.getById"/>
+          javaType="Person" select="com.solvd.db.dao.idao.IPersonDAO.getById"/>
         <association property="userRole" column="role_id"
-                     javaType="UserRole" select="com.solvd.db.dao.idao.IUserRoleDAO.getById"/>
+          javaType="UserRole" select="com.solvd.db.dao.idao.IUserRoleDAO.getById"/>
     </resultMap>
 
     <insert id="insert" parameterType="User" keyProperty="userId" useGeneratedKeys="true">

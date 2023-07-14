@@ -18,4 +18,5 @@ public interface IBaseDAO<T> {
 
     // Get All
     List<T> getAll();
+
 }

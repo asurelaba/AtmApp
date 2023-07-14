@@ -4,12 +4,18 @@ import com.solvd.controllers.icontrollers.IFeatureController;
 
 public interface IAtmAdminController extends IFeatureController {
 
-    void handleCreateUser();
+    void handleTransactionQueryMenu();
 
-    void handleUnlockCardRequests();
+    void handleCards();
 
-    void handleLockUserCard();
+    void handleAddDeleteViewUsers();
+
+    void handleClientAccounts();
+
+    void handleChangePin();
 
     void handleLogout();
+
+    void handleAppShutdown();
 
 }

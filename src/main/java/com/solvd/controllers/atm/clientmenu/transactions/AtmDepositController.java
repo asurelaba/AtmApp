@@ -1,7 +1,7 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu.transactions;
 
-import com.solvd.EnumEventNames;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 
 public class AtmDepositController extends AbstractTransactionController {
 
@@ -18,7 +18,8 @@ public class AtmDepositController extends AbstractTransactionController {
                 exitRun(view);
                 break;
             } else if ((checkBalance() + amount) > 9999999999d) {
-                view.displayBody("Invalid transaction amount. The account will reach its maximum balance " +
+                view.displayBody(
+                    "Invalid transaction amount. The account will reach its maximum balance " +
                         "with this amount. Enter a smaller amount.");
             } else {
                 run();
@@ -34,8 +35,8 @@ public class AtmDepositController extends AbstractTransactionController {
     }
 
     @Override
-    public EnumEventNames getEventType() {
-        return EnumEventNames.DEPOSIT;
+    public EnumEventName getEventType() {
+        return EnumEventName.DEPOSIT;
     }
 
 }

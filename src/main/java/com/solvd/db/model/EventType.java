@@ -15,26 +15,30 @@ public class EventType {
         this.typeId = typeId;
     }
 
-    public String getName() {
+    public String getEventTypeName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setEventTypeName(String name) {
         this.name = name;
     }
 
     @Override
     public String toString() {
         return "EventType{" +
-                "typeId=" + typeId +
-                ", name='" + name + '\'' +
-                '}';
+            "typeId=" + typeId +
+            ", name='" + name + '\'' +
+            '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         EventType eventType = (EventType) o;
         return typeId == eventType.typeId && Objects.equals(name, eventType.name);
     }
@@ -43,4 +47,5 @@ public class EventType {
     public int hashCode() {
         return Objects.hash(typeId, name);
     }
+
 }
