@@ -12,7 +12,6 @@ public class AtmAdminView extends AbstractAtmView implements IAtmAdminView {
 
     @Override
     public void displayAdminView() {
-        display(featureTitle());
         display("1. Add/delete/View Users");
         display("2. Transactions Query Menu");
         display("3. Manager Client Accounts");

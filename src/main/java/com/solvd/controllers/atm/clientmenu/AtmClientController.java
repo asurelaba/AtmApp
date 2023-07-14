@@ -23,6 +23,7 @@ public class AtmClientController implements IAtmClientController {
     @Override
     public void run() {
         while (!cardLocked) {
+            view.displayTitle(view.featureTitle());
             view.displayGreeting(clientCard.getUser());
             view.displayClientMenu();
             int clientInput = view.getUserSelection();

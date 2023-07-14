@@ -13,7 +13,7 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
 
     @Override
     public void displayAccountMenu() {
-        display(featureTitle());
+        displayTitle(featureTitle());
         display("1. Add An Account");
         display("2. Delete An Account");
         display("3. View Accounts");
@@ -55,7 +55,7 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
         while (true) {
             try {
                 userSel = getUserSelection();
-                if (userSel == 1 || userSel == 2 || userSel == 3 || userSel == 4) {
+                if (userSel == 1 || userSel == 2 || userSel == 3 || userSel == 0) {
                     break;
                 }
                 displayBody("Invalid Selection");

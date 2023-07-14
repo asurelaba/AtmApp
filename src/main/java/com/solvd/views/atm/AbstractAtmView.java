@@ -50,6 +50,7 @@ public abstract class AbstractAtmView implements IAtmView {
     }
 
     public void displayTitle(String message) {
+        display(System.lineSeparator());
         display(message);
     }
 

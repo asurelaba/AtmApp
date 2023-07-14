@@ -17,7 +17,7 @@ public class AddDeleteViewUserView extends AbstractAtmView {
     }
 
     public void displayUsersMenu() {
-        display(featureTitle());
+        displayTitle(featureTitle());
         display("1. Add User");
         display("2. Delete User");
         display("3. View All Users");

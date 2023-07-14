@@ -12,7 +12,6 @@ public class AtmClientView extends AbstractAtmView implements IAtmClientView {
 
     @Override
     public void displayClientMenu() {
-        display(featureTitle());
         display("1. Withdraw");
         display("2. Deposit");
         display("3. Transfer");

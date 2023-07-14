@@ -20,6 +20,7 @@ public class AtmAdminController implements IAtmAdminController {
     @Override
     public void run() {
         while (true) {
+            view.displayTitle(view.featureTitle());
             view.displayGreeting(adminCard.getUser());
             view.displayAdminView();
             int adminInput = view.getUserSelection();
