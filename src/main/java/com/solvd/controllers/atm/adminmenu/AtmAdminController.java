@@ -1,10 +1,12 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.adminmenu;
 
-import com.solvd.controllers.atm.cardsmenu.CardsController;
+import com.solvd.controllers.atm.AtmController;
+import com.solvd.controllers.atm.ChangePinController;
+import com.solvd.controllers.atm.adminmenu.cardsmenu.CardsController;
 import com.solvd.controllers.icontrollers.atm.IAtmAdminController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;
-import com.solvd.views.atm.AtmAdminView;
+import com.solvd.views.atm.admin.AtmAdminView;
 
 public class AtmAdminController implements IAtmAdminController {
 
@@ -18,6 +20,7 @@ public class AtmAdminController implements IAtmAdminController {
     @Override
     public void run() {
         while (true) {
+            view.displayTitle(view.featureTitle());
             view.displayGreeting(adminCard.getUser());
             view.displayAdminView();
             int adminInput = view.getUserSelection();
@@ -28,11 +31,11 @@ public class AtmAdminController implements IAtmAdminController {
                 case 4 -> handleCards();
                 case 5 -> handleChangePin();
                 case 6 -> {
-                    handleLogout();
+                    handleAppShutdown();
                     return;
                 }
-                case 7 -> {
-                    handleAppShutdown();
+                case 0 -> {
+                    handleLogout();
                     return;
                 }
                 default -> view.display("Invalid selection");

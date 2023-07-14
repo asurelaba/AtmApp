@@ -6,9 +6,9 @@
         <!-- Console appender configuration -->
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout
-                    pattern="%highlight{%msg%n}{FATAL=red,
+              pattern="%highlight{%msg%n}{FATAL=red,
                     ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white}"
-                    disableAnsi="false"/>
+              disableAnsi="false"/>
         </Console>
     </Appenders>
     <Loggers>

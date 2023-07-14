@@ -1,11 +1,10 @@
 package com.solvd.controllers.atm;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.atm.IAtmLoginController;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.CardService;
 import com.solvd.views.atm.AtmLoginView;
-
 import java.util.InputMismatchException;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;

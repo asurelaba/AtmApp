@@ -44,23 +44,29 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "transactionId=" + transactionId +
-                ", amount=" + amount +
-                ", status='" + status + '\'' +
-                ", event=" + event +
-                '}';
+            "transactionId=" + transactionId +
+            ", amount=" + amount +
+            ", status='" + status + '\'' +
+            ", event=" + event +
+            '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Transaction that = (Transaction) o;
-        return transactionId == that.transactionId && Double.compare(that.amount, amount) == 0 && Objects.equals(status, that.status) && Objects.equals(event, that.event);
+        return transactionId == that.transactionId && Double.compare(that.amount, amount) == 0
+            && Objects.equals(status, that.status) && Objects.equals(event, that.event);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(transactionId, amount, status, event);
     }
+
 }

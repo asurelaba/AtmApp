@@ -1,15 +1,14 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.adminmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Person;
 import com.solvd.db.model.User;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.PersonService;
 import com.solvd.services.UserRoleService;
 import com.solvd.services.UserService;
-import com.solvd.views.atm.AddDeleteViewUserView;
-
+import com.solvd.views.atm.admin.AddDeleteViewUserView;
 import java.util.List;
 
 public class AddDeleteViewUserController implements IFeatureController {
@@ -82,7 +81,8 @@ public class AddDeleteViewUserController implements IFeatureController {
                 view.displayBody("User Id does not exist.");
                 int choice;
                 do {
-                    view.displayBody("Please enter 1. To enter another userid \n 2. To return to Add/Delete/View Users Menu");
+                    view.displayBody(
+                        "Please enter 1. To enter another userid \n 2. To return to Add/Delete/View Users Menu");
                     choice = view.getUserSelection();
                 } while (choice < 1 || choice > 2);
                 if (choice == 2) {
@@ -99,4 +99,5 @@ public class AddDeleteViewUserController implements IFeatureController {
         view.displayUsers(users);
         exitRun(view);
     }
+
 }

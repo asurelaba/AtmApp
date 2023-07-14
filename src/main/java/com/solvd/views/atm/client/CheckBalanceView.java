@@ -1,4 +1,4 @@
-package com.solvd.views;
+package com.solvd.views.atm.client;
 
 import com.solvd.views.atm.AbstractAtmView;
 

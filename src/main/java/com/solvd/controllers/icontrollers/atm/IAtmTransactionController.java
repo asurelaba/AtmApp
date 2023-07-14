@@ -1,7 +1,7 @@
 package com.solvd.controllers.icontrollers.atm;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
+import com.solvd.enums.EnumEventName;
 
 public interface IAtmTransactionController extends IFeatureController {
 

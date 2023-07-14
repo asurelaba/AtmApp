@@ -7,4 +7,5 @@ public interface IAtmView {
     String featureTitle();
 
     void display(String message);
+
 }

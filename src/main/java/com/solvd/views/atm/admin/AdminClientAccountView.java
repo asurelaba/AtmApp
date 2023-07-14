@@ -1,7 +1,7 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.admin;
 
+import com.solvd.views.atm.AbstractAtmView;
 import com.solvd.views.iviews.atm.IAdminClientAccountView;
-
 import java.util.InputMismatchException;
 
 public class AdminClientAccountView extends AbstractAtmView implements IAdminClientAccountView {
@@ -13,12 +13,11 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
 
     @Override
     public void displayAccountMenu() {
-        display(System.lineSeparator());
-        display(featureTitle());
+        displayTitle(featureTitle());
         display("1. Add An Account");
         display("2. Delete An Account");
         display("3. View Accounts");
-        display("4. Go Back To Main Menu");
+        display("0. Go Back To Main Menu");
     }
 
     @Override
@@ -56,7 +55,7 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
         while (true) {
             try {
                 userSel = getUserSelection();
-                if (userSel == 1 || userSel == 2 || userSel == 3 || userSel == 4) {
+                if (userSel == 1 || userSel == 2 || userSel == 3 || userSel == 0) {
                     break;
                 }
                 displayBody("Invalid Selection");
@@ -105,7 +104,8 @@ public class AdminClientAccountView extends AbstractAtmView implements IAdminCli
                 }
 
                 if (balance > 9999999999d) {
-                    displayBody("Balance exceeds the maximum allowed. Please enter a smaller amount.");
+                    displayBody(
+                        "Balance exceeds the maximum allowed. Please enter a smaller amount.");
                     continue;
                 }
 

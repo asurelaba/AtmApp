@@ -1,6 +1,7 @@
 package com.solvd.services;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import com.solvd.db.model.Card;
 import com.solvd.db.model.User;

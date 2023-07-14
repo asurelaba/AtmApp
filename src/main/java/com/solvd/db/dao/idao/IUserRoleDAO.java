@@ -7,4 +7,5 @@ and delete are covered by the IBaseDao interface*/
 public interface IUserRoleDAO extends IBaseDAO<UserRole> {
 
     UserRole getUserRoleByRoleName(String roleName);
+
 }

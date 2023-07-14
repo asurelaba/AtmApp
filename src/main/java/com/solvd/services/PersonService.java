@@ -2,7 +2,6 @@ package com.solvd.services;
 
 import com.solvd.db.dao.idao.IPersonDAO;
 import com.solvd.db.model.Person;
-
 import java.util.List;
 
 public class PersonService extends EntityService<Person, IPersonDAO> implements IPersonDAO {

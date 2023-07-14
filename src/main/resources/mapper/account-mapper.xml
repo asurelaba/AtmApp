@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.db.dao.idao.IAccountDAO">
     <resultMap id="accountResultMap" type="Account" autoMapping="false">
@@ -9,7 +9,7 @@
         <result property="routingNumber" column="routing_number"/>
         <result property="balance" column="balance"/>
         <association property="user" column="user_id"
-                     javaType="User" select="com.solvd.db.dao.idao.IUserDAO.getById"/>
+          javaType="User" select="com.solvd.db.dao.idao.IUserDAO.getById"/>
     </resultMap>
 
     <insert id="insert" parameterType="Account" keyProperty="accountId" useGeneratedKeys="true">

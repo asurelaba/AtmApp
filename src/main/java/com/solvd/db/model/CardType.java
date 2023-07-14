@@ -26,15 +26,19 @@ public class CardType {
     @Override
     public String toString() {
         return "CardType{" +
-                "typeId=" + typeId +
-                ", name='" + name + '\'' +
-                '}';
+            "typeId=" + typeId +
+            ", name='" + name + '\'' +
+            '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CardType cardType = (CardType) o;
         return typeId == cardType.typeId && Objects.equals(name, cardType.name);
     }
@@ -43,4 +47,5 @@ public class CardType {
     public int hashCode() {
         return Objects.hash(typeId, name);
     }
+
 }

@@ -1,14 +1,14 @@
-package com.solvd.controllers.atm.cardsmenu;
+package com.solvd.controllers.atm.adminmenu.cardsmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
 import com.solvd.db.model.CardType;
 import com.solvd.db.model.User;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.CardService;
 import com.solvd.services.CardTypeService;
 import com.solvd.services.UserService;
-import com.solvd.views.atm.CardsView;
+import com.solvd.views.atm.admin.CardsView;
 import java.util.Random;
 
 public class AddCardController implements IFeatureController {

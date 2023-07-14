@@ -3,11 +3,10 @@ package com.solvd.db.dao.mybatisdao;
 import com.solvd.db.dao.factory.MyBatisSqlFactory;
 import com.solvd.db.dao.idao.IEventDAO;
 import com.solvd.db.model.Event;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import java.sql.Timestamp;
 import java.util.List;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 public class EventDAO implements IEventDAO {
 
@@ -139,4 +138,5 @@ public class EventDAO implements IEventDAO {
         }
         return event;
     }
+
 }

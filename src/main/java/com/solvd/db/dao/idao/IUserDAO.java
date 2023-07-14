@@ -1,9 +1,8 @@
 package com.solvd.db.dao.idao;
 
 import com.solvd.db.model.User;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /* The operations to get by id, get all from the DB, insert, update,
 and delete are covered by the IBaseDao interface*/
@@ -13,7 +12,8 @@ public interface IUserDAO extends IBaseDAO<User> {
 
     List<User> getAllUsersByRoleName(String roleName); // RoleName: Client/Admin
 
-    List<User> getUsersByName(@Param("firstName") String firstName, @Param("lastName") String lastName);
+    List<User> getUsersByName(@Param("firstName") String firstName,
+        @Param("lastName") String lastName);
 
     User getUserByAccountId(int accountId);
 
@@ -22,4 +22,5 @@ public interface IUserDAO extends IBaseDAO<User> {
     User getUserByEventId(int eventId);
 
     User getUserByTransactionId(int transactionId);
+
 }

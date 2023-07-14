@@ -1,7 +1,8 @@
-package com.solvd.views.atm;
+package com.solvd.views.atm.admin;
 
 import com.solvd.db.model.Card;
 import com.solvd.db.model.Person;
+import com.solvd.views.atm.AbstractAtmView;
 import java.util.List;
 
 public class CardsView extends AbstractAtmView {
@@ -17,7 +18,7 @@ public class CardsView extends AbstractAtmView {
         displayBody("3. Lock Card");
         displayBody("4. Unlock Card");
         displayBody("5. View All Cards");
-        displayBody("6. Return To Main Menu");
+        displayBody("0. Return To Main Menu");
     }
 
     public String getUserIdInput() {

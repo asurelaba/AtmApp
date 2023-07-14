@@ -1,7 +1,7 @@
-package com.solvd.controllers.atm;
+package com.solvd.controllers.atm.clientmenu.transactions;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 
 public class AtmWithdrawController extends AbstractTransactionController {
 

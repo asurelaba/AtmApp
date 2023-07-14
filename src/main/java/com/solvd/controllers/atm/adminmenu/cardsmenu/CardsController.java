@@ -1,10 +1,10 @@
-package com.solvd.controllers.atm.cardsmenu;
+package com.solvd.controllers.atm.adminmenu.cardsmenu;
 
-import com.solvd.enums.EnumEventName;
 import com.solvd.controllers.icontrollers.IFeatureController;
 import com.solvd.db.model.Card;
+import com.solvd.enums.EnumEventName;
 import com.solvd.services.CardService;
-import com.solvd.views.atm.CardsView;
+import com.solvd.views.atm.admin.CardsView;
 import java.util.function.Supplier;
 
 public class CardsController implements IFeatureController {
@@ -30,7 +30,7 @@ public class CardsController implements IFeatureController {
                 case 3 -> handleLockCard(adminCard);
                 case 4 -> handleUnlockCard(adminCard);
                 case 5 -> handleViewAllCards();
-                case 6 -> {
+                case 0 -> {
                     view.display("Returning to the main menu...");
                     return;
                 }
