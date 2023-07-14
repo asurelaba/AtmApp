@@ -30,7 +30,7 @@ public class CardsController implements IFeatureController {
                 case 3 -> handleLockCard(adminCard);
                 case 4 -> handleUnlockCard(adminCard);
                 case 5 -> handleViewAllCards();
-                case 6 -> {
+                case 0 -> {
                     view.display("Returning to the main menu...");
                     return;
                 }

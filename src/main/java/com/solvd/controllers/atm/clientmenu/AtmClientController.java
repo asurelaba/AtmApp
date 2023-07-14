@@ -34,7 +34,7 @@ public class AtmClientController implements IAtmClientController {
                 case 4 -> handleCheckBalance();
                 case 5 -> handleLockCardRequest();
                 case 6 -> handleChangePin();
-                case 7 -> {
+                case 0 -> {
                     handleLogout();
                     return;
                 }

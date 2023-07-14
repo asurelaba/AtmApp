@@ -30,11 +30,11 @@ public class AtmAdminController implements IAtmAdminController {
                 case 4 -> handleCards();
                 case 5 -> handleChangePin();
                 case 6 -> {
-                    handleLogout();
+                    handleAppShutdown();
                     return;
                 }
-                case 7 -> {
-                    handleAppShutdown();
+                case 0 -> {
+                    handleLogout();
                     return;
                 }
                 default -> view.display("Invalid selection");

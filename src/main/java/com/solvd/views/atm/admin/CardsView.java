@@ -18,7 +18,7 @@ public class CardsView extends AbstractAtmView {
         displayBody("3. Lock Card");
         displayBody("4. Unlock Card");
         displayBody("5. View All Cards");
-        displayBody("6. Return To Main Menu");
+        displayBody("0. Return To Main Menu");
     }
 
     public String getUserIdInput() {

@@ -19,7 +19,7 @@ public class AdminTransactionView extends AbstractAtmView {
         displayBody("4. Query by Date");
         displayBody("5. Query by User Id");
         displayBody("6. Query by User Id and Date");
-        displayBody("7. return to main menu");
+        displayBody("0. Return to main menu");
     }
 
     public int getUserInputInt() {

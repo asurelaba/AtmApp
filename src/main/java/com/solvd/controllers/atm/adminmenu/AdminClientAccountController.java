@@ -33,7 +33,7 @@ public class AdminClientAccountController implements IAdminClientAccountControll
                 case 1 -> createAccount();
                 case 2 -> getAccountId();
                 case 3 -> viewAccounts();
-                case 4 -> {
+                case 0 -> {
                     return;
                 }
                 default -> view.displayBody("Invalid selection");

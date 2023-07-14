@@ -32,7 +32,7 @@ public class AdminTransactionController implements IFeatureController {
                 case 4 -> handleTransactionsByDateRange();
                 case 5 -> handleTransactionsByUserId();
                 case 6 -> handleTransactionsByUserIdAndDateRange();
-                case 7 -> {
+                case 0 -> {
                     view.display("Returning to the main menu...");
                     return;
                 }

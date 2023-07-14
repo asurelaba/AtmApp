@@ -18,8 +18,8 @@ public class AtmAdminView extends AbstractAtmView implements IAtmAdminView {
         display("3. Manager Client Accounts");
         display("4. Modify Cards");
         display("5. Change Pin");
-        display("6. Logout");
-        display("7. Shutdown AtmApp");
+        display("6. Shutdown AtmApp");
+        display("0. Logout");
     }
 
 }
