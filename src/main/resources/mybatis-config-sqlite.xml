@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties resource="db.properties"/>
     <typeAliases>
         <typeAlias alias="Account" type="com.solvd.db.model.Account"/>
         <typeAlias alias="Card" type="com.solvd.db.model.Card"/>
