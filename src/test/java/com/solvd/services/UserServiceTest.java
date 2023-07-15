@@ -21,12 +21,12 @@ public class UserServiceTest {
 
     @Test
     public void testGetUsersByStatus() {
-        List<User> adminUsers = us.getUsersByStatus("Active");
-        assertTrue(adminUsers.stream()
-            .map(User::getPerson)
-            .map(Person::getFirstName)
+        List<User> activeUsers = us.getUsersByStatus("active");
+        assertTrue(activeUsers.size() >= 1);
+        assertEquals(activeUsers.stream()
+            .map(User::getStatus)
             .collect(Collectors.toSet())
-            .contains("Liam"));
+            .size(), 1);
     }
 
     @Test

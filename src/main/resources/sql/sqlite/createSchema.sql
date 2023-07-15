@@ -1,0 +1,85 @@
+DROP TABLE IF EXISTS persons;
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS event_types;
+DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS card_types;
+DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS persons;
+
+CREATE TABLE IF NOT EXISTS persons
+(
+    person_id  INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name VARCHAR(45) NOT NULL,
+    last_name  VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user_roles
+(
+    role_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name    VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users
+(
+    user_id   INTEGER PRIMARY KEY AUTOINCREMENT,
+    status    VARCHAR(45) NOT NULL,
+    person_id INTEGER     NOT NULL,
+    role_id   INTEGER     NOT NULL,
+    FOREIGN KEY (person_id) REFERENCES persons (person_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES user_roles (role_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS accounts
+(
+    account_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    routing_number INTEGER        NOT NULL,
+    balance        DECIMAL(10, 0) NOT NULL,
+    user_id        INTEGER        NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS card_types
+(
+    type_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name    VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cards
+(
+    card_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    card_number BIGINT(16)  NOT NULL,
+    pin         INTEGER     NOT NULL,
+    status      VARCHAR(45) NOT NULL,
+    type_id     INTEGER     NOT NULL,
+    user_id     INTEGER     NOT NULL,
+    FOREIGN KEY (type_id) REFERENCES card_types (type_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS event_types
+(
+    type_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name    VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS events
+(
+    event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    card_id  INTEGER   NOT NULL,
+    type_id  INTEGER   NOT NULL,
+    FOREIGN KEY (card_id) REFERENCES cards (card_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (type_id) REFERENCES event_types (type_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS transactions
+(
+    transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    amount         DECIMAL(10, 0) NOT NULL,
+    status         VARCHAR(45)    NOT NULL,
+    event_id       INTEGER        NOT NULL,
+    FOREIGN KEY (event_id) REFERENCES events (event_id) ON DELETE CASCADE ON UPDATE CASCADE
+);

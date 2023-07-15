@@ -19,10 +19,12 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MyBatisSqlFactory {
 
     private static SqlSessionFactory sqlSessionFactory;
+    private static final String mysql_mybatis_config = "mybatis-config.xml";
+    private static final String sqlite_mybatis_config = "mybatis-config-sqlite.xml";
 
     static {
         try {
-            Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+            Reader reader = Resources.getResourceAsReader(sqlite_mybatis_config);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();

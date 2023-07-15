@@ -5,7 +5,8 @@ import static org.testng.Assert.assertTrue;
 
 import com.solvd.db.model.Transaction;
 import java.sql.Timestamp;
-import java.time.temporal.ChronoUnit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,7 +19,7 @@ public class TransactionServiceTest {
     private TransactionService ts;
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws ParseException {
         // Get transaction from an event that has a deposit transaction
         ts = new TransactionService();
         actualTransaction = ts.getTransactionByEventId(new EventService()
@@ -26,8 +27,9 @@ public class TransactionServiceTest {
             .get(0)
             .getEventId());
         userId = actualTransaction.getEvent().getCard().getUser().getUserId();
-        from = actualTransaction.getEvent().getDatetime();
-        to = Timestamp.valueOf(from.toLocalDateTime().plus(1, ChronoUnit.DAYS));
+        from = new Timestamp(
+            new SimpleDateFormat("yyyy-MM-dd").parse("2023-06-25").getTime());
+        to = new Timestamp(System.currentTimeMillis() + 1000);
     }
 
     /* Match the Name-status of actualTransaction with the Name-status of the first object retrieved
