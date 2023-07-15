@@ -15,7 +15,7 @@ public class SqliteUtil {
 
     public static void main(String[] args) {
         runSQLScript("src/main/resources/sql/sqlite/createSchema.sql");
-        runSQLScript("src/main/resources/sql/sqlite/inserts.sql");
+        runSQLScript("src/main/resources/sql/sqlite/insertsSmall.sql");
     }
 
     private static void runSQLScript(String filepath) {

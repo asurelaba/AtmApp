@@ -464,7 +464,7 @@ values (1, 123456792, 8400, 3),
        (134, 123456780, 5000, 2);
 
 INSERT INTO "event_types" ("name")
-VALUES ('log In'),
+VALUES ('Log In'),
        ('Log Out'),
        ('Lock Card'),
        ('Transaction Query'),

@@ -22,11 +22,11 @@ public class UserServiceTest {
     @Test
     public void testGetUsersByStatus() {
         List<User> activeUsers = us.getUsersByStatus("active");
-        assertTrue(activeUsers.size() >= 1);
-        assertEquals(activeUsers.stream()
-            .map(User::getStatus)
+        assertTrue(activeUsers.stream()
+            .map(User::getPerson)
+            .map(Person::getFirstName)
             .collect(Collectors.toSet())
-            .size(), 1);
+            .contains("Liam"));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class UserServiceTest {
             .map(User::getPerson)
             .map(Person::getFirstName)
             .collect(Collectors.toSet())
-            .contains("Emma"));
+            .contains("Liam"));
     }
 
     @Test

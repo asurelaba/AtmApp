@@ -30,7 +30,7 @@ public class EventTypeServiceTest {
     public void testGetAll() {
         List<EventType> allEventTypes = et.getAll();
         Set<EventType> setEventTypes = new HashSet<>(allEventTypes);
-        String[] eventTypes = {"log In", "Log Out", "Lock Card", "Transaction Query",
+        String[] eventTypes = {"Log In", "Log Out", "Lock Card", "Transaction Query",
             "Balance Inquiry", "Print Receipt", "Change Pin", "Unlock Card Request", "Withdrawal",
             "Deposit"
         };

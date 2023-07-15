@@ -61,7 +61,7 @@ public class EventServiceTest {
 
     @org.testng.annotations.Test
     public void testGetEventsByUserId() {
-        List<Event> events = eventService.getEventsByUserId(91);
+        List<Event> events = eventService.getEventsByUserId(5);
         assertEquals(events.size(), 2);
     }
 
