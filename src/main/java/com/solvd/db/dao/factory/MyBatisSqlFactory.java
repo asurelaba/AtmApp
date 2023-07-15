@@ -1,5 +1,7 @@
 package com.solvd.db.dao.factory;
 
+import static com.solvd.util.AppConfig.DB;
+
 import com.solvd.db.dao.idao.IBaseDAO;
 import com.solvd.db.dao.mybatisdao.AccountDAO;
 import com.solvd.db.dao.mybatisdao.CardDAO;
@@ -23,8 +25,13 @@ public class MyBatisSqlFactory {
     private static final String sqlite_mybatis_config = "mybatis-config-sqlite.xml";
 
     static {
+        String mybatis_config = "";
+        switch(DB){
+            case "SQLITE" -> mybatis_config = sqlite_mybatis_config;
+            case "MYSQL" -> mybatis_config = mysql_mybatis_config;
+        }
         try {
-            Reader reader = Resources.getResourceAsReader(sqlite_mybatis_config);
+            Reader reader = Resources.getResourceAsReader(mybatis_config);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();
