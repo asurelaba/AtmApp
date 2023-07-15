@@ -19,5 +19,6 @@ public class AppConfig {
     }
 
     public static final String ENVIRONMENT = properties.getProperty("ENVIRONMENT");
+    public static final String DB = properties.getProperty("DB");
 
 }

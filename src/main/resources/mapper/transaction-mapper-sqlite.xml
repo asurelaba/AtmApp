@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.db.dao.idao.ITransactionDAO">
+    <resultMap id="transactionResultMap" type="Transaction" autoMapping="false">
+        <id property="transactionId" column="transaction_id"/>
+        <result property="amount" column="amount"/>
+        <result property="status" column="status"/>
+        <association property="event" column="event_id"
+          javaType="Event" select="com.solvd.db.dao.idao.IEventDAO.getById"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="Transaction" keyProperty="transactionId"
+      useGeneratedKeys="true">
+        INSERT INTO transactions (amount, status, event_id)
+        VALUES (#{amount}, #{status}, #{event.eventId});
+    </insert>
+
+    <update id="update" parameterType="Transaction">
+        UPDATE transactions
+        SET amount = #{amount}, status = #{status}, event_id = #{event.eventId}
+        WHERE transaction_id = #{transactionId};
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM transactions WHERE transaction_id = #{id};
+    </delete>
+
+    <select id="getById" parameterType="int" resultMap="transactionResultMap">
+        SELECT * FROM transactions WHERE transaction_id = #{id};
+    </select>
+
+    <select id="getAll" resultMap="transactionResultMap">
+        SELECT * FROM transactions;
+    </select>
+
+    <select id="getTransactionsByStatus" parameterType="string" resultMap="transactionResultMap">
+        SELECT * FROM transactions WHERE status = #{statusName};
+    </select>
+
+    <select id="getTransactionByEventId" parameterType="int" resultMap="transactionResultMap">
+        SELECT * FROM transactions WHERE event_id = #{eventId};
+    </select>
+
+    <select id="getTransactionsByCardNumber" parameterType="long" resultMap="transactionResultMap">
+        SELECT * FROM transactions t
+        INNER JOIN events e ON t.event_id = e.event_id
+        INNER JOIN cards c ON e.card_id = c.card_id
+        WHERE c.card_number = #{cardNumber};
+    </select>
+
+    <select id="getTransactionsByDateRange" resultMap="transactionResultMap">
+        SELECT * FROM transactions t
+        INNER JOIN events e ON t.event_id = e.event_id
+        WHERE e.datetime
+        BETWEEN strftime('%Y-%m-%d %H:%M:%S',
+        datetime(#{from} / 1000, 'unixepoch')
+        ) AND strftime('%Y-%m-%d %H:%M:%S',
+        datetime(#{to} / 1000, 'unixepoch')
+        );
+    </select>
+
+    <select id="getTransactionsByUserId" parameterType="int" resultMap="transactionResultMap">
+        SELECT * FROM transactions t
+        INNER JOIN events e ON t.event_id = e.event_id
+        INNER JOIN cards c ON e.card_id = c.card_id
+        INNER JOIN users u ON c.user_id = u.user_id
+        WHERE u.user_id = #{userId};
+    </select>
+
+    <select id="getTransactionsByUserIdAndDateRange" resultMap="transactionResultMap">
+        SELECT * FROM transactions t
+        INNER JOIN events e ON t.event_id = e.event_id
+        INNER JOIN cards c ON e.card_id = c.card_id
+        INNER JOIN users u ON c.user_id = u.user_id
+        WHERE e.datetime BETWEEN strftime('%Y-%m-%d %H:%M:%S', datetime(#{from} / 1000,
+        'unixepoch'))
+        AND strftime('%Y-%m-%d %H:%M:%S', datetime(#{to} / 1000, 'unixepoch')) AND u.user_id =
+        #{userId};
+    </select>
+</mapper>
+

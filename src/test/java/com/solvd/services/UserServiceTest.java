@@ -21,8 +21,8 @@ public class UserServiceTest {
 
     @Test
     public void testGetUsersByStatus() {
-        List<User> adminUsers = us.getUsersByStatus("Active");
-        assertTrue(adminUsers.stream()
+        List<User> activeUsers = us.getUsersByStatus("active");
+        assertTrue(activeUsers.stream()
             .map(User::getPerson)
             .map(Person::getFirstName)
             .collect(Collectors.toSet())
@@ -36,7 +36,7 @@ public class UserServiceTest {
             .map(User::getPerson)
             .map(Person::getFirstName)
             .collect(Collectors.toSet())
-            .contains("Emma"));
+            .contains("Liam"));
     }
 
     @Test
